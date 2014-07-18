@@ -12,7 +12,10 @@ Plugin 'gmarik/Vundle.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
-"Plugin 'python-rope/ropevim'   " Need to instal rope first
+Plugin 'python-rope/ropevim'   " pip install rope
+                               " then :PluginInstall ; quit vim
+                               "  and python setup.py install
+                               "  and :PluginInstall again
 Plugin 'davidhalter/jedi-vim'
 
 " All of your Plugins must be added before the following line
