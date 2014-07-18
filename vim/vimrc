@@ -1,0 +1,91 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+" call vundle#begin(~/some/path/here)
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+"Plugin 'python-rope/ropevim'   " Need to instal rope first
+Plugin 'davidhalter/jedi-vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList          - list configured plugins
+" :PluginInstall(!)    - install (update) plugins
+" :PluginSearch(!) foo - search (or refresh cache first) for foo
+" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+"""
+
+" matatk compatible systems...
+set mouse=a
+colorscheme elflord
+" Essential Tab stuff...
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+"set expandtab
+
+" Disable hl from hlsearch with CTRL-N
+set hlsearch
+nmap <silent> <C-H> :silent noh<CR>
+
+" Normally we use vim-extensions. If you want true vi-compatibility
+" remove change the following statements
+set nocompatible	" Use Vim defaults instead of 100% vi compatibility
+set backspace=indent,eol,start	" more powerful backspacing
+
+" Now we set some defaults for the editor 
+set autoindent       " always set autoindenting on
+"set linebreak       " Don't wrap words by default
+set textwidth=0      " Don't wrap lines by default 
+set backupcopy=yes   " Keep a backup file
+set viminfo='20,\"50 " read/write a .viminfo file, don't store more than
+                     " 50 lines of registers
+set history=50       " keep 50 lines of command line history
+set ruler            " show the cursor position all the time
+
+" Suffixes that get lower priority when doing tab completion for filenames.
+" These are files we are not likely to want to edit or read.
+set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
+
+" Make p in Visual mode replace the selected text with the "" register.
+vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
+
+" Vim5 and later versions support syntax highlighting. Uncommenting the next
+" line enables syntax highlighting by default.
+syntax on
+
+" If using a dark background within the editing area and syntax highlighting
+" turn on this option as well
+set background=dark
+
+if has("autocmd")
+ " Enabled file type detection
+ " Use the default filetype settings. If you also want to load indent files
+ " to automatically do language-dependent indenting add 'indent' as well.
+ filetype plugin on
+endif " has ("autocmd")
+
+" The following are commented out as they cause vim to behave a lot
+" different from regular vi. They are highly recommended though.
+set showcmd     " Show (partial) command in status line.
+set showmatch   " Show matching brackets.
+set ignorecase  " Do case insensitive matching
+set incsearch   " Incremental search
+set autowrite   " Automatically save before commands like :next and :make
