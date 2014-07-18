@@ -7,7 +7,7 @@
 	<key>AllowClipboardAccess</key>
 	<false/>
 	<key>AnimateDimming</key>
-	<false/>
+	<true/>
 	<key>AppleAntiAliasingThreshold</key>
 	<integer>1</integer>
 	<key>AppleScrollAnimationEnabled</key>
@@ -43,7 +43,7 @@
 	<key>EnableRendezvous</key>
 	<false/>
 	<key>FocusFollowsMouse</key>
-	<false/>
+	<true/>
 	<key>FsTabDelay</key>
 	<real>1</real>
 	<key>HiddenAFRStrokeThickness</key>
