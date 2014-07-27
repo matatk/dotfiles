@@ -86,9 +86,6 @@ set ignorecase  " Do case insensitive matching
 set incsearch   " Incremental search
 set autowrite   " Automatically save before commands like :next and :make
 
-" The completion menu has very low contrast by default; use darker magenta
-hi Pmenu ctermbg=5 guibg=Magenta
-
 " matatk compatible systems...
 set mouse=a
 colorscheme elflord
