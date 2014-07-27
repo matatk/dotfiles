@@ -2,6 +2,9 @@
 # Completion
 ################################
 
+# ZSH Completions
+fpath=(~/.zsh-completions/src $fpath)
+
 autoload -Uz compinit && compinit
 
 # Case-insensitive completion

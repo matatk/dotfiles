@@ -16,7 +16,9 @@ Plugin 'python-rope/ropevim'   " pip install rope
                                " then :PluginInstall ; quit vim
                                "  and python setup.py install
                                "  and :PluginInstall again
-Plugin 'davidhalter/jedi-vim'
+Plugin 'davidhalter/jedi-vim'  " Python autocompletion
+Plugin 'scrooloose/syntastic'  " Multi-language syntax checking
+Plugin 'sjl/gundo.vim'         " Awesome graph-based undo
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -34,15 +36,6 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 """
-
-" matatk compatible systems...
-set mouse=a
-colorscheme elflord
-" Essential Tab stuff...
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-"set expandtab
 
 " Disable hl from hlsearch with CTRL-N
 set hlsearch
@@ -95,3 +88,13 @@ set autowrite   " Automatically save before commands like :next and :make
 
 " The completion menu has very low contrast by default; use darker magenta
 hi Pmenu ctermbg=5 guibg=Magenta
+
+" matatk compatible systems...
+set mouse=a
+colorscheme elflord
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set noexpandtab
+
+noremap <F5> :GundoToggle<CR>

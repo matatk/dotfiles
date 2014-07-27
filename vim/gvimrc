@@ -6,6 +6,3 @@ set bg=dark
 hi normal guibg=black
 set transp=15
 set guioptions-=T
-
-" No idea why this won't come over from ~/.vimrc (did try)...
-au BufNewFile,BufRead *.py set tabstop=4 softtabstop=4
