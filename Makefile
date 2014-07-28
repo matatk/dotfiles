@@ -7,12 +7,9 @@ all: symlinks $(VUNDLE_OUT) $(COMPLETIONS_OUT)
 	@echo "Reminder: Set iTerm2 to load settings from ~/dotfiles."
 
 symlinks:
-	@mkdir -p $(DOTFILES)/vim/vim     # until I have some stuff there
-	@mkdir -p $(DOTFILES)/vim/plugin  # until I have some plugins
-	@ln -sf $(DOTFILES)/zshrc ~/.zshrc
 	@ln -sf $(DOTFILES)/bashrc ~/.bashrc
-	@ln -nsf $(DOTFILES)/vim/vim ~/.vim
-	@ln -nsf $(DOTFILES)/vim/plugin ~/.vim/plugin
+	@ln -sf $(DOTFILES)/zshrc ~/.zshrc
+	@ln -nsf $(DOTFILES)/vim/dot-vim ~/.vim
 	@ln -sf $(DOTFILES)/vim/vimrc ~/.vimrc
 	@ln -sf $(DOTFILES)/vim/gvimrc ~/.gvimrc
 

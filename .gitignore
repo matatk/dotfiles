@@ -1,5 +1,4 @@
-vim/vim/bundle
-vim/vim/plugin
-vim/vim/.netrwhist
-vim/vim/spell
+vim/dot-vim/bundle
+vim/dot-vim/.netrwhist
+vim/dot-vim/spell
 .DS_Store
