@@ -1715,7 +1715,7 @@
 										<key>height</key>
 										<real>800</real>
 										<key>width</key>
-										<integer>766</integer>
+										<integer>767</integer>
 										<key>x</key>
 										<real>0</real>
 										<key>y</key>
@@ -2472,7 +2472,7 @@
 												<key>height</key>
 												<real>399</real>
 												<key>width</key>
-												<integer>658</integer>
+												<integer>657</integer>
 												<key>x</key>
 												<real>0</real>
 												<key>y</key>
@@ -3226,7 +3226,7 @@
 												<key>height</key>
 												<real>400</real>
 												<key>width</key>
-												<integer>658</integer>
+												<integer>657</integer>
 												<key>x</key>
 												<real>0</real>
 												<key>y</key>
@@ -3241,9 +3241,9 @@
 										<key>height</key>
 										<real>800</real>
 										<key>width</key>
-										<integer>658</integer>
+										<integer>657</integer>
 										<key>x</key>
-										<real>739</real>
+										<integer>739</integer>
 										<key>y</key>
 										<real>0</real>
 									</dict>
