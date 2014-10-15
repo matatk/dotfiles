@@ -43,7 +43,7 @@ export GREP_OPTIONS='--color=auto'
 # Aliases [not related to other config areas]
 ################################
 
-# Convenience commands
+# Standard UNIX commands
 alias l='ls -CF'
 alias ll='ls -l'
 alias lh='ls -lh'
@@ -52,13 +52,36 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
-# Ugly commands
+# My own commands
+# Redo the 'Open With' menu on OS X
 alias fixowmenu='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
+# Start a Jekyll auto-rebuilding server in the current directory
 alias jt='jekyll serve --watch --host obviate.local'
-catsay() {
+# cat and speak the contents of a file
+function cs() {
 	cat $1 && say -f $1
 }
-alias cs=catsay
+# Override default cd to remind me to not type cd
+function cd() {
+	# https://www.google.co.uk/search?q=zsh+double+square+brackets
+	# http://zsh.sourceforge.net/Doc/Release/Expansion.html#Filename-Generation
+	# http://docstore.mik.ua/orelly/unix3/upt/ch33_02.htm
+	PREV_DIR='-[[:digit:]]#'   # a '-' followed by optional digit(s)
+	NEXT_DIR='+[[:digit:]]##'  # a '+' followed by mandatory digit(s)
+	if [ "$1" != "" ]; then
+		# Warn that 'cd' is not necessary unless using the stack
+		if [[ "$1" != $~PREV_DIR ]] && [[ "$1" != $~NEXT_DIR ]]; then
+			echo "${bold_color}Just type the directory name :-).${reset_color}"
+		fi
+		builtin cd $1
+	else
+		builtin cd
+	fi
+}
+# Tell the story of a TDD project through the medium of commits
+function tddh() {
+	git log | grep '\(RED\|REFACTOR\)' | tail -r
+}
 
 
 ################################

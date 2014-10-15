@@ -2,7 +2,8 @@ DOTFILES=~/dotfiles
 VUNDLE_OUT=~/.vim/bundle/Vundle.vim
 COMPLETIONS_OUT=~/.zsh-completions
 
-all: symlinks $(VUNDLE_OUT) $(COMPLETIONS_OUT)
+all: symlinks $(VUNDLE_OUT) $(COMPLETIONS_OUT) update
+	@echo
 	@echo "Reminder: Vim plugins are managed within Vim with Vundle."
 	@echo "Reminder: Set iTerm2 to load settings from ~/dotfiles."
 
@@ -23,3 +24,8 @@ $(COMPLETIONS_OUT): symlinks
 			$(COMPLETIONS_OUT) \
 		&& echo You may need to \
 		&& echo "    rm -f ~/.zcompdump; compinit" )
+
+update: $(COMPLETIONS_OUT)
+	@echo "Updating completions..."
+	@cd $(COMPLETIONS_OUT) \
+		&& git pull
