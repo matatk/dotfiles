@@ -90,6 +90,7 @@ function tddh() {
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export EDITOR=/usr/bin/vim  # used by git commit et al
+export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"  # for DocBook
 
 
 ################################
