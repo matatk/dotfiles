@@ -25,42 +25,18 @@ zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 # Colours
 ################################
 
-# BSD-style stuff
-export CLICOLOR=1
-export LSCOLORS=ExgxfxdxcxGxDxabagacad
-
-# Linux-style -- http://geoff.greer.fm/lscolors/ (had to fix dir colour)
-export LS_COLORS="di=1;34;40:ln=36;40:so=35;40:pi=33;40:ex=32;40:bd=1;;40:cd=1;;40:su=0;41:sg=0;46:tw=0;42:ow=0;43:"
+source ~/dotfiles/my-colours.sh
 
 # Use the above colours when completing file/directory names
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-# Ask grep to use colours
-export GREP_OPTIONS='--color=auto'
-
 
 ################################
-# Aliases [not related to other config areas]
+# Custom Commands
 ################################
 
-# Standard UNIX commands
-alias l='ls -CF'
-alias ll='ls -l'
-alias lh='ls -lh'
-alias la='ls -A'
-alias rm='rm -i'
-alias cp='cp -i'
-alias mv='mv -i'
+source ~/dotfiles/my-commands.sh
 
-# My own commands
-# Redo the 'Open With' menu on OS X
-alias fixowmenu='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
-# Start a Jekyll auto-rebuilding server in the current directory
-alias jt='jekyll serve --watch --host obviate.local'
-# cat and speak the contents of a file
-function cs() {
-	cat $1 && say -f $1
-}
 # Override default cd to remind me to not type cd
 function cd() {
 	# https://www.google.co.uk/search?q=zsh+double+square+brackets
@@ -78,19 +54,21 @@ function cd() {
 		builtin cd
 	fi
 }
-# Tell the story of a TDD project through the medium of commits
-function tddh() {
-	git log | grep '\(RED\|REFACTOR\)' | tail -r
-}
 
 
 ################################
 # Environment
 ################################
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export EDITOR=/usr/bin/vim  # used by git commit et al
-export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"  # for DocBook
+source ~/dotfiles/my-environment.sh
+
+# Because I use the auto_cd option, which bypasses 'cd' and thus autoenv,
+# it is necessary to use ZSH's chpwd hook.
+# Thanks to: http://stackoverflow.com/a/3964198
+function auto_env() {
+	autoenv_init
+}
+chpwd_functions=(${chpwd_functions[@]} "auto_env")
 
 
 ################################

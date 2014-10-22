@@ -6,6 +6,7 @@ all: symlinks $(VUNDLE_OUT) $(COMPLETIONS_OUT) update
 	@echo
 	@echo "Reminder: Vim plugins are managed within Vim with Vundle."
 	@echo "Reminder: Set iTerm2 to load settings from ~/dotfiles."
+	@echo "Reminder: \`brew install autoenv\`."
 
 symlinks:
 	@ln -sf $(DOTFILES)/bashrc ~/.bashrc
@@ -26,6 +27,6 @@ $(COMPLETIONS_OUT): symlinks
 		&& echo "    rm -f ~/.zcompdump; compinit" )
 
 update: $(COMPLETIONS_OUT)
-	@echo "Updating completions..."
+	@echo "Updating zsh completions..."
 	@cd $(COMPLETIONS_OUT) \
 		&& git pull
