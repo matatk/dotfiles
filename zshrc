@@ -32,6 +32,21 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 
 ################################
+# Environment
+################################
+
+source ~/dotfiles/my-environment.sh
+
+# Because I use the auto_cd option, which bypasses 'cd' and thus autoenv,
+# it is necessary to use ZSH's chpwd hook.
+# Thanks to: http://stackoverflow.com/a/3964198
+function auto_env() {
+	autoenv_init
+}
+chpwd_functions=(${chpwd_functions[@]} "auto_env")
+
+
+################################
 # Custom Commands
 ################################
 
@@ -54,21 +69,6 @@ function cd() {
 		builtin cd
 	fi
 }
-
-
-################################
-# Environment
-################################
-
-source ~/dotfiles/my-environment.sh
-
-# Because I use the auto_cd option, which bypasses 'cd' and thus autoenv,
-# it is necessary to use ZSH's chpwd hook.
-# Thanks to: http://stackoverflow.com/a/3964198
-function auto_env() {
-	autoenv_init
-}
-chpwd_functions=(${chpwd_functions[@]} "auto_env")
 
 
 ################################

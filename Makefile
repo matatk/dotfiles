@@ -9,11 +9,12 @@ all: symlinks $(VUNDLE_OUT) $(COMPLETIONS_OUT) update
 	@echo "Reminder: \`brew install autoenv\`."
 
 symlinks:
-	@ln -sf $(DOTFILES)/bashrc ~/.bashrc
-	@ln -sf $(DOTFILES)/zshrc ~/.zshrc
+	@ln -sf  $(DOTFILES)/bashrc ~/.bashrc
+	@ln -sf  $(DOTFILES)/zshrc ~/.zshrc
 	@ln -nsf $(DOTFILES)/vim/dot-vim ~/.vim
-	@ln -sf $(DOTFILES)/vim/vimrc ~/.vimrc
-	@ln -sf $(DOTFILES)/vim/gvimrc ~/.gvimrc
+	@ln -sf  $(DOTFILES)/vim/vimrc ~/.vimrc
+	@ln -sf  $(DOTFILES)/vim/gvimrc ~/.gvimrc
+	@ln -nsf $(DOTFILES)/bin ~/bin
 
 $(VUNDLE_OUT): symlinks
 	@[ -d $(VUNDLE_OUT) ] || \

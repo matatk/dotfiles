@@ -1,0 +1,28 @@
+#!/bin/bash
+BLURB='Cleaning shell clart files'
+
+function clean_dir() {
+	find $1 \( -name .DS_Store -or -name Thumbs.db \) -exec rm -fv {} \;
+}
+
+if [ "$1" ]; then
+	if [ -d "$1" ]; then
+		echo "$BLURB"
+		clean_dir $1
+	else
+		echo "$1 is not a directory!"
+		exit 42
+	fi
+else
+	echo "$BLURB"
+	cd
+	rm -fv Thumbs.db
+	for file in $(ls -a); do
+		if [ -d "$file" ] && [ "$file" != "." ] && [ "$file" != ".." ]; then
+			echo Cleaning $file...
+			clean_dir $file
+		fi
+	done
+	echo
+	echo "Note: not removed Finder clart from home root."
+fi

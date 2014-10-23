@@ -1,5 +1,5 @@
-source ~/dotfiles/my-environment.sh
 source ~/dotfiles/my-colours.sh
+source ~/dotfiles/my-environment.sh
 source ~/dotfiles/my-commands.sh
 
 # Homebrew
