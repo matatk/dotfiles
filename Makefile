@@ -10,6 +10,7 @@ all: symlinks $(VUNDLE_OUT) $(COMPLETIONS_OUT) update
 
 symlinks:
 	@ln -sf  $(DOTFILES)/bashrc ~/.bashrc
+	@ln -sf  ~/.bashrc ~/.profile
 	@ln -sf  $(DOTFILES)/zshrc ~/.zshrc
 	@ln -nsf $(DOTFILES)/vim/dot-vim ~/.vim
 	@ln -sf  $(DOTFILES)/vim/vimrc ~/.vimrc
