@@ -11,7 +11,7 @@ alias mv='mv -i'
 alias fixowmenu='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
 
 # Start a Jekyll auto-rebuilding server in the current directory
-alias jt='jekyll serve --watch --host obviate.local'
+alias jt='jekyll serve --watch --host $(hostname)'
 
 # vmware fusion
 alias vmware-vdiskmanager="/Applications/VMware\ Fusion.app/Contents/Library/vmware-vdiskmanager"

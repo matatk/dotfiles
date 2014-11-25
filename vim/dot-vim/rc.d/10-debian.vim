@@ -32,12 +32,13 @@ syntax on
 " turn on this option as well
 set background=dark
 
-if has("autocmd")
- " Enabled file type detection
- " Use the default filetype settings. If you also want to load indent files
- " to automatically do language-dependent indenting add 'indent' as well.
- filetype plugin on
-endif " has ("autocmd")
+" Disabling the following as it's already done in the Vundle config
+"if has("autocmd")
+" " Enabled file type detection
+" " Use the default filetype settings. If you also want to load indent files
+" " to automatically do language-dependent indenting add 'indent' as well.
+" filetype plugin on
+"endif " has ("autocmd")
 
 " The following are commented out as they cause vim to behave a lot
 " different from regular vi. They are highly recommended though.

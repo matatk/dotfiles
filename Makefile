@@ -7,6 +7,7 @@ all: symlinks $(VUNDLE_OUT) $(COMPLETIONS_OUT) update
 	@echo "Reminder: Vim plugins are managed within Vim with Vundle."
 	@echo "Reminder: Set iTerm2 to load settings from ~/dotfiles."
 	@echo "Reminder: \`brew install autoenv\`."
+	@echo "Reminder: Changing shells: http://unix.stackexchange.com/questions/111365"
 
 symlinks:
 	@ln -sf  $(DOTFILES)/bashrc ~/.bashrc

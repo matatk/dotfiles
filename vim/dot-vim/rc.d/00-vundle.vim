@@ -13,7 +13,7 @@ Plugin 'gmarik/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
-Plugin 'python-rope/ropevim'            " pip install rope
+"Plugin 'python-rope/ropevim'            " pip install rope
                                         " then :PluginInstall ; quit vim
                                         "  and python setup.py install
                                         "  and :PluginInstall again
