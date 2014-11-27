@@ -15,8 +15,6 @@ nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
 nmap _= :call Preserve("normal gg=G")<CR>
 " Toggling spell-checking
 nmap <silent> <leader>s :set spell!<CR>
-" Highlight hex colors
-" ...is already bound to <leader>F2
 
 
 " Tab navigation; http://vimcasts.org/episodes/working-with-tabs/

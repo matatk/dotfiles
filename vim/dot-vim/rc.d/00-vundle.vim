@@ -22,8 +22,9 @@ Plugin 'scrooloose/syntastic'           " Multi-language syntax checking
 Plugin 'sjl/gundo.vim'                  " Awesome graph-based undo
 Plugin 'jaxbot/semantic-highlight.vim'  " What it says on the tin!
 Plugin 'kchmck/vim-coffee-script'       " CoffeeScript Support
-Plugin 'tomasr/molokai'                 " Colours
-Plugin 'hexHighlight.vim'               " Highlight hex values in their colour
+Plugin 'tomasr/molokai'                 " Colour scheme
+Plugin 'Rykka/colorv.vim'               " Colour preview and editing tools
+Plugin 'scrooloose/nerdtree'            " Exploration and manipulation
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
