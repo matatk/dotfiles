@@ -10,9 +10,9 @@ noremap <F6> :SemanticHighlightToggle<CR>
 " Showing whitespace characters
 nmap <leader>l :set list!<CR>
 " Removing trailing whitespace
-nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
+nmap <leader>$ :call RemoveTrailingWhitespace()<CR>
 " Indenting the whole file
-nmap _= :call Preserve("normal gg=G")<CR>
+nmap <leader>= :call Preserve("normal gg=G")<CR>
 " Toggling spell-checking
 nmap <silent> <leader>s :set spell!<CR>
 
@@ -56,8 +56,7 @@ autocmd BufRead,BufNewFile *.md,*.markdown setlocal spell
 autocmd FileType gitcommit setlocal spell
 
 " Remove trailing whitespace for certain filetypes
-autocmd BufWritePre *.py,*.js,*.coffee,*.html,*.xml,*.md,*.markdown :call Preserve("%s/\\s\\+$//e")
-
+autocmd BufWritePre *.py,*.js,*.coffee,*.html,*.xml,*.md,*.markdown :call RemoveTrailingWhitespace()
 
 "
 " General UI
@@ -100,4 +99,9 @@ function! Preserve(command)
     " Clean up: restore previous search history, and cursor position
     let @/=_s
     call cursor(l, c)
+endfunction
+
+" DRY trailing whitespace removal
+function! RemoveTrailingWhitespace()
+    call Preserve("%s/\\s\\+$//e")
 endfunction
