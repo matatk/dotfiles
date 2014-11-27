@@ -16,7 +16,6 @@ nmap <leader>= :call Preserve("normal gg=G")<CR>
 " Toggling spell-checking
 nmap <silent> <leader>s :set spell!<CR>
 
-
 " Tab navigation; http://vimcasts.org/episodes/working-with-tabs/
 map <D-S-]> gt
 map <D-S-[> gT
@@ -47,16 +46,19 @@ colorscheme molokai
 " Note: in theory, should use an 'if has("autocmd")' block here, but
 "       Vundle already seems to require autocmd anyway.
 
-" Use an indent of only two spaces when editing HTML
-autocmd FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2
+" Use an indent of only two spaces for webby stuff
+autocmd FileType html,javascript,coffee setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+
+" Use an indent of four spaces when editing Python
+autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 
 " Automatically do spell checking on certain filetypes
 " http://robots.thoughtbot.com/vim-spell-checking
-autocmd BufRead,BufNewFile *.md,*.markdown setlocal spell
-autocmd FileType gitcommit setlocal spell
+autocmd FileType text,markdown,html,gitcommit setlocal spell
 
 " Remove trailing whitespace for certain filetypes
 autocmd BufWritePre *.py,*.js,*.coffee,*.html,*.xml,*.md,*.markdown :call RemoveTrailingWhitespace()
+
 
 "
 " General UI
@@ -70,12 +72,12 @@ set spelllang=en_gb
 " Whitespace
 "
 
-" Use four-space indentation by default
+" Use four-space indentation with tabs by default
 " Thanks http://vimcasts.org/episodes/tabs-and-spaces/
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set expandtab
+set noexpandtab
 
 " Show whitespace
 " http://stackoverflow.com/a/1675752
@@ -90,18 +92,18 @@ set listchars=tab:▸\ ,eol:¬
 " Preserving state when executing a command
 " http://vimcasts.org/episodes/tidying-whitespace/
 function! Preserve(command)
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    execute a:command
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
+	" Preparation: save last search, and cursor position.
+	let _s=@/
+	let l = line(".")
+	let c = col(".")
+	" Do the business:
+	execute a:command
+	" Clean up: restore previous search history, and cursor position
+	let @/=_s
+	call cursor(l, c)
 endfunction
 
 " DRY trailing whitespace removal
 function! RemoveTrailingWhitespace()
-    call Preserve("%s/\\s\\+$//e")
+	call Preserve("%s/\\s\\+$//e")
 endfunction
