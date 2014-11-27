@@ -20,12 +20,18 @@ zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 # show a warning when no matches are found
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 
+# Cross-shell completions
+source ~/dotfiles/shell/completions.sh
+
+# pip completion
+eval "`pip completion --zsh`"
+
 
 ################################
 # Colours
 ################################
 
-source ~/dotfiles/my-colours.sh
+source ~/dotfiles/shell/colours.sh
 
 # Use the above colours when completing file/directory names
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
@@ -35,7 +41,7 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # Environment
 ################################
 
-source ~/dotfiles/my-environment.sh
+source ~/dotfiles/shell/environment.sh
 
 # Because I use the auto_cd option, which bypasses 'cd' and thus autoenv,
 # it is necessary to use ZSH's chpwd hook.
@@ -50,7 +56,7 @@ chpwd_functions=(${chpwd_functions[@]} "auto_env")
 # Custom Commands
 ################################
 
-source ~/dotfiles/my-commands.sh
+source ~/dotfiles/shell/commands.sh
 
 # Override default cd to remind me to not type cd
 function cd() {
@@ -79,7 +85,7 @@ autoload -Uz colors && colors
 setopt prompt_subst  # allows us to run the prompt code as a command at runtime
 
 # Show a green or red arrow depending on exit status of last command
-# https://github.com/robbyrussell/oh-my-zsh/blob/master/themes/robbyrussell.zsh-theme
+# https://github.com/robbyrussell/oh-shell-zsh/blob/master/themes/robbyrussell.zsh-theme
 local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ %s)"
 PROMPT="${ret_status} %{$fg[blue]%}%c % %{$reset_color%}"
 

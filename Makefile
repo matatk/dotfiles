@@ -6,13 +6,22 @@ all: symlinks $(VUNDLE_OUT) $(COMPLETIONS_OUT) update
 	@echo
 	@echo "Reminder: Vim plugins are managed within Vim with Vundle."
 	@echo "Reminder: Set iTerm2 to load settings from ~/dotfiles."
-	@echo "Reminder: \`brew install autoenv\`."
 	@echo "Reminder: Changing shells: http://unix.stackexchange.com/questions/111365"
+	@echo "Reminder: Finish YouCompleteMe setup:"
+	@echo "    You'll need the latest vim: brew install vim && brew install macvim"
+	@echo "    cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer"
+	@echo "    Python crashes? https://github.com/Valloric/YouCompleteMe/issues/620"
+	@echo
+	@echo "Recommendation: For cleanly installing third-party libraries:"
+	@echo "    brew install python (gives you pip)"
+	@echo "    brew install ruby (gives you gem)"
+	@echo "Recommendation: brew install autoenv"
+
 
 symlinks:
-	@ln -sf  $(DOTFILES)/bashrc ~/.bashrc
+	@ln -sf  $(DOTFILES)/shell/bashrc ~/.bashrc
 	@ln -sf  ~/.bashrc ~/.profile
-	@ln -sf  $(DOTFILES)/zshrc ~/.zshrc
+	@ln -sf  $(DOTFILES)/shell/zshrc ~/.zshrc
 	@ln -nsf $(DOTFILES)/vim/dot-vim ~/.vim
 	@ln -sf  $(DOTFILES)/vim/vimrc ~/.vimrc
 	@ln -sf  $(DOTFILES)/vim/gvimrc ~/.gvimrc

@@ -17,7 +17,7 @@ Plugin 'gmarik/Vundle.vim'
                                         " then :PluginInstall ; quit vim
                                         "  and python setup.py install
                                         "  and :PluginInstall again
-Plugin 'davidhalter/jedi-vim'           " Python autocompletion
+Plugin 'Valloric/YouCompleteMe'         " Autocompletion
 Plugin 'scrooloose/syntastic'           " Multi-language syntax checking
 Plugin 'sjl/gundo.vim'                  " Awesome graph-based undo
 Plugin 'jaxbot/semantic-highlight.vim'  " What it says on the tin!
