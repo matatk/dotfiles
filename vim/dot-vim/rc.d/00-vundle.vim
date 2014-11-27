@@ -23,6 +23,7 @@ Plugin 'sjl/gundo.vim'                  " Awesome graph-based undo
 Plugin 'jaxbot/semantic-highlight.vim'  " What it says on the tin!
 Plugin 'kchmck/vim-coffee-script'       " CoffeeScript Support
 Plugin 'tomasr/molokai'                 " Colours
+Plugin 'hexHighlight.vim'               " Highlight hex values in their colour
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
