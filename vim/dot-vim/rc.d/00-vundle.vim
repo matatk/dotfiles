@@ -25,6 +25,7 @@ Plugin 'kchmck/vim-coffee-script'       " CoffeeScript Support
 Plugin 'tomasr/molokai'                 " Colour scheme
 Plugin 'Rykka/colorv.vim'               " Colour preview and editing tools
 Plugin 'scrooloose/nerdtree'            " Exploration and manipulation
+Plugin 'tpope/vim-fugitive'             " Git magic
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

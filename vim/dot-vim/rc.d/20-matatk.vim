@@ -14,7 +14,7 @@ nmap <leader>$ :call RemoveTrailingWhitespace()<CR>
 " Indenting the whole file
 nmap <leader>= :call Preserve("normal gg=G")<CR>
 " Toggling spell-checking
-nmap <silent> <leader>s :set spell!<CR>
+nmap <leader>s :set spell!<CR>
 
 " Tab navigation; http://vimcasts.org/episodes/working-with-tabs/
 map <D-S-]> gt
@@ -39,6 +39,10 @@ map <D-0> :tablast<CR>
 let g:rehash256 = 1
 colorscheme molokai
 
+" Force a clear/black background
+" http://stackoverflow.com/questions/4325682/
+highlight Normal ctermbg=NONE guibg=Black
+
 
 "
 " Filetype-specific stuff
@@ -47,17 +51,38 @@ colorscheme molokai
 "       Vundle already seems to require autocmd anyway.
 
 " Use an indent of only two spaces for webby stuff
-autocmd FileType html,javascript,coffee setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+autocmd FileType html,javascript,coffee
+	\ setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
 " Use an indent of four spaces when editing Python
-autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType python
+	\ setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 
 " Automatically do spell checking on certain filetypes
 " http://robots.thoughtbot.com/vim-spell-checking
 autocmd FileType text,markdown,html,gitcommit setlocal spell
+autocmd FileType help setlocal nospell
 
 " Remove trailing whitespace for certain filetypes
-autocmd BufWritePre *.py,*.js,*.coffee,*.html,*.xml,*.md,*.markdown :call RemoveTrailingWhitespace()
+autocmd BufWritePre *.py,*.js,*.coffee,*.html,*.xml,*.md,*.markdown
+	\ :call RemoveTrailingWhitespace()
+
+" CHANGES files are text files
+autocmd BufNewFile,BufRead CHANGES set filetype=text
+
+
+"
+" Fugitive
+" http://vimcasts.org/episodes/fugitive-vim-browsing-the-git-object-database/
+"
+
+autocmd User fugitive
+  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+  \   nnoremap <buffer> .. :edit %:h<CR> |
+  \ endif
+
+" FIXME this doesn't seem to work
+autocmd BufReadPost fugitive://* set bufhidden=delete
 
 
 "
@@ -66,6 +91,7 @@ autocmd BufWritePre *.py,*.js,*.coffee,*.html,*.xml,*.md,*.markdown :call Remove
 set mouse=a
 set number
 set spelllang=en_gb
+set smartcase        " searches are only case-sensitive if the pattern is
 
 
 "
