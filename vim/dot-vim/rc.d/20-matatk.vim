@@ -7,10 +7,10 @@
 noremap <F5> :GundoToggle<CR>
 " Toggling Semantic Highlighting
 noremap <F6> :SemanticHighlightToggle<CR>
-" Showing whitespace characters
+" Showing indentation and non-printing characters
 nmap <leader>l :set list!<CR>
 " Removing trailing whitespace
-nmap <leader>$ :call RemoveTrailingWhitespace()<CR>
+nmap <leader>$ :StripWhitespace<CR>
 " Indenting the whole file
 nmap <leader>= :call Preserve("normal gg=G")<CR>
 " Toggling spell-checking
@@ -32,6 +32,35 @@ map <D-0> :tablast<CR>
 
 
 "
+" Whitespace, Indentation and Non-printing characters
+"
+
+" Use four-space indentation with tabs by default
+" Thanks http://vimcasts.org/episodes/tabs-and-spaces/
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set noexpandtab
+
+" Show some nonprinting characters
+" http://stackoverflow.com/a/1675752
+" http://vimcasts.org/episodes/show-invisibles/
+set listchars=tab:▸\ ,eol:¬
+
+" Automatically strip trailing whitespace on save for certain file types
+autocmd FileType text,markdown,html,javascript,coffee,python
+	\ autocmd BufWritePre <buffer> StripWhitespace
+
+" Use an indent of only two spaces for webby stuff
+autocmd FileType html,javascript,coffee
+	\ setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+
+" Use an indent of four spaces when editing Python
+autocmd FileType python
+	\ setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+
+
+"
 " Colours
 "
 
@@ -45,27 +74,13 @@ highlight Normal ctermbg=NONE guibg=Black
 
 
 "
-" Filetype-specific stuff
+" Spelling
 "
-" Note: in theory, should use an 'if has("autocmd")' block here, but
-"       Vundle already seems to require autocmd anyway.
-
-" Use an indent of only two spaces for webby stuff
-autocmd FileType html,javascript,coffee
-	\ setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-
-" Use an indent of four spaces when editing Python
-autocmd FileType python
-	\ setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 
 " Automatically do spell checking on certain filetypes
 " http://robots.thoughtbot.com/vim-spell-checking
 autocmd FileType text,markdown,html,gitcommit setlocal spell
 autocmd FileType help setlocal nospell
-
-" Remove trailing whitespace for certain filetypes
-autocmd BufWritePre *.py,*.js,*.coffee,*.html,*.xml,*.md,*.markdown
-	\ :call RemoveTrailingWhitespace()
 
 " CHANGES files are text files
 autocmd BufNewFile,BufRead CHANGES set filetype=text
@@ -76,10 +91,11 @@ autocmd BufNewFile,BufRead CHANGES set filetype=text
 " http://vimcasts.org/episodes/fugitive-vim-browsing-the-git-object-database/
 "
 
+" Convenient 'up' command for navigation
 autocmd User fugitive
-  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
-  \   nnoremap <buffer> .. :edit %:h<CR> |
-  \ endif
+	\ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+	\   nnoremap <buffer> .. :edit %:h<CR> |
+	\ endif
 
 " FIXME this doesn't seem to work
 autocmd BufReadPost fugitive://* set bufhidden=delete
@@ -92,23 +108,6 @@ set mouse=a
 set number
 set spelllang=en_gb
 set smartcase        " searches are only case-sensitive if the pattern is
-
-
-"
-" Whitespace
-"
-
-" Use four-space indentation with tabs by default
-" Thanks http://vimcasts.org/episodes/tabs-and-spaces/
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set noexpandtab
-
-" Show whitespace
-" http://stackoverflow.com/a/1675752
-" http://vimcasts.org/episodes/show-invisibles/
-set listchars=tab:▸\ ,eol:¬
 
 
 "
@@ -127,9 +126,4 @@ function! Preserve(command)
 	" Clean up: restore previous search history, and cursor position
 	let @/=_s
 	call cursor(l, c)
-endfunction
-
-" DRY trailing whitespace removal
-function! RemoveTrailingWhitespace()
-	call Preserve("%s/\\s\\+$//e")
 endfunction
