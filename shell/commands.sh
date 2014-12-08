@@ -31,7 +31,7 @@ function mdpretty() {
 	_mdpretty $@
 }
 
-function mdprettynowrap() {
+function nmdpretty() {
 	_mdpretty $@ --no-wrap
 }
 
@@ -48,6 +48,7 @@ function _mdpretty() {
 
 	if [[ -f $1 ]]; then
 		cat "$1" | pandoc -t markdown -o "$1" $2
+		cat "$1"
 	else
 		echo "$1" is not a file
 	fi

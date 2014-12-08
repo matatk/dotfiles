@@ -14,7 +14,7 @@ all: symlinks $(VUNDLE_OUT) $(COMPLETIONS_OUT) update
 	@echo "   + Python crashes? https://github.com/Valloric/YouCompleteMe/issues/620"
 	@echo
 	@echo "Recommendations:"
-	@echo "   brew install python ruby node tree rename autoenv"
+	@echo "   brew install python ruby node tree rename watch autoenv"
 	@echo "     (the languages come with their respective package managers)"
 	@echo "   pip install virtualenv flake8"
 	@echo "   gem install jekyll"
