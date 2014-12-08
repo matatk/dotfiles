@@ -4,22 +4,22 @@ COMPLETIONS_OUT=~/.zsh-completions
 
 all: symlinks $(VUNDLE_OUT) $(COMPLETIONS_OUT) update
 	@echo
-	@echo "Reminder: Vim plugins are managed within Vim with Vundle."
-	@echo "Reminder: Set iTerm2 to load settings from ~/dotfiles."
-	@echo "Reminder: Changing shells: http://unix.stackexchange.com/questions/111365"
-	@echo "Reminder: To finish YouCompleteMe setup:"
-	@echo "    You'll need the latest vim: brew install vim && brew install macvim"
-	@echo "    cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer"
-	@echo "    Python crashes? https://github.com/Valloric/YouCompleteMe/issues/620"
+	@echo "Reminders:"
+	@echo " * Vim plugins are managed within Vim with Vundle."
+	@echo " * Set iTerm2 to load settings from ~/dotfiles."
+	@echo " * Changing shells: http://unix.stackexchange.com/questions/111365"
+	@echo " * To finish YouCompleteMe setup:"
+	@echo "   + You'll need the latest vim: brew install vim && brew install macvim"
+	@echo "   + cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer"
+	@echo "   + Python crashes? https://github.com/Valloric/YouCompleteMe/issues/620"
 	@echo
-	@echo "Recommendation: For cleanly installing third-party libraries:"
-	@echo "    brew install python (gives you pip)"
-	@echo "    brew install ruby (gives you gem)"
-	@echo "Recommendation: brew install tree rename autoenv node"
-	@echo "Recommendation: pip install virtualenv flake8"
-	@echo "Recommendation: gem install jekyll"
-	@echo "Recommendation: npm install -g grunt-cli coffeelint"
-	@echo "    (jasmine-node, coffee-script, ... can be installed per-project)"
+	@echo "Recommendations:"
+	@echo "   brew install python ruby node tree rename autoenv"
+	@echo "     (the languages come with their respective package managers)"
+	@echo "   pip install virtualenv flake8"
+	@echo "   gem install jekyll"
+	@echo "   npm install -g grunt-cli coffeelint"
+	@echo "     (jasmine-node, coffee-script, ... can be installed per-project)"
 
 
 symlinks:

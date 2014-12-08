@@ -27,6 +27,7 @@ Plugin 'Rykka/colorv.vim'               " Colour preview and editing tools
 Plugin 'scrooloose/nerdtree'            " Exploration and manipulation
 Plugin 'tpope/vim-fugitive'             " Git magic
 Plugin 'ntpeters/vim-better-whitespace' " Dealing with trailing whitespace
+Plugin 'tpope/vim-unimpaired'           " Nice shortcuts
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

@@ -25,3 +25,30 @@ function cs() {
 function tddh() {
 	git log | grep '\(RED\|REFACTOR\)' | tail -r
 }
+
+# Prettify a markdown file
+function mdpretty() {
+	_mdpretty $@
+}
+
+function mdprettynowrap() {
+	_mdpretty $@ --no-wrap
+}
+
+function _mdpretty() {
+	if [[ $# -eq 0 || $# -eq 1 && $1 == '--no-wrap' ]]; then
+		echo No file specified
+		return
+	fi
+
+	if [[ $# -gt 1 && $2 != '--no-wrap' ]]; then
+		echo Does not support multiple files
+		return
+	fi
+
+	if [[ -f $1 ]]; then
+		cat "$1" | pandoc -t markdown -o "$1" $2
+	else
+		echo "$1" is not a file
+	fi
+}
