@@ -1,8 +1,9 @@
 # Standard UNIX commands
-alias l='ls -CF'
-alias ll='ls -l'
-alias lh='ls -lh'
-alias la='ls -A'
+alias ls='gls --color=auto'
+alias  l='gls --color=auto -CF'
+alias ll='gls --color=auto -l'
+alias lh='gls --color=auto -lh'
+alias la='gls --color=auto -A'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'

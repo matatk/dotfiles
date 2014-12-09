@@ -12,9 +12,10 @@ all: symlinks $(VUNDLE_OUT) $(COMPLETIONS_OUT) update
 	@echo "   + You'll need the latest vim: brew install vim && brew install macvim"
 	@echo "   + cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer"
 	@echo "   + Python crashes? https://github.com/Valloric/YouCompleteMe/issues/620"
+	@echo " * GNU ls is required for the colouring: brew install coreutils"
 	@echo
 	@echo "Recommendations:"
-	@echo "   brew install python ruby node tree rename watch autoenv"
+	@echo "   brew install python ruby node tree rename watch autoenv coreutils"
 	@echo "     (the languages come with their respective package managers)"
 	@echo "   pip install virtualenv flake8"
 	@echo "   gem install jekyll"
