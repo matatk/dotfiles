@@ -15,6 +15,8 @@ nmap <leader>$ :StripWhitespace<CR>
 nmap <leader>= :call Preserve("normal gg=G")<CR>
 " Toggling spell-checking
 nmap <leader>s :set spell!<CR>
+" Open a new tab (with explorer) in the directory of the current file
+nmap <leader>e :tabnew %:h<CR>
 
 " Tab navigation; http://vimcasts.org/episodes/working-with-tabs/
 map <D-S-]> gt
