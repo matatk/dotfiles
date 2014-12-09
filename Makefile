@@ -1,9 +1,7 @@
 DOTFILES=~/dotfiles
 VUNDLE_OUT=~/.vim/bundle/Vundle.vim
-COMPLETIONS_OUT=~/.zsh-completions
 
-all: symlinks $(VUNDLE_OUT) $(COMPLETIONS_OUT) update
-	@echo
+all: symlinks $(VUNDLE_OUT)
 	@echo "Reminders:"
 	@echo " * Vim plugins are managed within Vim with Vundle."
 	@echo " * Set iTerm2 to load settings from ~/dotfiles."
@@ -15,13 +13,13 @@ all: symlinks $(VUNDLE_OUT) $(COMPLETIONS_OUT) update
 	@echo " * GNU ls is required for the colouring: brew install coreutils"
 	@echo
 	@echo "Recommendations:"
+	@echo "   brew install zsh zsh-completions zsh-syntax-highlighting"
 	@echo "   brew install python ruby node tree rename watch autoenv coreutils"
 	@echo "     (the languages come with their respective package managers)"
 	@echo "   pip install virtualenv flake8"
 	@echo "   gem install jekyll"
 	@echo "   npm install -g grunt-cli coffeelint"
 	@echo "     (jasmine-node, coffee-script, ... can be installed per-project)"
-
 
 symlinks:
 	@ln -sf  $(DOTFILES)/shell/bashrc ~/.bashrc
@@ -35,15 +33,3 @@ symlinks:
 $(VUNDLE_OUT): symlinks
 	@[ -d $(VUNDLE_OUT) ] || \
 		git clone https://github.com/gmarik/Vundle.vim.git $(VUNDLE_OUT)
-
-$(COMPLETIONS_OUT): symlinks
-	@[ -d $(COMPLETIONS_OUT) ] || ( \
-		git clone https://github.com/zsh-users/zsh-completions.git \
-			$(COMPLETIONS_OUT) \
-		&& echo You may need to \
-		&& echo "    rm -f ~/.zcompdump; compinit" )
-
-update: $(COMPLETIONS_OUT)
-	@echo "Updating zsh completions..."
-	@cd $(COMPLETIONS_OUT) \
-		&& git pull
