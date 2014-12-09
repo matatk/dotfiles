@@ -13,7 +13,7 @@ all: symlinks $(VUNDLE_OUT)
 	@echo " * GNU ls is required for the colouring: brew install coreutils"
 	@echo
 	@echo "Recommendations:"
-	@echo "   brew install zsh zsh-completions zsh-syntax-highlighting"
+	@echo "   brew install zsh zsh-completions zsh-syntax-highlighting bash-completion"
 	@echo "   brew install python ruby node tree rename watch autoenv coreutils"
 	@echo "     (the languages come with their respective package managers)"
 	@echo "   pip install virtualenv flake8"
