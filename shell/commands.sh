@@ -62,3 +62,28 @@ function _mdpretty() {
 		echo "$1" is not a file
 	fi
 }
+
+# Homebrew reverse dependencies
+function rdeps() {
+	first=true
+	without=()
+	for package in `brew list`; do
+		rdeps=`brew uses --recursive --installed $package`
+		if [[ $rdeps != '' ]]; then
+			if $first; then
+				first=false
+			else
+				echo
+			fi
+			echo "Reverse dependencies for: $package..."
+			echo $rdeps
+		else
+			without+=("$package")
+		fi
+	done
+	echo
+	echo Packages without rdeps...
+	for package in ${without[@]}; do
+		echo "    $package"
+	done
+}
