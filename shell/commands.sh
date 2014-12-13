@@ -1,9 +1,14 @@
 # Standard UNIX commands
-alias ls='gls --color=auto'
-alias  l='gls --color=auto -CF'
-alias ll='gls --color=auto -l'
-alias lh='gls --color=auto -lh'
-alias la='gls --color=auto -A'
+alias  ls='gls --color=auto'
+alias   l='gls --color=auto -CF'
+alias  la='gls --color=auto -a'
+alias  ll='gls --color=auto -l'
+alias lal='gls --color=auto -la'
+alias  lh='gls --color=auto -lh'
+alias lah='gls --color=auto -lha'
+alias  lo='/bin/ls -lhaO'   # OS X flags
+alias loa='/bin/ls -lhaO@'  # OS X flags and extended attributes
+alias loc='/bin/ls -lhaOe'  # OS X flags and ACLs
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
