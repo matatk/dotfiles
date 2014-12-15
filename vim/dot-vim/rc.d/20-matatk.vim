@@ -53,10 +53,6 @@ set listchars=tab:▸\ ,eol:¬
 autocmd FileType text,markdown,html,javascript,coffee,python
 	\ autocmd BufWritePre <buffer> StripWhitespace
 
-" Use an indent of only two spaces for webby stuff
-autocmd FileType html,javascript,coffee
-	\ setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-
 " Use an indent of four spaces when editing Python
 autocmd FileType python
 	\ setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
