@@ -45,7 +45,7 @@ function nmdpretty() {
 }
 
 function _mdpretty() {
-	if [[ ! -x pandoc ]]; then
+	if [[ ! -x `which pandoc` ]]; then
 		echo Cannot execute Pandoc!
 		return
 	fi
