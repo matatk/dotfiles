@@ -45,6 +45,11 @@ function nmdpretty() {
 }
 
 function _mdpretty() {
+	if [[ ! -x pandoc ]]; then
+		echo Cannot execute Pandoc!
+		return
+	fi
+
 	if [[ $# -eq 0 || $# -eq 1 && $1 == '--no-wrap' ]]; then
 		echo No file specified
 		return
