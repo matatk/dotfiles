@@ -112,6 +112,14 @@ set smartcase        " searches are only case-sensitive if the pattern is
 
 
 "
+" Filetype munging
+"
+
+" WebAccessibilityToolbar uses files that are almost JavaScript
+autocmd BufNewFile,BufRead *.ws set filetype=javascript
+
+
+"
 " Functions
 "
 
