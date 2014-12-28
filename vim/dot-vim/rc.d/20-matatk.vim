@@ -57,6 +57,9 @@ autocmd FileType text,markdown,html,javascript,coffee,python
 autocmd FileType python
 	\ setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 
+" Recognise AppleScript files
+autocmd BufNewFile,BufRead *.applescript set filetype=applescript
+
 
 "
 " Colours
