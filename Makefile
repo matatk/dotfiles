@@ -14,7 +14,7 @@ all: symlinks $(VUNDLE_OUT)
 	@echo
 	@echo "Recommendations:"
 	@echo "   brew install zsh zsh-completions zsh-syntax-highlighting bash-completion"
-	@echo "   brew install python ruby node tree rename watch autoenv coreutils"
+	@echo "   brew install python ruby node tree rename watch autoenv coreutils rpl"
 	@echo "     (the languages come with their respective package managers)"
 	@echo "   pip install virtualenv flake8"
 	@echo "   gem install jekyll"
