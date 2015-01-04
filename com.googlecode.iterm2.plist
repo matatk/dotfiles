@@ -85,7 +85,7 @@
 	<key>MaxVertically</key>
 	<false/>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/dotfiles</string>
+	<string>~</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
@@ -5627,7 +5627,7 @@
 										<key>Rows</key>
 										<integer>31</integer>
 										<key>Working Directory</key>
-										<string>/Users/matatk/dotfiles</string>
+										<string>~</string>
 									</dict>
 									<key>View Type</key>
 									<string>SessionView</string>
