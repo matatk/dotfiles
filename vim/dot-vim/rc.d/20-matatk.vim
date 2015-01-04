@@ -17,6 +17,9 @@ nmap <leader>= :call Preserve("normal gg=G")<CR>
 nmap <leader>s :set spell!<CR>
 " Open a new tab (with explorer) in the directory of the current file
 nmap <leader>e :tabnew %:h<CR>
+" Open ToC for Markdown documents
+nmap <leader>t :Toc<CR>
+" Note: ColorV uses <leader>c* mappings.
 
 " Tab navigation; http://vimcasts.org/episodes/working-with-tabs/
 map <D-S-]> gt
@@ -88,6 +91,30 @@ autocmd BufNewFile,BufRead CHANGES set filetype=text
 
 
 "
+" General UI
+"
+set mouse=a
+set number
+set spelllang=en_gb
+set smartcase        " searches are only case-sensitive if the pattern is
+
+
+"
+" Filetype-specific
+"
+
+" WebAccessibilityToolbar uses files that are almost JavaScript
+autocmd BufNewFile,BufRead *.ws set filetype=javascript
+
+" When working with Markdown files, grok the YAML frontmatter
+let g:vim_markdown_frontmatter=1
+" Also start with the first fold (only) open (allwing for YAML as above)
+" FIXME: for files with YAML this fails at the zr (it is not done)
+autocmd FileType mkd normal ]]zrgg
+autocmd FileType mkd :Toc
+
+
+"
 " Fugitive
 " http://vimcasts.org/episodes/fugitive-vim-browsing-the-git-object-database/
 "
@@ -98,25 +125,8 @@ autocmd User fugitive
 	\   nnoremap <buffer> .. :edit %:h<CR> |
 	\ endif
 
-" FIXME this doesn't seem to work
+" FIXME: this doesn't seem to work
 autocmd BufReadPost fugitive://* set bufhidden=delete
-
-
-"
-" General UI
-"
-set mouse=a
-set number
-set spelllang=en_gb
-set smartcase        " searches are only case-sensitive if the pattern is
-
-
-"
-" Filetype munging
-"
-
-" WebAccessibilityToolbar uses files that are almost JavaScript
-autocmd BufNewFile,BufRead *.ws set filetype=javascript
 
 
 "
