@@ -81,7 +81,7 @@ function cd() {
 
 
 ################################
-# Prompt
+# Prompt and Window & Tab Title
 ################################
 
 autoload -Uz colors && colors
@@ -98,6 +98,14 @@ PROMPT="${ret_status} %{$fg[blue]%}%c % %{$reset_color%}"
 local git_branch='$(git branch --no-color 2> /dev/null \
 	| sed -e "/^[^*]/d" -e "s/* \(.*\)/\1/")'
 RPROMPT="%{$fg[yellow]%}${git_branch}%{$reset_color%}"
+
+# Set window and tab titles
+# Adapted from https://github.com/tkrajcar/dotfiles/blob/master/zshrc#L48
+precmd () {
+	window_label=${PWD/${HOME}/\~}     # use 'relative' path
+	echo -ne "\e]2;${window_label}\a"  # set window title to whole path
+	echo -ne "\e]1;${PWD##*/}\a"       # tab title is the current dir only
+}
 
 
 ################################
