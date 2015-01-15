@@ -127,7 +127,7 @@ SPROMPT="Correct $fg_bold[red]%R$reset_color to $fg_bold[green]%r?$reset_color (
 HISTFILE=~/.histfile       # Note: no need to export; commands don't need this
 HISTSIZE=1000
 SAVEHIST=$HISTSIZE
-setopt append_history      # add to shared history file
+setopt share_history       # add to shared history file as commands are run
 setopt hist_ignore_dups    # ignore commands repeated in a row
                            # note: ignore_all_dups ignore non-adjacent ones
 alias gh='history | grep'  # grep the history!
