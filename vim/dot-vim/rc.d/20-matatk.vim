@@ -22,6 +22,7 @@ nmap <leader>t :Toc<CR>
 " Note: ColorV uses <leader>c* mappings.
 
 " Tab navigation; http://vimcasts.org/episodes/working-with-tabs/
+" FIXME: These don't work in console vim tabs
 map <D-S-]> gt
 map <D-S-[> gT
 map <D-1> 1gt
