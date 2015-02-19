@@ -22,7 +22,6 @@ nmap <leader>t :Toc<CR>
 " Note: ColorV uses <leader>c* mappings.
 
 " Tab navigation; http://vimcasts.org/episodes/working-with-tabs/
-" FIXME: These don't work in console vim tabs
 map <D-S-]> gt
 map <D-S-[> gT
 map <D-1> 1gt
@@ -110,7 +109,6 @@ autocmd BufNewFile,BufRead *.ws set filetype=javascript
 " When working with Markdown files, grok the YAML frontmatter
 let g:vim_markdown_frontmatter=1
 " Also start with the first fold (only) open (allwing for YAML as above)
-" FIXME: for files with YAML this fails at the zr (it is not done)
 autocmd FileType mkd normal ]]zrgg
 autocmd FileType mkd :Toc
 
@@ -126,7 +124,6 @@ autocmd User fugitive
 	\   nnoremap <buffer> .. :edit %:h<CR> |
 	\ endif
 
-" FIXME: this doesn't seem to work
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
 
