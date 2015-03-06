@@ -176,3 +176,8 @@ setopt no_clobber     # don't overwrite existing files
 unalias run-help
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
+
+# Use lovely move command
+# http://www.mfasold.net/blog/2008/11/moving-or-renaming-multiple-files/
+autoload -U zmv
+alias mmv='noglob zmv -W'  # “mmv *.dat *.dat_old” or “mmv foo.* bar.*”
