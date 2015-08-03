@@ -33,6 +33,8 @@ Plugin 'godlygeek/tabular'              " Align stuff
 Plugin 'plasticboy/vim-markdown'        " Folding and other nice things
 Plugin 'bronson/vim-visual-star-search' " Search for the visually-selected text
 Plugin 'tpope/vim-abolish'              " Mainly for Subvert
+Plugin 'alvan/vim-closetag'             " Auto-close HTML tags using > or >>
+Plugin 'MarkWithall/cif-vim-syntax'     " Railways! Trains!
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

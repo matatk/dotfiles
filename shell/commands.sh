@@ -96,3 +96,6 @@ function rdeps() {
 		echo "    $package"
 	done
 }
+
+# Homebrew update, cleanup and check
+alias brewup='echo Updating... && brew update && echo && echo Outdated: && brew outdated && echo && echo Upgrading... && brew upgrade && echo && echo Cleaning up... && brew cleanup -s && echo && echo Checking... && brew doctor'
