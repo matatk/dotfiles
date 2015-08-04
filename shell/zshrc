@@ -59,7 +59,13 @@ chpwd_functions=(${chpwd_functions[@]} "auto_env")
 # Custom Commands
 ################################
 
+# Put non-ZSH-specific ones here
 source ~/dotfiles/shell/commands.sh
+
+# Use lovely move command
+# http://www.mfasold.net/blog/2008/11/moving-or-renaming-multiple-files/
+autoload -U zmv
+alias mmv='noglob zmv -W'  # “mmv *.dat *.dat_old” or “mmv foo.* bar.*”
 
 # Override default cd to remind me to not type cd
 function cd() {
@@ -87,21 +93,36 @@ function cd() {
 autoload -Uz colors && colors
 setopt prompt_subst  # allows us to run the prompt code as a command at runtime
 
-# Show a green or red arrow depending on exit status of last command
-# https://github.com/robbyrussell/oh-shell-zsh/blob/master/themes/robbyrussell.zsh-theme
-local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ %s)"
-PROMPT="${ret_status} %{$fg[blue]%}%c % %{$reset_color%}"
+function prompt_return_status {
+	# Show a green or red arrow depending on exit status of last command
+	# Heavily modified: https://github.com/robbyrussell/oh-my-zsh/blob/master/themes/robbyrussell.zsh-theme
+	echo "%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+}
 
-# Show current branch when in a git repository
-# http://www.jukie.net/~bart/blog/zsh-git-branch2
-# Needs prompt_subst as it's run as a command when computing the prompt
-local git_branch='$(git branch --no-color 2> /dev/null \
-	| sed -e "/^[^*]/d" -e "s/* \(.*\)/\1/")'
-RPROMPT="%{$fg[yellow]%}${git_branch}%{$reset_color%}"
+function prompt_git_branch {
+	# Show current branch when in a git repository
+	# http://www.jukie.net/~bart/blog/zsh-git-branch2
+	# Needs prompt_subst as it's run as a command when computing the prompt
+	local git_branch='$(git branch --no-color 2> /dev/null \
+		| sed -e "/^[^*]/d" -e "s/* \(.*\)/\1/")'
+	echo $git_branch
+}
+
+#function zle-line-init zle-keymap-select {
+#	VIM_PROMPT="[% NORMAL]%"
+#	#RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $(git_custom_status) $EPS1"
+#	RPROMPT="%{$fg[yellow]%}$(prompt_git_branch)%{$reset_color%}"
+#	zle reset-prompt
+#}
+#zle -N zle-line-init
+#zle -N zle-keymap-select
+
+PROMPT="$(prompt_return_status) %{$fg[blue]%}%c%{$reset_color%} "
+RPROMPT="%{$fg[yellow]%}$(prompt_git_branch)%{$reset_color%}"
 
 # Set window and tab titles
 # Adapted from https://github.com/tkrajcar/dotfiles/blob/master/zshrc#L48
-precmd () {
+function precmd {
 	window_label=${PWD/${HOME}/\~}     # use 'relative' path
 	echo -ne "\e]2;${window_label}\a"  # set window title to whole path
 	echo -ne "\e]1;${PWD##*/}\a"       # tab title is the current dir only
@@ -131,6 +152,13 @@ setopt share_history       # add to shared history file as commands are run
 setopt hist_ignore_dups    # ignore commands repeated in a row
                            # note: ignore_all_dups ignore non-adjacent ones
 alias gh='history | grep'  # grep the history!
+
+
+################################
+# Keybindings
+################################
+
+bindkey -v  # vi-style keybindings; yay :-)
 
 # Histroy search using any already-typed stuff as beginning
 #  * If line is empty: move up/down in history; put cursor at end of line
@@ -164,7 +192,7 @@ alias dh='dirs -v'        # remember: can also complete 'cd -' to get the list
 
 
 ################################
-# Helpful
+# Helpful Behaviours
 ################################
 
 setopt extended_glob  # awesome globbing; examples: http://www.refining-linux.org/archives/37/ZSH-Gem-2-Extended-globbing-and-expansion/
@@ -176,8 +204,4 @@ setopt no_clobber     # don't overwrite existing files
 unalias run-help
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
-
-# Use lovely move command
-# http://www.mfasold.net/blog/2008/11/moving-or-renaming-multiple-files/
-autoload -U zmv
-alias mmv='noglob zmv -W'  # “mmv *.dat *.dat_old” or “mmv foo.* bar.*”
+# FIXME doesn't work with vi-like keybindings
