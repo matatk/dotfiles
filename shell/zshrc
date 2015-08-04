@@ -109,9 +109,8 @@ function prompt_git_branch {
 	# Show current branch when in a git repository
 	# http://www.jukie.net/~bart/blog/zsh-git-branch2
 	# Needs prompt_subst as it's run as a command when computing the prompt
-	local git_branch='$(git branch --no-color 2> /dev/null \
+	echo '$(git branch --no-color 2> /dev/null \
 		| sed -e "/^[^*]/d" -e "s/* \(.*\)/\1/")'
-	echo $git_branch
 }
 
 function prompt_vi_mode {
