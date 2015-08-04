@@ -119,19 +119,22 @@ function prompt_vi_mode {
 	echo ${${KEYMAP/vicmd/[NORMAL] }/(main|viins)/}
 }
 
-# Set the actual prompt.  Whichever prompt (left or right) that includes the
-# vi-like editing mode should be set in the hook that reacts to mode changes,
-# as well as below (ARGH; DRY!)
+function prompt_right {
+	echo "%{$fg[yellow]%}$(prompt_vi_mode)$(prompt_git_branch)"
+}
+
+# Set the actual prompts.  Whichever prompt (left or right) that includes the
+# vi-like editing mode should be set in the hook that reacts to mode changes.
+PROMPT="$(prompt_return_status) $(prompt_dir) %{$reset_color%}"
+RPROMPT=$(prompt_right)
+
 function zle-line-init zle-keymap-select {
-	RPROMPT="%{$fg[yellow]%}$(prompt_vi_mode)$(prompt_git_branch)"
+	RPROMPT=$(prompt_right)
 	zle reset-prompt
 }
 
 zle -N zle-line-init
 zle -N zle-keymap-select
-
-PROMPT="$(prompt_return_status) $(prompt_dir) %{$reset_color%}"
-RPROMPT="%{$fg[yellow]%}$(prompt_vi_mode)$(prompt_git_branch)"  # TODO DRY
 
 # Set window and tab titles
 # Adapted from https://github.com/tkrajcar/dotfiles/blob/master/zshrc#L48
