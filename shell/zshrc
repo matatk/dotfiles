@@ -52,6 +52,7 @@ source ~/dotfiles/shell/environment.sh
 function auto_env() {
 	autoenv_init
 }
+
 chpwd_functions=(${chpwd_functions[@]} "auto_env")
 
 
@@ -91,12 +92,17 @@ function cd() {
 ################################
 
 autoload -Uz colors && colors
-setopt prompt_subst  # allows us to run the prompt code as a command at runtime
+setopt prompt_subst       # allows us to run the prompt code as a command
+setopt transient_rprompt  # only show the rprompt for the current command
 
 function prompt_return_status {
 	# Show a green or red arrow depending on exit status of last command
 	# Heavily modified: https://github.com/robbyrussell/oh-my-zsh/blob/master/themes/robbyrussell.zsh-theme
 	echo "%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+}
+
+function prompt_dir {
+	echo "%{$fg[blue]%}%c"
 }
 
 function prompt_git_branch {
@@ -108,17 +114,24 @@ function prompt_git_branch {
 	echo $git_branch
 }
 
-#function zle-line-init zle-keymap-select {
-#	VIM_PROMPT="[% NORMAL]%"
-#	#RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $(git_custom_status) $EPS1"
-#	RPROMPT="%{$fg[yellow]%}$(prompt_git_branch)%{$reset_color%}"
-#	zle reset-prompt
-#}
-#zle -N zle-line-init
-#zle -N zle-keymap-select
+function prompt_vi_mode {
+	# http://dougblack.io/words/zsh-vi-mode.html
+	echo ${${KEYMAP/vicmd/[NORMAL] }/(main|viins)/}
+}
 
-PROMPT="$(prompt_return_status) %{$fg[blue]%}%c%{$reset_color%} "
-RPROMPT="%{$fg[yellow]%}$(prompt_git_branch)%{$reset_color%}"
+# Set the actual prompt.  Whichever prompt (left or right) that includes the
+# vi-like editing mode should be set in the hook that reacts to mode changes,
+# as well as below (ARGH; DRY!)
+function zle-line-init zle-keymap-select {
+	RPROMPT="%{$fg[yellow]%}$(prompt_vi_mode)$(prompt_git_branch)"
+	zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+PROMPT="$(prompt_return_status) $(prompt_dir) %{$reset_color%}"
+RPROMPT="%{$fg[yellow]%}$(prompt_vi_mode)$(prompt_git_branch)"  # TODO DRY
 
 # Set window and tab titles
 # Adapted from https://github.com/tkrajcar/dotfiles/blob/master/zshrc#L48
@@ -176,6 +189,24 @@ bindkey "^[[B" down-line-or-beginning-search
 # Useful info:
 #  * https://bbs.archlinux.org/viewtopic.php?pid=1170300
 #  * http://unix.stackexchange.com/questions/97843/how-can-i-search-history-with-what-is-already-entered-at-the-prompt-in-zsh
+
+# Suggested keybindings from: http://dougblack.io/words/zsh-vi-mode.html
+
+# Use vim cli mode
+bindkey '^P' up-history
+bindkey '^N' down-history
+
+# backspace and ^h working even after
+# returning from command mode
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+# FIXME delete doesn't work
+
+# ctrl-w removed word backwards
+bindkey '^w' backward-kill-word
+
+# ctrl-r starts searching history backward
+bindkey '^r' history-incremental-search-backward
 
 
 ################################
