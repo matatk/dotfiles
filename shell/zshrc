@@ -94,15 +94,21 @@ function cd() {
 autoload -Uz colors && colors
 setopt prompt_subst       # allows us to run the prompt code as a command
 setopt transient_rprompt  # only show the rprompt for the current command
+#ZLE_RPROMPT_INDENT=0      # remove padding (though seems to affect normal prompt)
 
 function prompt_return_status {
 	# Show a green or red arrow depending on exit status of last command
 	# Heavily modified: https://github.com/robbyrussell/oh-my-zsh/blob/master/themes/robbyrussell.zsh-theme
-	echo "%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+	echo "%(?:%{$fg_bold[green]%}➜:%{$fg_bold[red]%}➜) "
 }
 
-function prompt_dir {
+function prompt_current_directory {
 	echo "%{$fg[blue]%}%c"
+}
+
+function prompt_vi_mode {
+	# http://dougblack.io/words/zsh-vi-mode.html
+	echo ${${KEYMAP/vicmd/[NORMAL] }/(main|viins)/}
 }
 
 function prompt_git_branch {
@@ -113,18 +119,15 @@ function prompt_git_branch {
 		| sed -e "/^[^*]/d" -e "s/* \(.*\)/\1/")'
 }
 
-function prompt_vi_mode {
-	# http://dougblack.io/words/zsh-vi-mode.html
-	echo ${${KEYMAP/vicmd/[NORMAL] }/(main|viins)/}
-}
-
 function prompt_right {
-	echo "%{$fg[yellow]%}$(prompt_vi_mode)$(prompt_git_branch)"
+	# Wrapped in a function because it needs to be called in two places
+	# (one to set it to start off with and the other to reflect mode changes).
+	echo "%{$fg[yellow]%}$(prompt_vi_mode)$(prompt_git_branch)%{$reset_color%}"
 }
 
 # Set the actual prompts.  Whichever prompt (left or right) that includes the
-# vi-like editing mode should be set in the hook that reacts to mode changes.
-PROMPT="$(prompt_return_status) $(prompt_dir) %{$reset_color%}"
+# vi editing mode should also be set in the hook that reacts to mode changes.
+PROMPT="$(prompt_return_status) $(prompt_current_directory) %{$reset_color%}"
 RPROMPT=$(prompt_right)
 
 function zle-line-init zle-keymap-select {
@@ -192,6 +195,10 @@ bindkey "^[[B" down-line-or-beginning-search
 #  * https://bbs.archlinux.org/viewtopic.php?pid=1170300
 #  * http://unix.stackexchange.com/questions/97843/how-can-i-search-history-with-what-is-already-entered-at-the-prompt-in-zsh
 
+# Keys to fix the weird default behaviours
+bindkey '^[[3~' delete-char  # still doesn't work in vi-normal mode
+bindkey '^[h' run-help       # restores the default behaviour
+
 # Suggested keybindings from: http://dougblack.io/words/zsh-vi-mode.html
 
 # Use vim cli mode
@@ -233,8 +240,7 @@ setopt auto_cd        # just type directory name
                       # remember: can tab-complete paths such as /u/l/b too
 setopt no_clobber     # don't overwrite existing files
 
-# Set up the ESC-h online help shortcut and help files for builtins
+# Enable facility to show help for the current command
 unalias run-help
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
-# FIXME doesn't work with vi-like keybindings
