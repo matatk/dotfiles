@@ -63,10 +63,13 @@ chpwd_functions=(${chpwd_functions[@]} "auto_env")
 # Put non-ZSH-specific ones here
 source ~/dotfiles/shell/commands.sh
 
-# Use lovely move command
+# Use lovely move (and copy!) command
 # http://www.mfasold.net/blog/2008/11/moving-or-renaming-multiple-files/
+# http://zsh.sourceforge.net/Doc/Release/User-Contributions.html#index-zmv
+# http://superuser.com/questions/2127/what-zsh-features-do-you-use
 autoload -U zmv
 alias mmv='noglob zmv -W'  # “mmv *.dat *.dat_old” or “mmv foo.* bar.*”
+alias ccp='noglob zmv -WC'
 
 # Override default cd to remind me to not type cd
 function cd() {

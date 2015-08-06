@@ -106,11 +106,10 @@ set smartcase        " searches are only case-sensitive if the pattern is
 " WebAccessibilityToolbar uses files that are almost JavaScript
 autocmd BufNewFile,BufRead *.ws set filetype=javascript
 
-" When working with Markdown files, grok the YAML frontmatter
+" When working with Markdown files, grok the YAML frontmatter...
 let g:vim_markdown_frontmatter=1
-" Also start with the first fold (only) open (allwing for YAML as above)
-autocmd FileType mkd normal ]]zrgg
-autocmd FileType mkd :Toc
+" ...and don't fold
+let g:vim_markdown_folding_disabled=1
 
 
 "
