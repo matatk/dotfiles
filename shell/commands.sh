@@ -99,3 +99,8 @@ function rdeps() {
 
 # Homebrew update, cleanup and check
 alias brewup='echo Updating... && brew update && echo && echo Outdated: && brew outdated && echo && echo Upgrading... && brew upgrade && echo && echo Cleaning up... && brew cleanup -s && echo && echo Checking... && brew doctor'
+
+# node listing stuff
+# https://gist.github.com/yyx990803/6045243
+alias ng="npm list -g --depth=0 2>/dev/null"
+alias nl="npm list --depth=0 2>/dev/null"
