@@ -1,6 +1,6 @@
 "
 " Bindings
-" Info: http://stackoverflow.com/questions/3776117/what-is-the-difference-between-the-remap-noremap-nnoremap-and-vnoremap-mapping
+" http://stackoverflow.com/questions/3776117/what-is-the-difference-between-the-remap-noremap-nnoremap-and-vnoremap-mapping
 "
 
 " Toggling Gundo
@@ -93,10 +93,12 @@ autocmd BufNewFile,BufRead CHANGES set filetype=text
 "
 " General UI
 "
+
+set spelllang=en_gb
 set mouse=a
 set number
-set spelllang=en_gb
-set smartcase        " searches are only case-sensitive if the pattern is
+set smartcase  " searches are only case-sensitive if the pattern is
+set wildmenu   " http://derekwyatt.org/2009/08/20/the-absolute-bare-minimum/
 
 
 "
@@ -125,6 +127,10 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" My customisations
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_loc_list_height = 3
 
 
 "
