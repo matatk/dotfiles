@@ -98,7 +98,19 @@ function rdeps() {
 }
 
 # Homebrew update, cleanup and check
-alias brewup='echo Updating... && brew update && echo && echo Outdated: && brew outdated && echo && echo Upgrading... && brew upgrade && echo && echo Cleaning up... && brew cleanup -s && echo && echo Checking... && brew doctor'
+alias brewup='\
+	echo Updating... && brew update && echo \
+	&& echo Outdated: && brew outdated'
+alias brewdo='\
+	echo Upgrading... && brew upgrade && echo \
+	&& echo Cleaning up... && brew cleanup -s && echo \
+	&& echo Checking... && brew doctor'
+alias brewall='\
+	echo Updating... && brew update && echo \
+	&& echo Outdated: && brew outdated && echo \
+	&& echo Upgrading... && brew upgrade && echo \
+	&& echo Cleaning up... && brew cleanup -s && echo \
+	&& echo Checking... && brew doctor'
 
 # node listing stuff
 # https://gist.github.com/yyx990803/6045243
