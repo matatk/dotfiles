@@ -116,3 +116,6 @@ alias brewall='\
 # https://gist.github.com/yyx990803/6045243
 alias ng="npm list -g --depth=0 2>/dev/null"
 alias nl="npm list --depth=0 2>/dev/null"
+
+# Add a file to an existing MacVim tab
+alias mvt='mvim --remote-tab'
