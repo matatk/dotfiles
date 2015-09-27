@@ -105,12 +105,7 @@ alias brewdo='\
 	echo Upgrading... && brew upgrade && echo \
 	&& echo Cleaning up... && brew cleanup -s && echo \
 	&& echo Checking... && brew doctor'
-alias brewall='\
-	echo Updating... && brew update && echo \
-	&& echo Outdated: && brew outdated && echo \
-	&& echo Upgrading... && brew upgrade && echo \
-	&& echo Cleaning up... && brew cleanup -s && echo \
-	&& echo Checking... && brew doctor'
+alias brewall='brewup && echo && brewdo'
 
 # node listing stuff
 # https://gist.github.com/yyx990803/6045243
