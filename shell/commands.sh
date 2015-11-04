@@ -103,6 +103,7 @@ alias brewup='\
 	&& echo Outdated: && brew outdated'
 alias brewdo='\
 	echo Upgrading... && brew upgrade && echo \
+	&& echo Linking Applications... && brew linkapps && echo \
 	&& echo Cleaning up... && brew cleanup -s && echo \
 	&& echo Checking... && brew doctor'
 alias brewall='brewup && echo && brewdo'
