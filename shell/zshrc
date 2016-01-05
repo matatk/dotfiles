@@ -26,6 +26,10 @@ source ~/dotfiles/shell/completions.sh
 # pip completion
 eval "`pip completion --zsh`"
 
+# Don't consider '/' as part of a word; allows easy 'backwards-kill' on paths
+# Thanks http://stackoverflow.com/a/11200998 :-).
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
 
 ################################
 # Colours
