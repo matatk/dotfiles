@@ -7,10 +7,10 @@ nmap <silent> <C-H> :silent noh<CR>
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
 set backspace=indent,eol,start	" more powerful backspacing
 
-" Now we set some defaults for the editor 
+" Now we set some defaults for the editor
 set autoindent       " always set autoindenting on
 "set linebreak       " Don't wrap words by default
-set textwidth=0      " Don't wrap lines by default 
+set textwidth=0      " Don't wrap lines by default
 set backupcopy=yes   " Keep a backup file
 set viminfo='20,\"50 " read/write a .viminfo file, don't store more than
                      " 50 lines of registers
