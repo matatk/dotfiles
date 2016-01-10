@@ -19,6 +19,8 @@ nmap <leader>s :set spell!<CR>
 nmap <leader>e :tabnew %:h<CR>
 " Open ToC for Markdown documents
 nmap <leader>t :Toc<CR>
+" Toggle the width of tabs
+nmap <leader>w :call ToggleTabWidth()<CR>
 " Note: ColorV uses <leader>c* mappings.
 
 " Tab navigation; http://vimcasts.org/episodes/working-with-tabs/
@@ -165,4 +167,12 @@ function! Preserve(command)
 	" Clean up: restore previous search history, and cursor position
 	let @/=_s
 	call cursor(l, c)
+endfunction
+
+" Toggle the width of tabs
+" http://stackoverflow.com/questions/5736580/setting-vim-options-with-variables
+function! ToggleTabWidth()
+	let new_tab_size = &tabstop == 4 ? 2 : 4
+	let &tabstop = new_tab_size
+	let &softtabstop = new_tab_size
 endfunction
