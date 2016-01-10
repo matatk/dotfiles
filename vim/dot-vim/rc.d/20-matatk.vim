@@ -132,6 +132,7 @@ let g:syntastic_check_on_wq = 0
 
 " My customisations
 let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_json_checkers = ['jsonlint']
 let g:syntastic_loc_list_height = 3
 let g:syntastic_coffee_coffeelint_args = "--reporter csv --file coffeelint.json"
 

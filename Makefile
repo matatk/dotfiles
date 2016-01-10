@@ -18,7 +18,7 @@ all: symlinks $(VUNDLE_OUT)
 	@echo "     (the languages come with their respective package managers)"
 	@echo "   pip install virtualenv flake8"
 	@echo "   gem install jekyll"
-	@echo "   npm install -g grunt-cli coffeelint jshint"
+	@echo "   npm install -g grunt-cli jshint jsonlint"
 	@echo "     (jasmine-node, coffee-script, ... can be installed per-project)"
 
 symlinks:
