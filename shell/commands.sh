@@ -115,3 +115,7 @@ alias nl="npm list --depth=0 2>/dev/null"
 
 # Add a file to an existing MacVim tab
 alias mvt='mvim --remote-tab'
+
+# Remove Xcode clart
+# http://stackoverflow.com/a/18933476
+alias purgeallbuilds='rm -rf ~/Library/Developer/Xcode/DerivedData/*'

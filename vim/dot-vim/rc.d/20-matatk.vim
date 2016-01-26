@@ -111,9 +111,24 @@ set wildmenu   " http://derekwyatt.org/2009/08/20/the-absolute-bare-minimum/
 autocmd BufNewFile,BufRead *.ws set filetype=javascript
 
 " When working with Markdown files, grok the YAML frontmatter...
-let g:vim_markdown_frontmatter=1
+let g:vim_markdown_frontmatter = 1
 " ...and don't fold
-let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_folding_disabled = 1
+" Auto-shrink Markdown ToC
+let g:vim_markdown_toc_autofit = 1
+" Open the ToC on loading a Markdown file
+" https://github.com/plasticboy/vim-markdown/issues/166#issuecomment-174747050
+function! s:Toc()
+	if &filetype == 'markdown'
+		:Toc
+		set filetype=qf
+		setl nofoldenable
+		syntax on
+	endif
+endfunction
+autocmd VimEnter *.m* call s:Toc()
+autocmd BufReadPost *.m* call s:Toc()
+autocmd BufWinEnter *.m* call s:Toc()
 
 
 "
