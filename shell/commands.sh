@@ -119,3 +119,25 @@ alias mvt='mvim --remote-tab'
 # Remove Xcode clart
 # http://stackoverflow.com/a/18933476
 alias purgeallbuilds='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
+
+# Tidy a snippet of HTML that was placed on the clipboard
+function tidysnippet() {
+	CORE_TIDY='pbpaste | tidy --indent auto --indent-spaces 4 --wrap 0 --show-body-only yes'
+	echo 'Tidying:'
+	pbpaste | cat
+	echo
+	echo
+	eval $CORE_TIDY
+	RETVAL=$?
+	echo
+	if [ ! $RETVAL -eq 2 ]; then
+		eval $CORE_TIDY 2>/dev/null | pbcopy
+		echo 'The above result of tidy is now on the clipboard.'
+		if [ $RETVAL -eq 1 ]; then
+			echo
+			echo 'Note: there were warnings from tidy (but no errors).'
+		fi
+	else
+		echo 'There was an error calling tidy; clipboard unchanged.'
+	fi
+}
