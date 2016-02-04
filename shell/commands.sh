@@ -45,7 +45,7 @@ function mdpretty() {
 }
 
 function nmdpretty() {
-	_mdpretty $@ --no-wrap
+	_mdpretty $@ --wrap=none
 }
 
 function _mdpretty() {
@@ -54,12 +54,12 @@ function _mdpretty() {
 		return
 	fi
 
-	if [[ $# -eq 0 || $# -eq 1 && $1 == '--no-wrap' ]]; then
+	if [[ $# -eq 0 || $# -eq 1 && $1 == '--wrap=none' ]]; then
 		echo No file specified
 		return
 	fi
 
-	if [[ $# -gt 1 && $2 != '--no-wrap' ]]; then
+	if [[ $# -gt 1 && $2 != '--wrap=none' ]]; then
 		echo Does not support multiple files
 		return
 	fi
