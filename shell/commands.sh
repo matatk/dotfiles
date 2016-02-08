@@ -18,7 +18,11 @@ alias ud='du -sch *'
 
 # Trees!
 alias t='tree'
-alias ta='tree -apsh'
+alias tl='tree -ps'
+alias th='tree -psh'
+alias ta='tree -a'
+alias tal='tree -aps'
+alias tah='tree -apsh'
 
 # Redo the 'Open With' menu on OS X
 alias fixowmenu='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
@@ -139,5 +143,30 @@ function tidysnippet() {
 		fi
 	else
 		echo 'There was an error calling tidy; clipboard unchanged.'
+	fi
+}
+
+#that's some old shit
+function __clean-cask {
+	caskBasePath="/opt/homebrew-cask/Caskroom"
+	local cask="$1"
+	local caskDirectory="$caskBasePath/$cask"
+	local versionsToRemove="$(ls -r $caskDirectory | sed 1,1d)"
+	if [[ -n $versionsToRemove ]]; then
+		while read versionToRemove ; do
+			echo "Removing $cask $versionToRemove..."
+			rm -rf "$caskDirectory/$versionToRemove"
+		done <<< "$versionsToRemove"
+	fi
+}
+
+#call this command to cleanup all, or you can specify cask name
+	function cask-retire {
+	if [[ $# -eq 0 ]]; then
+		while read cask; do
+			__clean-cask "$cask"
+		done <<< "$(brew cask list)"
+	else
+		clean-cask "$1"
 	fi
 }
