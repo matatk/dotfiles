@@ -88,9 +88,6 @@ highlight Normal ctermbg=NONE guibg=Black
 autocmd FileType text,markdown,html,gitcommit setlocal spell
 autocmd FileType help setlocal nospell
 
-" CHANGES files are text files
-autocmd BufNewFile,BufRead CHANGES set filetype=text
-
 
 "
 " General UI
@@ -129,6 +126,11 @@ endfunction
 autocmd VimEnter *.m* call s:Toc()
 autocmd BufReadPost *.m* call s:Toc()
 autocmd BufWinEnter *.m* call s:Toc()
+
+" CHANGES files are text files
+autocmd BufNewFile,BufRead CHANGES set filetype=text
+" CHANGES files should be auto-wrapped
+autocmd BufNewFile,BufRead CHANGES set textwidth=72
 
 
 "
