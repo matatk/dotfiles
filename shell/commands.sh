@@ -108,8 +108,9 @@ alias brewup='\
 alias brewdo='\
 	echo Upgrading... && brew upgrade && echo \
 	&& echo Linking Applications... && brew linkapps && echo \
-	&& echo Cleaning up... && brew cleanup -s && echo \
-	&& echo Checking... && brew doctor'
+	&& echo Cleaning up... && brew cleanup -s && brew cask cleanup && echo \
+	&& echo Checking... && brew doctor && echo \
+	&& echo Note: brew cask app upgrades are manual.'
 alias brewall='brewup && echo && brewdo'
 
 # node listing stuff
