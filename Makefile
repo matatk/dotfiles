@@ -14,12 +14,15 @@ all: symlinks $(VUNDLE_OUT)
 	@echo
 	@echo "Recommendations:"
 	@echo "   brew install zsh zsh-completions zsh-syntax-highlighting bash-completion"
-	@echo "   brew install python ruby node tree rename watch autoenv coreutils rpl"
+	@echo "   brew install python ruby node tree rename autoenv coreutils rpl"
 	@echo "     (the languages come with their respective package managers)"
 	@echo "   pip install virtualenv flake8"
-	@echo "   gem install jekyll"
+	@echo "   gem install bundler"
+	@echo "     (can then use this to install things like the github-pages gem)"
 	@echo "   npm install -g grunt-cli jshint jsonlint"
 	@echo "     (jasmine-node, coffee-script, ... can be installed per-project)"
+	@echo "   brew tap caskroom/cask"
+	@echo "   brew cask install iterm2"
 
 symlinks:
 	@ln -sf  $(DOTFILES)/shell/bashrc ~/.bashrc
