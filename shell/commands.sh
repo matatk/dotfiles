@@ -162,7 +162,7 @@ function __clean-cask {
 }
 
 #call this command to cleanup all, or you can specify cask name
-	function cask-retire {
+function cask-retire {
 	if [[ $# -eq 0 ]]; then
 		while read cask; do
 			__clean-cask "$cask"
