@@ -10,7 +10,7 @@ all: symlinks $(VUNDLE_OUT)
 	@echo "   + You'll need the latest vim: brew install vim && brew install macvim"
 	@echo "   + cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer"
 	@echo "   + Python crashes? https://github.com/Valloric/YouCompleteMe/issues/620"
-	@echo " * GNU ls is required for the colouring: brew install coreutils"
+	@echo " * GNU ls is required for colouring: brew install coreutils"
 	@echo
 	@echo "Recommendations:"
 	@echo "   brew install zsh zsh-completions zsh-syntax-highlighting bash-completion"
