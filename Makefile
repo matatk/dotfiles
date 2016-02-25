@@ -20,8 +20,8 @@ all: symlinks $(VUNDLE_OUT)
 	@echo "     (can then use this to install things like the github-pages gem)"
 	@echo "   npm install -g grunt-cli jshint jsonlint"
 	@echo "     (jasmine-node, coffee-script, ... can be installed per-project)"
-	@echo "   brew cask install iterm2 cd-to caffeine gitx soundcast \\"
-	@echo "     virtualbox virtualbox-extension-pack"
+	@echo "   brew cask install iterm2 cd-to caffeine gitx soundcast google-chrome \\"
+	@echo "     firefox libreoffice virtualbox virtualbox-extension-pack"
 
 symlinks:
 	@ln -sf  $(DOTFILES)/shell/bashrc ~/.bashrc
