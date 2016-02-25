@@ -1,3 +1,4 @@
+*.swp
 vim/dot-vim/bundle
 vim/dot-vim/.netrwhist
 vim/dot-vim/spell
