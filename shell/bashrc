@@ -4,8 +4,9 @@ source ~/dotfiles/shell/commands.sh
 source ~/dotfiles/shell/completions.sh
 
 # Homebrew bash completion
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-	. `brew --prefix`/etc/bash_completion
+# PREFIX is defined in environment.sh
+if [ -f $PREFIX/etc/bash_completion ]; then
+	. $PREFIX/etc/bash_completion
 fi
 
 # pip completion

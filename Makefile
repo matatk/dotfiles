@@ -1,7 +1,14 @@
 DOTFILES=~/dotfiles
-VUNDLE_OUT=~/.vim/bundle/Vundle.vim
+VUNDLE_OUT=$(DOTFILES)/vim/dot-vim/bundle/Vundle.vim
+BREW_ZSH_COMPLETIONS_TARGET= \
+	$(shell brew --prefix)/share/zsh/site-functions/_brew
+BREW_ZSH_COMPLETIONS_SOURCE= \
+	$(shell brew --prefix)/Library/Contributions/brew_zsh_completion.zsh
 
-all: symlinks $(VUNDLE_OUT)
+.PHONY: clean deepclean symlinks
+
+all: symlinks $(VUNDLE_OUT) $(BREW_ZSH_COMPLETIONS_TARGET)
+	@echo
 	@echo "Reminders:"
 	@echo " * Vim plugins are managed within Vim with Vundle."
 	@echo " * Set iTerm2 to load settings from ~/dotfiles."
@@ -24,14 +31,36 @@ all: symlinks $(VUNDLE_OUT)
 	@echo "     firefox libreoffice virtualbox virtualbox-extension-pack"
 
 symlinks:
-	@ln -sf  $(DOTFILES)/shell/bashrc ~/.bashrc
-	@ln -sf  ~/.bashrc ~/.profile
-	@ln -sf  $(DOTFILES)/shell/zshrc ~/.zshrc
-	@ln -nsf $(DOTFILES)/vim/dot-vim ~/.vim
-	@ln -sf  $(DOTFILES)/vim/vimrc ~/.vimrc
-	@ln -sf  $(DOTFILES)/vim/gvimrc ~/.gvimrc
-	@ln -nsf $(DOTFILES)/bin ~/bin
+	ln -sfv  $(DOTFILES)/shell/bashrc ~/.bashrc
+	ln -sfv  ~/.bashrc ~/.profile
+	ln -sfv  $(DOTFILES)/shell/zshrc ~/.zshrc
+	ln -nsfv $(DOTFILES)/vim/dot-vim ~/.vim
+	ln -sfv  $(DOTFILES)/vim/vimrc ~/.vimrc
+	ln -sfv  $(DOTFILES)/vim/gvimrc ~/.gvimrc
+	ln -nsfv $(DOTFILES)/bin ~/bin
 
 $(VUNDLE_OUT): symlinks
-	@[ -d $(VUNDLE_OUT) ] || \
+	[ -d $(VUNDLE_OUT) ] || \
 		git clone https://github.com/gmarik/Vundle.vim.git $(VUNDLE_OUT)
+
+$(BREW_ZSH_COMPLETIONS_TARGET): $(BREW_ZSH_COMPLETIONS_SOURCE)
+	ln -s $(BREW_ZSH_COMPLETIONS_SOURCE) $(BREW_ZSH_COMPLETIONS_TARGET)
+
+clean:
+	rm -f ~/.bashrc
+	rm -f ~/.profile
+	rm -f ~/.zshrc
+	rm -f ~/.vim
+	rm -f ~/.vimrc
+	rm -f ~/.gvimrc
+	rm -f ~/bin
+	rm -f $(BREW_ZSH_COMPLETIONS_TARGET)
+	@echo
+	@echo "Note: Installed vim plugins are kept, unless you specify 'deepclean'."
+	@echo
+	@echo "Note: The other .gitignored vim files/dirs are always kept, even"
+	@echo "      if you /do/ specify 'deepclean'."
+
+deepclean: clean
+	@echo
+	rm -rf $(DOTFILES)/vim/dot-vim/bundle
