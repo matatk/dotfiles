@@ -29,7 +29,7 @@ all: symlinks $(VUNDLE_OUT) $(BREW_ZSH_COMPLETIONS_TARGET)
 	@echo "   npm install -g grunt-cli jshint jsonlint"
 	@echo "     (jasmine-node, coffee-script, ... can be installed per-project)"
 	@echo "   brew cask install iterm2 cd-to caffeine gitx soundcast \\"
-	@echo "     github-desktop macdown google-chrome firefox \\"
+	@echo "     spotify github-desktop macdown google-chrome firefox \\"
 	@echo "     virtualbox virtualbox-extension-pack libreoffice"
 
 symlinks:
