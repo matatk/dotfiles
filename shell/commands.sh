@@ -28,10 +28,34 @@ alias tah='tree -apsh'
 alias fixowmenu='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
 
 # Start a Jekyll auto-rebuilding server in the current directory
-alias jt='jekyll serve --watch --host $(hostname)'
+alias jt='bundle exec jekyll serve'
 
 # vmware fusion
 alias vmware-vdiskmanager="/Applications/VMware\ Fusion.app/Contents/Library/vmware-vdiskmanager"
+
+# Homebrew update, cleanup and check
+alias brewup='\
+	echo Updating... && brew update && echo \
+	&& echo Outdated: && brew outdated'
+alias brewdo='\
+	echo Upgrading... && brew upgrade && echo \
+	&& echo Linking Applications... && brew linkapps && echo \
+	&& echo Cleaning up... && brew cleanup -s && brew cask cleanup && echo \
+	&& echo Checking... && brew doctor && echo \
+	&& echo Note: brew cask app upgrades are manual.'
+alias brewall='brewup && echo && brewdo'
+
+# node listing stuff
+# https://gist.github.com/yyx990803/6045243
+alias ng="npm list -g --depth=0 2>/dev/null"
+alias nl="npm list --depth=0 2>/dev/null"
+
+# Add a file to an existing MacVim tab
+alias mvt='mvim --remote-tab'
+
+# Remove Xcode clart
+# http://stackoverflow.com/a/18933476
+alias purgeallbuilds='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
 
 # cat and speak the contents of a file
 function cs() {
@@ -41,6 +65,11 @@ function cs() {
 # Tell the story of a TDD project through the medium of commits
 function tddh() {
 	git log | grep '\(RED\|REFACTOR\)' | tail -r
+}
+
+# Recursive and case-insensitive grep of current directory
+function search() {
+	grep -ir $1 .
 }
 
 # Prettify a markdown file
@@ -101,30 +130,6 @@ function rdeps() {
 	done
 }
 
-# Homebrew update, cleanup and check
-alias brewup='\
-	echo Updating... && brew update && echo \
-	&& echo Outdated: && brew outdated'
-alias brewdo='\
-	echo Upgrading... && brew upgrade && echo \
-	&& echo Linking Applications... && brew linkapps && echo \
-	&& echo Cleaning up... && brew cleanup -s && brew cask cleanup && echo \
-	&& echo Checking... && brew doctor && echo \
-	&& echo Note: brew cask app upgrades are manual.'
-alias brewall='brewup && echo && brewdo'
-
-# node listing stuff
-# https://gist.github.com/yyx990803/6045243
-alias ng="npm list -g --depth=0 2>/dev/null"
-alias nl="npm list --depth=0 2>/dev/null"
-
-# Add a file to an existing MacVim tab
-alias mvt='mvim --remote-tab'
-
-# Remove Xcode clart
-# http://stackoverflow.com/a/18933476
-alias purgeallbuilds='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
-
 # Tidy a snippet of HTML that was placed on the clipboard
 function tidysnippet() {
 	CORE_TIDY='pbpaste | tidy --indent auto --indent-spaces 4 --wrap 0 --show-body-only yes'
@@ -147,7 +152,7 @@ function tidysnippet() {
 	fi
 }
 
-#that's some old shit
+# cask-retire from https://github.com/troyxmccall/dotfiles/blob/8ab354f96f1184cbdd3574b3285a7afe89f2d9f3/.functions#L399-L422
 function __clean-cask {
 	caskBasePath="/opt/homebrew-cask/Caskroom"
 	local cask="$1"
@@ -161,7 +166,6 @@ function __clean-cask {
 	fi
 }
 
-#call this command to cleanup all, or you can specify cask name
 function cask-retire {
 	if [[ $# -eq 0 ]]; then
 		while read cask; do
