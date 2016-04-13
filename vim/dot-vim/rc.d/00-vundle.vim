@@ -35,6 +35,7 @@ Plugin 'bronson/vim-visual-star-search' " Search for the visually-selected text
 Plugin 'tpope/vim-abolish'              " Mainly for Subvert
 Plugin 'alvan/vim-closetag'             " Auto-close HTML tags using > or >>
 Plugin 'MarkWithall/cif-vim-syntax'     " Railways! Trains!
+Plugin 'mattn/emmet-vim'                " Fantastic time-saver for writing HTML
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
