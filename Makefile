@@ -1,11 +1,9 @@
 DOTFILES=~/dotfiles
 VUNDLE_OUT=$(DOTFILES)/vim/dot-vim/bundle/Vundle.vim
-BREW_ZSH_COMPLETIONS_TARGET= \
-	$(shell brew --prefix)/share/zsh/site-functions/_brew
-BREW_ZSH_COMPLETIONS_SOURCE= \
-	$(shell brew --prefix)/Library/Contributions/brew_zsh_completion.zsh
+KARABINER_CONFIG=$(DOTFILES)/karabiner/private.xml
+KARABINER_LINK=~/Library/Application\ Support/Karabiner/private.xml
 
-.PHONY: clean deepclean symlinks
+.PHONY: clean deepclean symlinks kinesis
 
 all: symlinks $(VUNDLE_OUT) $(BREW_ZSH_COMPLETIONS_TARGET)
 	@echo
@@ -28,7 +26,7 @@ all: symlinks $(VUNDLE_OUT) $(BREW_ZSH_COMPLETIONS_TARGET)
 	@echo "     (can then use this to install things like the github-pages gem)"
 	@echo "   npm install -g grunt-cli jshint jsonlint"
 	@echo "     (jasmine-node, coffee-script, ... can be installed per-project)"
-	@echo "   brew cask install iterm2 cd-to caffeine gitx soundcast \\"
+	@echo "   brew cask install karabiner iterm2 cd-to caffeine gitx soundcast \\"
 	@echo "     spotify github-desktop macdown google-chrome firefox \\"
 	@echo "     virtualbox virtualbox-extension-pack libreoffice"
 
@@ -40,13 +38,23 @@ symlinks:
 	ln -sfv  $(DOTFILES)/vim/vimrc ~/.vimrc
 	ln -sfv  $(DOTFILES)/vim/gvimrc ~/.gvimrc
 	ln -nsfv $(DOTFILES)/bin ~/bin
+	ln -sfv  $(KARABINER_CONFIG) $(KARABINER_LINK)
 
 $(VUNDLE_OUT): symlinks
 	[ -d $(VUNDLE_OUT) ] || \
 		git clone https://github.com/gmarik/Vundle.vim.git $(VUNDLE_OUT)
 
-$(BREW_ZSH_COMPLETIONS_TARGET): $(BREW_ZSH_COMPLETIONS_SOURCE)
-	ln -s $(BREW_ZSH_COMPLETIONS_SOURCE) $(BREW_ZSH_COMPLETIONS_TARGET)
+kinesis:
+	@echo "Kinesis keyboard customisations:"
+	@echo "  =m    (Mac)"
+	@echo "  =n    (Multimedia keys)"
+	@echo "  =F12  (Drop 'stop' key in favour of browser dev tools)"
+	@echo "  Swapped up and down [including keycaps] (to match Vim et al)"
+	@echo
+	@echo "Remapping steps:"
+	@echo "  Program + F12 (Remap)"
+	@echo "  ( press source, press destination ), ..."
+	@echo "  Program + F12 (Remap)"
 
 clean:
 	rm -f ~/.bashrc
@@ -56,7 +64,7 @@ clean:
 	rm -f ~/.vimrc
 	rm -f ~/.gvimrc
 	rm -f ~/bin
-	rm -f $(BREW_ZSH_COMPLETIONS_TARGET)
+	rm -f $(KARABINER_LINK)
 	@echo
 	@echo "Note: Installed vim plugins are kept, unless you specify 'deepclean'."
 	@echo
