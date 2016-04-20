@@ -27,11 +27,10 @@ alias tah='tree -apsh'
 # Redo the 'Open With' menu on OS X
 alias fixowmenu='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
 
-# Start a Jekyll auto-rebuilding server in the current directory
+# Shorter versions
 alias jt='bundle exec jekyll serve'
-
-# vmware fusion
 alias vmware-vdiskmanager="/Applications/VMware\ Fusion.app/Contents/Library/vmware-vdiskmanager"
+alias karabiner="/Applications/Karabiner.app/Contents/Library/bin/karabiner"
 
 # Homebrew update, cleanup and check
 alias brewup='\
