@@ -23,6 +23,7 @@ alias th='tree -psh'
 alias ta='tree -a'
 alias tal='tree -aps'
 alias tah='tree -apsh'
+alias tnn='tree -I node_modules'
 
 # Redo the 'Open With' menu on OS X
 alias fixowmenu='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
@@ -43,6 +44,8 @@ alias brewdo='\
 	&& echo Checking... && brew doctor && echo \
 	&& echo Note: brew cask app upgrades are manual.'
 alias brewall='brewup && echo && brewdo'
+
+alias upgrade-virtualbox="brew cask install virtualbox virtualbox-extension-pack"
 
 # node listing stuff
 # https://gist.github.com/yyx990803/6045243
@@ -148,29 +151,5 @@ function tidysnippet() {
 		fi
 	else
 		echo 'There was an error calling tidy; clipboard unchanged.'
-	fi
-}
-
-# cask-retire from https://github.com/troyxmccall/dotfiles/blob/8ab354f96f1184cbdd3574b3285a7afe89f2d9f3/.functions#L399-L422
-function __clean-cask {
-	caskBasePath="/opt/homebrew-cask/Caskroom"
-	local cask="$1"
-	local caskDirectory="$caskBasePath/$cask"
-	local versionsToRemove="$(ls -r $caskDirectory | sed 1,1d)"
-	if [[ -n $versionsToRemove ]]; then
-		while read versionToRemove ; do
-			echo "Removing $cask $versionToRemove..."
-			rm -rf "$caskDirectory/$versionToRemove"
-		done <<< "$versionsToRemove"
-	fi
-}
-
-function cask-retire {
-	if [[ $# -eq 0 ]]; then
-		while read cask; do
-			__clean-cask "$cask"
-		done <<< "$(brew cask list)"
-	else
-		clean-cask "$1"
 	fi
 }
