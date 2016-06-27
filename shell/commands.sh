@@ -29,7 +29,7 @@ alias tnn='tree -I node_modules'
 alias fixowmenu='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
 
 # Shorter versions
-alias jt='bundle exec jekyll serve'
+alias jt='bundle exec jekyll serve --drafts'
 alias vmware-vdiskmanager="/Applications/VMware\ Fusion.app/Contents/Library/vmware-vdiskmanager"
 alias karabiner="/Applications/Karabiner.app/Contents/Library/bin/karabiner"
 
