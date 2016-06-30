@@ -18,12 +18,14 @@ alias ud='du -sch *'
 
 # Trees!
 alias t='tree'
+alias td='tree -d'
 alias tl='tree -ps'
 alias th='tree -psh'
 alias ta='tree -a'
 alias tal='tree -aps'
 alias tah='tree -apsh'
 alias tnn='tree -I node_modules'
+alias tnnd='tree -I node_modules -d'
 
 # Redo the 'Open With' menu on OS X
 alias fixowmenu='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
