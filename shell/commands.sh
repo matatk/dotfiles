@@ -32,7 +32,6 @@ alias fixowmenu='/System/Library/Frameworks/CoreServices.framework/Versions/A/Fr
 
 # Shorter versions
 alias jt='bundle exec jekyll serve --drafts'
-alias vmware-vdiskmanager="/Applications/VMware\ Fusion.app/Contents/Library/vmware-vdiskmanager"
 alias karabiner="/Applications/Karabiner.app/Contents/Library/bin/karabiner"
 
 # Homebrew update, cleanup and check
@@ -46,8 +45,6 @@ alias brewdo='\
 	&& echo Checking... && brew doctor && echo \
 	&& echo Note: brew cask app upgrades are manual.'
 alias brewall='brewup && echo && brewdo'
-
-alias upgrade-virtualbox="brew cask install virtualbox virtualbox-extension-pack"
 
 # node listing stuff
 # https://gist.github.com/yyx990803/6045243
