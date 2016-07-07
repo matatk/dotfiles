@@ -26,9 +26,8 @@ all: symlinks $(VUNDLE_OUT) $(BREW_ZSH_COMPLETIONS_TARGET)
 	@echo "     (can then use this to install things like the github-pages gem)"
 	@echo "   npm install -g grunt-cli jshint jsonlint"
 	@echo "     (jasmine-node, coffee-script, ... can be installed per-project)"
-	@echo "   brew cask install karabiner iterm2 cd-to caffeine gitx soundcast \\"
-	@echo "     spotify github-desktop macdown google-chrome firefox \\"
-	@echo "     virtualbox virtualbox-extension-pack libreoffice"
+	@echo "   brew cask install karabiner iterm2 cd-to caffeine soundcast spotify \\"
+	@echo "     github-desktop macdown google-chrome firefox libreoffice"
 
 symlinks:
 	ln -sfv  $(DOTFILES)/shell/bashrc ~/.bashrc
@@ -50,6 +49,7 @@ kinesis:
 	@echo "  =n    (Multimedia keys)"
 	@echo "  =F12  (Drop 'stop' key in favour of browser dev tools)"
 	@echo "  Swapped up and down [including keycaps] (to match Vim et al)"
+	@echo "  Program + [the key right of P] (disables normal key click)"
 	@echo
 	@echo "Remapping steps:"
 	@echo "  Program + F12 (Remap)"
