@@ -59,18 +59,19 @@ alias mvt='mvim --remote-tab'
 alias purgeallbuilds='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
 
 # cat and speak the contents of a file
-function cs() {
+function catsay() {
 	cat $1 && say -f $1
 }
-
-# Tell the story of a TDD project through the medium of commits
-function tddh() {
-	git log | grep '\(RED\|REFACTOR\)' | tail -r
-}
+alias cs=catsay
 
 # Recursive and case-insensitive grep of current directory
 function search() {
-	grep -ir $1 .
+	grep -ir $@ .
+}
+
+# As above, but ignoring the node_modules directory
+function searchnn() {
+	grep --exclude-dir=node_modules -ir $@ .
 }
 
 # Prettify a markdown file
