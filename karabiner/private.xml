@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <root>
 	<item>
-		<name>Excel easier in-cell newlines</name>
+		<name>Excel easier in-cell newlines (not needed with Excel 2016)</name>
 		<appendix>Maps {Left Option + Return} to {Control + Option + Return}</appendix>
 		<identifier>private.excel_easier_newlines</identifier>
 		<only>EXCEL</only>
