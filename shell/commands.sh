@@ -27,6 +27,11 @@ alias tah='tree -apsh'
 alias tnn='tree -I node_modules'
 alias tnnd='tree -I node_modules -d'
 
+alias py='python3'
+# Note: pip is symlinked so that completion works; python isn't because
+#       it's hacky, and symlinking it as 'python' rightly upsets
+#       brew doctor too.
+
 # Redo the 'Open With' menu on OS X
 alias fixowmenu='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
 
@@ -58,7 +63,6 @@ alias mvt='mvim --remote-tab'
 # http://stackoverflow.com/a/18933476
 alias purgeallbuilds='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
 
-# cat and speak the contents of a file
 function catsay() {
 	cat $1 && say -f $1
 }
