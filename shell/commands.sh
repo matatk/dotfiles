@@ -42,7 +42,8 @@ alias karabiner="/Applications/Karabiner.app/Contents/Library/bin/karabiner"
 # Homebrew update, cleanup and check
 alias brewup='\
 	echo Updating... && brew update && echo \
-	&& echo Outdated: && brew outdated'
+	&& echo Outdated: && brew outdated && echo \
+	&& brew --version'
 alias brewdo='\
 	echo Upgrading... && brew upgrade && echo \
 	&& echo Linking Applications... && brew linkapps && echo \
