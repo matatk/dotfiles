@@ -15,7 +15,6 @@ all: home-dot-symlinks pip3-symlink $(VUNDLE_OUT) $(BREW_ZSH_COMPLETIONS_TARGET)
 	@echo "   + You'll need the latest vim: brew install vim && brew install macvim"
 	@echo "   + cd ~/.vim/bundle/YouCompleteMe && ./install.py --clang-completer"
 	@echo "   + Python crash? https://github.com/Valloric/YouCompleteMe/issues/620"
-	@echo " * Perlbrew setup begins: curl -L http://install.perlbrew.pl | bash"
 	@echo
 	@echo "Recommendations:"
 	@echo "   brew install zsh zsh-completions zsh-syntax-highlighting \\"
