@@ -13,8 +13,6 @@ nmap <leader>l :set list!<CR>
 nmap <leader>$ :StripWhitespace<CR>
 " Indenting the whole file
 nmap <leader>= :call Preserve("normal gg=G")<CR>
-" Toggling spell-checking
-nmap <leader>s :set spell!<CR>
 " Open a new tab (with explorer) in the directory of the current file
 nmap <leader>e :tabnew %:h<CR>
 " Open ToC for Markdown documents
