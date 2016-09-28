@@ -36,7 +36,7 @@ Plugin 'tpope/vim-abolish'              " Mainly for Subvert
 Plugin 'alvan/vim-closetag'             " Auto-close HTML tags using > or >>
 Plugin 'MarkWithall/cif-vim-syntax'     " Railways! Trains!
 Plugin 'mattn/emmet-vim'                " Fantastic time-saver for writing HTML
-Plugin 'IN3D/vim-raml'                " Fantastic time-saver for writing HTML
+Plugin 'IN3D/vim-raml'                  " Highlighting support for RAML
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
