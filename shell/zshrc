@@ -23,16 +23,13 @@ zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 # Cross-shell completions
 source ~/dotfiles/shell/completions.sh
 
-# pip completion
 eval "`pip completion --zsh`"
 
 # Don't consider '/' as part of a word; allows easy 'backwards-kill' on paths
 # Thanks http://stackoverflow.com/a/11200998 :-).
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
-# tabtab source for yo package
-# uninstall by removing these lines or running `tabtab uninstall yo`
-[[ -f /usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh ]] && . /usr/local/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 
 ################################
@@ -40,12 +37,10 @@ WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 ################################
 
 source ~/dotfiles/shell/colours.sh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Use the above colours when completing file/directory names
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-
-# Syntax-highlighting from homebrew
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
 ################################
