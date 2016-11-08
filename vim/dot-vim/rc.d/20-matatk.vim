@@ -40,7 +40,10 @@ map <D-0> :tablast<CR>
 " Whitespace, Indentation and Non-printing characters
 "
 
-" Use four-space indentation with tabs by default
+" Note: EditorConfig is recommended for projects that may be shared with
+"       others; these settings are therefore mainly personal defaults.
+
+" Use four-column indentation with tabs by default
 " Thanks http://vimcasts.org/episodes/tabs-and-spaces/
 set tabstop=4
 set softtabstop=4
@@ -164,6 +167,8 @@ autocmd User fugitive
 	\ endif
 
 autocmd BufReadPost fugitive://* set bufhidden=delete
+
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 
 "
