@@ -26,7 +26,7 @@ all: home-dot-symlinks pip3-symlink $(VUNDLE_OUT) $(BREW_ZSH_COMPLETIONS_TARGET)
 	@echo "   pip install virtualenv flake8"
 	@echo "   gem install bundler"
 	@echo "     (can then use this to install things like the github-pages gem)"
-	@echo "   npm install -g grunt-cli jshint jsonlint package-json-validator yo"
+	@echo "   npm install -g eslint jsonlint package-json-validator grunt-cli yo"
 	@echo "     (jasmine-node, coffee-script, ... can be installed per-project)"
 	@echo "   brew cask install karabiner iterm2 cd-to caffeine soundcast spotify \\"
 	@echo "     github-desktop macdown google-chrome firefox libreoffice"
