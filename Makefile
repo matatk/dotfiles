@@ -5,7 +5,7 @@ KARABINER_LINK=~/Library/Application\ Support/Karabiner/private.xml
 
 .PHONY: clean deepclean home-dot-symlinks pip3-symlink kinesis
 
-all: home-dot-symlinks pip3-symlink $(VUNDLE_OUT) $(BREW_ZSH_COMPLETIONS_TARGET)
+all: home-dot-symlinks $(VUNDLE_OUT) $(BREW_ZSH_COMPLETIONS_TARGET) pip3-symlink
 	@echo
 	@echo "Reminders:"
 	@echo " * Vim plugins are managed within Vim with Vundle."
@@ -20,11 +20,11 @@ all: home-dot-symlinks pip3-symlink $(VUNDLE_OUT) $(BREW_ZSH_COMPLETIONS_TARGET)
 	@echo
 	@echo "Recommendations:"
 	@echo "   brew install zsh bash-completion coreutils tree rename rpl autoenv python3 \\"
-	@echo "     zsh-completions zsh-syntax-highlighting zsh-autosuggestions ruby node"
+	@echo "     zsh-completions zsh-syntax-highlighting zsh-autosuggestions node rbenv perl"
 	@echo "     (the languages come with their respective package managers)"
 	@echo "   brew install vim --with-python3 && brew install macvim --with-python3"
 	@echo "   pip install virtualenv flake8"
-	@echo "   gem install bundler"
+	@echo "   [in an proejct's dir] rbenv local X.X.X && gem install bundler"
 	@echo "     (can then use this to install things like the github-pages gem)"
 	@echo "   npm install -g eslint jsonlint package-json-validator grunt-cli yo"
 	@echo "     (jasmine-node, coffee-script, ... can be installed per-project)"
@@ -41,8 +41,18 @@ home-dot-symlinks:
 	ln -nsfv $(DOTFILES)/bin ~/bin
 	ln -sfv  $(KARABINER_CONFIG) $(KARABINER_LINK)
 
+PIP_PATH=/usr/local/bin/pip
+PIP3_PATH=/usr/local/bin/pip3
 pip3-symlink:
-	-ln -sv /usr/local/bin/pip3 /usr/local/bin/pip
+	@echo
+	@if [ -L $(PIP_PATH) ] && [ `readlink $(PIP_PATH)` == $(PIP3_PATH) ]; then \
+		echo 'INFO: pip symlink already set up correctly.'; \
+	elif [ ! -e $(PIP_PATH) ]; then \
+		echo 'INFO: setting up pip symlink'; \
+		ln -sv $(PIP3_PATH) $(PIP_PATH); \
+	else \
+		echo 'WARNING: $(PIP_PATH) already exists; not overwriting.'; \
+	fi
 
 $(VUNDLE_OUT): home-dot-symlinks
 	[ -d $(VUNDLE_OUT) ] || \
