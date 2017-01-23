@@ -22,7 +22,7 @@ all: home-dot-symlinks $(VUNDLE_OUT) $(BREW_ZSH_COMPLETIONS_TARGET) pip3-symlink
 	@echo "   brew install zsh bash-completion coreutils tree rename rpl autoenv python3 \\"
 	@echo "     zsh-completions zsh-syntax-highlighting zsh-autosuggestions node rbenv perl"
 	@echo "     (the languages come with their respective package managers)"
-	@echo "   brew install vim --with-python3 && brew install macvim --with-python3"
+	@echo "   brew install vim --with-python3 && brew cask install macvim"
 	@echo "   pip install virtualenv flake8"
 	@echo "   [in an proejct's dir] rbenv local X.X.X && gem install bundler"
 	@echo "     (can then use this to install things like the github-pages gem)"
