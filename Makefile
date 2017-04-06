@@ -1,7 +1,5 @@
 DOTFILES=~/dotfiles
 VUNDLE_OUT=$(DOTFILES)/vim/dot-vim/bundle/Vundle.vim
-KARABINER_CONFIG=$(DOTFILES)/karabiner/private.xml
-KARABINER_LINK=~/Library/Application\ Support/Karabiner/private.xml
 
 .PHONY: clean deepclean home-dot-symlinks pip3-symlink kinesis
 
@@ -28,7 +26,7 @@ all: home-dot-symlinks $(VUNDLE_OUT) $(BREW_ZSH_COMPLETIONS_TARGET) pip3-symlink
 	@echo "     (can then use this to install things like the github-pages gem)"
 	@echo "   npm install -g eslint jsonlint package-json-validator grunt-cli yo"
 	@echo "     (jasmine-node, coffee-script, ... can be installed per-project)"
-	@echo "   brew cask install karabiner iterm2 cd-to caffeine soundcast spotify \\"
+	@echo "   brew cask install spectacle iterm2 cd-to caffeine soundcast spotify \\"
 	@echo "     github-desktop macdown google-chrome firefox libreoffice"
 
 home-dot-symlinks:
@@ -39,7 +37,6 @@ home-dot-symlinks:
 	ln -sfv  $(DOTFILES)/vim/vimrc ~/.vimrc
 	ln -sfv  $(DOTFILES)/vim/gvimrc ~/.gvimrc
 	ln -nsfv $(DOTFILES)/bin ~/bin
-	ln -sfv  $(KARABINER_CONFIG) $(KARABINER_LINK)
 
 PIP_PATH=/usr/local/bin/pip
 PIP3_PATH=/usr/local/bin/pip3
@@ -79,7 +76,6 @@ clean:
 	rm -f ~/.vimrc
 	rm -f ~/.gvimrc
 	rm -f ~/bin
-	rm -f $(KARABINER_LINK)
 	@echo
 	@echo "Note: Installed vim plugins are kept, unless you specify 'deepclean'."
 	@echo
