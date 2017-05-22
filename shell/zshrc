@@ -49,11 +49,6 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 source ~/dotfiles/shell/environment.sh
 
-# Because I use the auto_cd option, which bypasses 'cd' and thus autoenv,
-# it is necessary to use ZSH's chpwd hook.
-# Thanks to: http://stackoverflow.com/a/3964198
-chpwd_functions=(${chpwd_functions[@]} "autoenv_init")
-
 
 ################################
 # Custom Commands

@@ -17,7 +17,7 @@ all: home-dot-symlinks $(VUNDLE_OUT) $(BREW_ZSH_COMPLETIONS_TARGET) pip3-symlink
 	@echo "   to ~/perl5/ -- which these scripts will detect and add to the PATH."
 	@echo
 	@echo "Recommendations:"
-	@echo "   brew install zsh bash-completion coreutils tree rename rpl autoenv python3 \\"
+	@echo "   brew install zsh bash-completion coreutils tree rename rpl python3 \\"
 	@echo "     zsh-completions zsh-syntax-highlighting zsh-autosuggestions node ruby perl"
 	@echo "     (the languages come with their respective package managers)"
 	@echo "   brew install vim --with-python3 && brew cask install macvim"
