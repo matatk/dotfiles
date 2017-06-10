@@ -79,6 +79,9 @@ colorscheme molokai
 " http://stackoverflow.com/questions/4325682/
 highlight Normal ctermbg=NONE guibg=Black
 
+" Enable syntax highlighting of JSDoc strings in JavaScript files
+let g:javascript_plugin_jsdoc = 1
+
 
 "
 " Spelling
