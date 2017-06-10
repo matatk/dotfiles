@@ -38,6 +38,7 @@ Plugin 'MarkWithall/cif-vim-syntax'     " Railways! Trains!
 Plugin 'mattn/emmet-vim'                " Fantastic time-saver for writing HTML
 Plugin 'IN3D/vim-raml'                  " Highlighting support for RAML
 Plugin 'editorconfig/editorconfig-vim'  " EditorConfig ;-)
+Plugin 'pangloss/vim-javascript'        " Better indenting; JSDoc highlighting
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
