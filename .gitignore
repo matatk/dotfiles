@@ -1,6 +1,7 @@
 *.swp
+.DS_Store
 vim/dot-vim/bundle
 vim/dot-vim/.netrwhist
 vim/dot-vim/spell
 vim/dot-vim/rc.d/99-work.vim
-.DS_Store
+bin/imgcat

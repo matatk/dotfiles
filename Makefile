@@ -1,9 +1,12 @@
 DOTFILES=~/dotfiles
 VUNDLE_OUT=$(DOTFILES)/vim/dot-vim/bundle/Vundle.vim
+IMGCAT_OUT=~/bin/imgcat
+PIP_PATH=/usr/local/bin/pip
+PIP3_PATH=/usr/local/bin/pip3
 
-.PHONY: clean deepclean home-dot-symlinks pip3-symlink kinesis
+.PHONY: clean deepclean home-dot-symlinks pip3-symlink imgcat kinesis
 
-all: home-dot-symlinks $(VUNDLE_OUT) $(BREW_ZSH_COMPLETIONS_TARGET) pip3-symlink
+all: home-dot-symlinks $(VUNDLE_OUT) pip3-symlink imgcat kinesis
 	@echo
 	@echo "Reminders:"
 	@echo " * Vim plugins are managed within Vim with Vundle."
@@ -38,8 +41,10 @@ home-dot-symlinks:
 	ln -sfv  $(DOTFILES)/vim/gvimrc ~/.gvimrc
 	ln -nsfv $(DOTFILES)/bin ~/bin
 
-PIP_PATH=/usr/local/bin/pip
-PIP3_PATH=/usr/local/bin/pip3
+$(VUNDLE_OUT): home-dot-symlinks
+	[ -d $(VUNDLE_OUT) ] || \
+		git clone https://github.com/gmarik/Vundle.vim.git $(VUNDLE_OUT)
+
 pip3-symlink:
 	@echo
 	@if [ -L $(PIP_PATH) ] && [ `readlink $(PIP_PATH)` == $(PIP3_PATH) ]; then \
@@ -51,11 +56,14 @@ pip3-symlink:
 		echo 'WARNING: $(PIP_PATH) already exists; not overwriting.'; \
 	fi
 
-$(VUNDLE_OUT): home-dot-symlinks
-	[ -d $(VUNDLE_OUT) ] || \
-		git clone https://github.com/gmarik/Vundle.vim.git $(VUNDLE_OUT)
+imgcat:
+	@echo
+	@curl -so $(IMGCAT_OUT) "https://raw.githubusercontent.com/gnachman/iTerm2/master/tests/imgcat"
+	@chmod +x $(IMGCAT_OUT)
+	@echo "INFO: imgcat downloaded and installed"
 
 kinesis:
+	@echo
 	@echo "Kinesis keyboard customisations:"
 	@echo "  =m    (Mac)"
 	@echo "  =n    (Multimedia keys)"
