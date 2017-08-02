@@ -111,6 +111,9 @@ set wildmenu   " http://derekwyatt.org/2009/08/20/the-absolute-bare-minimum/
 " WebAccessibilityToolbar uses files that are almost JavaScript
 autocmd BufNewFile,BufRead *.ws set filetype=javascript
 
+" Nunjucks templates are HTMLy
+autocmd BufNewFile,BufRead *.nunjucks set filetype=html
+
 " When working with Markdown files, grok the YAML frontmatter...
 let g:vim_markdown_frontmatter = 1
 " ...and don't fold
