@@ -40,6 +40,7 @@ Plugin 'IN3D/vim-raml'                  " Highlighting support for RAML
 Plugin 'editorconfig/editorconfig-vim'  " EditorConfig ;-)
 Plugin 'tpope/vim-repeat'               " Encore (properly)!
 Plugin 'pangloss/vim-javascript'        " Better indenting; JSDoc highlighting
+Plugin 'posva/vim-vue'                  " Vue support
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
