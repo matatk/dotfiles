@@ -91,7 +91,6 @@ function cd() {
 autoload -Uz colors && colors
 setopt prompt_subst       # allows us to run the prompt code as a command
 setopt transient_rprompt  # only show the rprompt for the current command
-#ZLE_RPROMPT_INDENT=0      # remove padding (though seems to affect normal prompt)
 
 function prompt_return_status {
 	# Show a green or red arrow depending on exit status of last command

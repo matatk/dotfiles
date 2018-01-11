@@ -55,7 +55,7 @@ alias brewdo='\
 	&& echo Note: brew cask app upgrades are manual.'
 alias brewall='brewup && echo && brewdo'
 
-# node listing stuff
+# NPM package listing stuff
 # https://gist.github.com/yyx990803/6045243
 alias ng="npm list -g --depth=0 2>/dev/null"
 alias nl="npm list --depth=0 2>/dev/null"

@@ -6,7 +6,7 @@ source ~/dotfiles/shell/completions.sh
 # Homebrew bash completion
 # PREFIX is defined in environment.sh
 if [ -f $PREFIX/etc/bash_completion ]; then
-	. $PREFIX/etc/bash_completion
+	source $PREFIX/etc/bash_completion
 fi
 
 # pip completion
