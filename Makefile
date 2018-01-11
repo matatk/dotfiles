@@ -20,9 +20,10 @@ all: home-dot-symlinks $(VUNDLE_OUT) pip3-symlink imgcat kinesis
 	@echo "   to ~/perl5/ -- which these scripts will detect and add to the PATH."
 	@echo
 	@echo "Recommendations:"
-	@echo "   brew install zsh bash-completion coreutils tree rename rpl python3 \\"
-	@echo "     zsh-completions zsh-syntax-highlighting zsh-autosuggestions node ruby perl"
+	@echo "   brew install zsh bash-completion coreutils tree rename rpl python3 node@8 \\"
+	@echo "     zsh-completions zsh-syntax-highlighting zsh-autosuggestions ruby perl"
 	@echo "     (the languages come with their respective package managers)"
+	@echo "   brew link node@8 --force (easier way to keep it in the path)"
 	@echo "   brew install vim --with-python3 && brew cask install macvim"
 	@echo "   pip install virtualenv flake8"
 	@echo "   gem install bundler"
