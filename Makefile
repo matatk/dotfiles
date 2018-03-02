@@ -1,70 +1,55 @@
 DOTFILES=~/dotfiles
 VUNDLE_OUT=$(DOTFILES)/vim/dot-vim/bundle/Vundle.vim
 IMGCAT_OUT=~/bin/imgcat
-PIP_PATH=/usr/local/bin/pip
-PIP3_PATH=/usr/local/bin/pip3
 
-.PHONY: clean deepclean home-dot-symlinks pip3-symlink imgcat kinesis
+.PHONY: clean deepclean home-dot-symlinks imgcat kinesis
 
-all: home-dot-symlinks $(VUNDLE_OUT) pip3-symlink imgcat kinesis
-	@echo
+all: home-dot-symlinks $(VUNDLE_OUT) imgcat kinesis
 	@echo "Reminders:"
 	@echo " * Vim plugins are managed within Vim with Vundle."
 	@echo " * Set iTerm2 to load settings from: ~/dotfiles/term/"
 	@echo " * Changing shells: http://unix.stackexchange.com/questions/111365"
 	@echo " * To finish YouCompleteMe setup:"
-	@echo "   + You'll need the latest vim: brew install vim && brew install macvim"
-	@echo "   + cd ~/.vim/bundle/YouCompleteMe && ./install.py --clang-completer"
+	@echo "   + cd ~/.vim/bundle/YouCompleteMe && ./install.py --clang-completer --js-completer"
 	@echo "   + Python crash? https://github.com/Valloric/YouCompleteMe/issues/620"
-	@echo " * Homebrew's Perl has its own cpan, which can use local::lib and install"
+	@echo " * Homebrew's Perl has its own CPAN, which can use local::lib and install"
 	@echo "   to ~/perl5/ -- which these scripts will detect and add to the PATH."
 	@echo
 	@echo "Recommendations:"
-	@echo "   brew install zsh bash-completion coreutils tree rename rpl python3 node@8 \\"
-	@echo "     zsh-completions zsh-syntax-highlighting zsh-autosuggestions ruby perl"
+	@echo "   brew install zsh bash-completion coreutils tree rename rpl python node@8 \\"
+	@echo "     zsh-completions zsh-syntax-highlighting zsh-autosuggestions ruby perl vim"
 	@echo "     (the languages come with their respective package managers)"
 	@echo "   brew link node@8 --force (easier way to keep it in the path)"
-	@echo "   brew install vim --with-python3 && brew cask install macvim"
 	@echo "   pip install virtualenv flake8"
 	@echo "   gem install bundler"
 	@echo "     (can then use this to install things like the github-pages gem)"
-	@echo "   npm install -g eslint jsonlint package-json-validator grunt-cli yo"
+	@echo "   npm install -g eslint jsonlint package-json-validator"
 	@echo "     (jasmine-node, coffee-script, ... can be installed per-project)"
 	@echo "   brew cask install spectacle iterm2 cd-to caffeine spotify \\"
-	@echo "     github-desktop macdown google-chrome firefox libreoffice"
+	@echo "     macvim macdown meld google-chrome firefox libreoffice"
 
 home-dot-symlinks:
-	ln -sfv  $(DOTFILES)/shell/bashrc ~/.bashrc
-	ln -sfv  ~/.bashrc ~/.profile
-	ln -sfv  $(DOTFILES)/shell/zshrc ~/.zshrc
-	ln -nsfv $(DOTFILES)/vim/dot-vim ~/.vim
-	ln -sfv  $(DOTFILES)/vim/vimrc ~/.vimrc
-	ln -sfv  $(DOTFILES)/vim/gvimrc ~/.gvimrc
-	ln -nsfv $(DOTFILES)/bin ~/bin
+	@ln -sfv  $(DOTFILES)/shell/bashrc ~/.bashrc
+	@ln -sfv  ~/.bashrc ~/.profile
+	@ln -sfv  $(DOTFILES)/shell/zshrc ~/.zshrc
+	@ln -nsfv $(DOTFILES)/vim/dot-vim ~/.vim
+	@ln -sfv  $(DOTFILES)/vim/vimrc ~/.vimrc
+	@ln -sfv  $(DOTFILES)/vim/gvimrc ~/.gvimrc
+	@ln -nsfv $(DOTFILES)/bin ~/bin
+	@echo
 
 $(VUNDLE_OUT): home-dot-symlinks
-	[ -d $(VUNDLE_OUT) ] || \
+	@echo "Cloning Vundle, if needed..."
+	@[ -d $(VUNDLE_OUT) ] || \
 		git clone https://github.com/gmarik/Vundle.vim.git $(VUNDLE_OUT)
 
-pip3-symlink:
-	@echo
-	@if [ -L $(PIP_PATH) ] && [ `readlink $(PIP_PATH)` == $(PIP3_PATH) ]; then \
-		echo 'INFO: pip symlink already set up correctly.'; \
-	elif [ ! -e $(PIP_PATH) ]; then \
-		echo 'INFO: setting up pip symlink'; \
-		ln -sv $(PIP3_PATH) $(PIP_PATH); \
-	else \
-		echo 'WARNING: $(PIP_PATH) already exists; not overwriting.'; \
-	fi
-
 imgcat:
+	@echo "Downloading and installing imgcat, if needed..."
+	@[ -x $(IMGCAT_OUT) ] || \
+		curl -o $(IMGCAT_OUT) "https://raw.githubusercontent.com/gnachman/iTerm2/master/tests/imgcat" && chmod +x $(IMGCAT_OUT)
 	@echo
-	@curl -so $(IMGCAT_OUT) "https://raw.githubusercontent.com/gnachman/iTerm2/master/tests/imgcat"
-	@chmod +x $(IMGCAT_OUT)
-	@echo "INFO: imgcat downloaded and installed"
 
 kinesis:
-	@echo
 	@echo "Kinesis keyboard customisations:"
 	@echo "  =m    (Mac)"
 	@echo "  =n    (Multimedia keys)"
@@ -76,23 +61,27 @@ kinesis:
 	@echo "  Program + F12 (Remap)"
 	@echo "  ( press source, press destination ), ..."
 	@echo "  Program + F12 (Remap)"
+	@echo
 
 clean:
-	rm -f ~/.bashrc
-	rm -f ~/.profile
-	rm -f ~/.zshrc
-	rm -f ~/.vim
-	rm -f ~/.vimrc
-	rm -f ~/.gvimrc
-	rm -f ~/bin
+	@echo "Removing imgcat..."
+	@rm -fv $(IMGCAT_OUT)
+	@echo
+	@echo "Removing symlinks..."
+	@rm -fv ~/.bashrc
+	@rm -fv ~/.profile
+	@rm -fv ~/.zshrc
+	@rm -fv ~/.vim
+	@rm -fv ~/.vimrc
+	@rm -fv ~/.gvimrc
+	@rm -fv ~/bin
 	@echo
 	@echo "Note: Installed vim plugins are kept, unless you specify 'deepclean'."
 	@echo
 	@echo "Note: The other .gitignored vim files/dirs are always kept, even"
 	@echo "      if you /do/ specify 'deepclean'."
-	@echo
-	@echo "Note: Pip 3 symlink in /usr/local/bin/ not removed."
 
 deepclean: clean
 	@echo
+	@echo "Removing Vim bundle directory..."
 	rm -rf $(DOTFILES)/vim/dot-vim/bundle

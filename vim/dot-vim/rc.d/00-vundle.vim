@@ -41,6 +41,7 @@ Plugin 'editorconfig/editorconfig-vim'  " EditorConfig ;-)
 Plugin 'tpope/vim-repeat'               " Encore (properly)!
 Plugin 'pangloss/vim-javascript'        " Better indenting; JSDoc highlighting
 Plugin 'posva/vim-vue'                  " Vue support
+Plugin 'tpope/vim-surround'             " Wrapping :-)
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

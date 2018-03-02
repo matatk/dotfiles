@@ -30,10 +30,6 @@ alias tnnd='tree -I node_modules -d'
 # Where is a command/binary defined/located?
 alias cv='command -v'
 
-alias py='python3'
-# Note: pip3 is symlinked to pip so that completion works; python isn't because
-#       it's hacky, and symlinking it as 'python' rightly upsets brew doctor.
-
 # Redo the 'Open With' menu on OS X
 alias fixowmenu='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
 
