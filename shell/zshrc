@@ -23,7 +23,9 @@ zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 # Cross-shell completions
 source ~/dotfiles/shell/completions.sh
 
-eval "`pip completion --zsh`"
+# pip(3) completion
+eval "`pip3 completion --zsh`"
+compctl -K _pip_completion pip3
 
 # Don't consider '/' as part of a word; allows easy 'backwards-kill' on paths
 # Thanks http://stackoverflow.com/a/11200998 :-).
