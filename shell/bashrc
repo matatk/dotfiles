@@ -9,8 +9,9 @@ if [ -f $PREFIX/etc/bash_completion ]; then
 	source $PREFIX/etc/bash_completion
 fi
 
-# pip completion
-eval "`pip completion --bash`"
+# pip(3) completion
+eval "`pip3 completion --bash`"
+complete -o default -F _pip_completion pip3
 
 # prompt
 PS1="\[\033[0;1;32m\]\u@\h:\[\033[0;1;34m\]\w\[\033[0;1;33m\]\$ \[\033[0m\]"
