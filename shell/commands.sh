@@ -45,7 +45,6 @@ alias brewup='\
 	&& brew --version'
 alias brewdo='\
 	echo Upgrading... && brew upgrade && echo \
-	&& echo Linking Applications... && brew linkapps && echo \
 	&& echo Cleaning up... && brew cleanup -s && brew cask cleanup && echo \
 	&& echo Checking... && brew doctor && echo \
 	&& echo Note: brew cask app upgrades are manual.'
