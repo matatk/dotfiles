@@ -162,6 +162,14 @@ let g:syntastic_coffee_coffeelint_args = "--reporter csv --file coffeelint.json"
 
 
 "
+" YouCompleteMe
+"
+
+let g:ycm_add_preview_to_completeopt = 1  " default 0
+let g:ycm_autoclose_preview_window_after_insertion = 1  " default 0
+
+
+"
 " Fugitive
 " http://vimcasts.org/episodes/fugitive-vim-browsing-the-git-object-database/
 "
