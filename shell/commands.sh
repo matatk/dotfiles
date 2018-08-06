@@ -52,7 +52,7 @@ alias brewall='brewup && echo && brewdo'
 
 # NPM package listing stuff
 # https://gist.github.com/yyx990803/6045243
-alias nl="npm list --depth=0 2>/dev/null"
+alias npml="npm list --depth=0 2>/dev/null"
 
 # Add a file to an existing MacVim tab
 alias mvt='mvim --remote-tab'
