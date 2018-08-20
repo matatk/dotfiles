@@ -49,6 +49,7 @@ alias brewdo='\
 	&& echo Checking... && brew doctor && echo \
 	&& echo Note: brew cask app upgrades are manual.'
 alias brewall='brewup && echo && brewdo'
+alias brew-leave-developer-mode='git config -f /usr/local/Homebrew/.git/config homebrew.devcmdrun false && brew update --force'
 
 # NPM package listing stuff
 # https://gist.github.com/yyx990803/6045243
