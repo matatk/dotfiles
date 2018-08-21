@@ -39,15 +39,15 @@ alias karabiner="/Applications/Karabiner.app/Contents/Library/bin/karabiner"
 
 # Homebrew update, cleanup and check
 alias brewup='\
-	brew --version && echo \
-	&& echo Updating... && brew update && echo \
-	&& echo Outdated: && brew outdated && echo \
-	&& brew --version'
+	brew --version && echo && \
+	echo Updating... && brew update && echo && \
+	brew --version && echo  && \
+	echo Outdated: && brew outdated'
 alias brewdo='\
-	echo Upgrading... && brew upgrade && echo \
-	&& echo Cleaning up... && brew cleanup -s && brew cask cleanup && echo \
-	&& echo Checking... && brew doctor && echo \
-	&& echo Note: brew cask app upgrades are manual.'
+	echo Upgrading... && brew upgrade && echo && \
+	echo Cleaning up... && brew cleanup -s && echo && \
+	echo Checking... && brew doctor && echo && \
+	echo Note: brew cask app upgrades are manual.'
 alias brewall='brewup && echo && brewdo'
 alias brew-leave-developer-mode='git config -f /usr/local/Homebrew/.git/config homebrew.devcmdrun false && brew update --force'
 
