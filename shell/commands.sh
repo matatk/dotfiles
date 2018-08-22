@@ -27,6 +27,10 @@ alias tah='tree -apsh'
 alias tnn='tree -I node_modules'
 alias tnnd='tree -I node_modules -d'
 
+# Quicker git log
+alias gl='git log'
+alias glo='git log --oneline'
+
 # Where is a command/binary defined/located?
 alias cv='command -v'
 
