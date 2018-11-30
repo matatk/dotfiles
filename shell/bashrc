@@ -1,7 +1,7 @@
-source ~/dotfiles/shell/colours.sh
 source ~/dotfiles/shell/environment.sh
-source ~/dotfiles/shell/commands.sh
 source ~/dotfiles/shell/completions.sh
+source ~/dotfiles/shell/colours.sh
+source ~/dotfiles/shell/commands.sh
 
 # Homebrew bash completion
 # PREFIX is defined in environment.sh

@@ -1,4 +1,11 @@
 ################################
+# Environment
+################################
+
+source ~/dotfiles/shell/environment.sh
+
+
+################################
 # Completion
 ################################
 
@@ -43,13 +50,6 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Use the above colours when completing file/directory names
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-
-
-################################
-# Environment
-################################
-
-source ~/dotfiles/shell/environment.sh
 
 
 ################################
