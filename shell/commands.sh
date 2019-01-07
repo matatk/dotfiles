@@ -30,6 +30,7 @@ alias tnnd='tree -I node_modules -d'
 # Quicker git stuff
 alias gl='git log'
 alias glo='git log --oneline'
+alias gla='git log --all --decorate --oneline --graph'  # https://stackoverflow.com/a/35075021
 alias gst='git status'
 
 # Where is a command/binary defined/located?
