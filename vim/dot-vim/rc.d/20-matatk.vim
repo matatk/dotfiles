@@ -176,7 +176,7 @@ let g:ycm_autoclose_preview_window_after_insertion = 1  " default 0
 
 " Convenient 'up' command for navigation
 autocmd User fugitive
-	\ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+	\ if get(b:, 'fugitive_type', '') =~# '^\%(tree\|blob\)$' |
 	\   nnoremap <buffer> .. :edit %:h<CR> |
 	\ endif
 
