@@ -12,4 +12,5 @@ if [ -d ~/perl5 ]; then
 	PERL_MM_OPT="INSTALL_BASE=~/perl5"; export PERL_MM_OPT;
 fi
 
-export PATH="/usr/local/opt/node@8/bin:$PATH"
+export PATH="/usr/local/opt/node@10/bin:$PATH"
+alias npm='/usr/local/bin/npm'  # because it always installs here
