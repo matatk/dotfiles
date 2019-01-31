@@ -16,10 +16,9 @@ all: home-dot-symlinks $(VUNDLE_OUT) imgcat kinesis
 	@echo "   to ~/perl5/ -- which these scripts will detect and add to the PATH."
 	@echo
 	@echo "Recommendations:"
-	@echo "   brew install zsh bash-completion coreutils tree rename rpl python node@8 \\"
+	@echo "   brew install zsh bash-completion coreutils tree rename rpl python node@10 \\"
 	@echo "     zsh-completions zsh-syntax-highlighting zsh-autosuggestions ruby perl vim"
 	@echo "     (the languages come with their respective package managers)"
-	@echo "   brew link node@8 --force (easier way to keep it in the path)"
 	@echo "   pip install virtualenv flake8"
 	@echo "   gem install bundler"
 	@echo "     (can then use this to install things like the github-pages gem)"
@@ -51,11 +50,14 @@ imgcat:
 
 kinesis:
 	@echo "Kinesis keyboard customisations:"
+	@echo "  Soft reset: Program + Shift + F10"
+	@echo "  Hard reset: power-off, hold F7 whilst powering computer on"
+	@echo "  Program + [the key right of P] (disables normal key click)"
+	@echo "  Program + [the key directly below] (disables mode key beep)"
 	@echo "  =m    (Mac)"
 	@echo "  =n    (Multimedia keys)"
 	@echo "  =F12  (Drop 'stop' key in favour of browser dev tools)"
-	@echo "  Swapped up and down [including keycaps] (to match Vim et al)"
-	@echo "  Program + [the key right of P] (disables normal key click)"
+	@echo "  Swap up and down [swapped keycaps] (to match Vim et al)"
 	@echo
 	@echo "Remapping steps:"
 	@echo "  Program + F12 (Remap)"
