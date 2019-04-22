@@ -80,7 +80,7 @@ function search() {
 
 # As above, but ignoring the node_modules directory
 function searchnn() {
-	grep --exclude-dir=node_modules -ir $@ .
+	grep --exclude-dir=node_modules --exclude-dir=.nyc_output -ir $@ .
 }
 
 # Prettify a markdown file
