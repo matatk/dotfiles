@@ -1,5 +1,4 @@
 PREFIX=`brew --prefix`
-
 export PATH=$HOME/bin:$PREFIX/bin:$PREFIX/sbin:$PATH
 export EDITOR=`which vim`                           # used by git commit et al
 export XML_CATALOG_FILES="$PREFIX/etc/xml/catalog"  # for DocBook
@@ -14,3 +13,8 @@ fi
 
 export PATH="/usr/local/opt/node@10/bin:$PATH"
 alias npm='/usr/local/bin/npm'  # because it always installs here
+
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/ruby/lib"
+export CPPFLAGS="-I/usr/local/opt/ruby/include"
+export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
