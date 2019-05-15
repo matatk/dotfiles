@@ -60,6 +60,8 @@ autocmd FileType text,markdown,html,javascript,coffee,python
 	\ autocmd BufWritePre <buffer> StripWhitespace
 
 " Use an indent of four spaces when editing Python
+" However I like to ignore this with .editorconfig files and also am about to
+" ignore flake8 warnings about tabs in indentation...
 autocmd FileType python
 	\ setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 
@@ -159,6 +161,10 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_json_checkers = ['jsonlint']
 let g:syntastic_loc_list_height = 3
 let g:syntastic_coffee_coffeelint_args = "--reporter csv --file coffeelint.json"
+let g:syntastic_python_flake8_args='--ignore=E117,W191,W503'
+" E117: over-indented (happens with single tabs, yet where four spaces are OK)
+" W191: indentation contains tabs (naughty :-))
+" W503: https://lintlyci.github.io/Flake8Rules/rules/W503.html (to be removed)
 
 
 "
