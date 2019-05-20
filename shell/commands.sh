@@ -68,6 +68,9 @@ alias mvt='mvim --remote-tab'
 # http://stackoverflow.com/a/18933476
 alias purgeallbuilds='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
 
+# Use the same flake8 settings on the command-line as in ViM
+alias f8='flake8 --ignore="W191,E117,W503"'
+
 function catsay() {
 	cat $1 && say -f $1
 }
