@@ -10,7 +10,7 @@ all: home-dot-symlinks $(VUNDLE_OUT) imgcat kinesis
 	@echo " * Set iTerm2 to load settings from: ~/dotfiles/term/"
 	@echo " * Changing shells: http://unix.stackexchange.com/questions/111365"
 	@echo " * To finish YouCompleteMe setup:"
-	@echo "   + cd ~/.vim/bundle/YouCompleteMe && ./install.py --clang-completer --js-completer"
+	@echo "   + python3 ~/.vim/bundle/YouCompleteMe/install.py --clang-completer --ts-completer"
 	@echo "   + Python crash? https://github.com/Valloric/YouCompleteMe/issues/620"
 	@echo " * Homebrew's Perl has its own CPAN, which can use local::lib and install"
 	@echo "   to ~/perl5/ -- which these scripts will detect and add to the PATH."
