@@ -160,11 +160,23 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_json_checkers = ['jsonlint']
 let g:syntastic_loc_list_height = 3
-let g:syntastic_coffee_coffeelint_args = "--reporter csv --file coffeelint.json"
+let g:syntastic_coffee_coffeelint_args = '--reporter csv --file coffeelint.json'
 let g:syntastic_python_flake8_args='--ignore=E117,W191,W503'
 " E117: over-indented (happens with single tabs, yet where four spaces are OK)
 " W191: indentation contains tabs (naughty :-))
 " W503: https://lintlyci.github.io/Flake8Rules/rules/W503.html (to be removed)
+
+" Python version
+" https://stackoverflow.com/a/43125342/1485308
+function Py2()
+  let g:syntastic_python_python_exec = '/usr/bin/python'
+endfunction
+
+function Py3()
+  let g:syntastic_python_python_exec = '/usr/local/bin/python3'
+endfunction
+
+call Py3()
 
 
 "
