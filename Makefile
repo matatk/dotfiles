@@ -1,10 +1,11 @@
 DOTFILES=~/dotfiles
 VUNDLE_OUT=$(DOTFILES)/vim/dot-vim/bundle/Vundle.vim
 IMGCAT_OUT=~/bin/imgcat
+ZSH_AUTOSUGGESTIONS=~/.zsh/zsh-autosuggestions
 
 .PHONY: clean deepclean home-dot-symlinks imgcat kinesis
 
-all: home-dot-symlinks $(VUNDLE_OUT) imgcat kinesis
+all: home-dot-symlinks $(VUNDLE_OUT) $(ZSH_AUTOSUGGESTIONS) imgcat kinesis
 	@echo "Reminders:"
 	@echo " * Vim plugins are managed within Vim with Vundle."
 	@echo " * Set iTerm2 to load settings from: ~/dotfiles/term/"
@@ -87,3 +88,9 @@ deepclean: clean
 	@echo
 	@echo "Removing Vim bundle directory..."
 	rm -rf $(DOTFILES)/vim/dot-vim/bundle
+
+# Remove this when Homebrew package is updated to >=0.5.2
+$(ZSH_AUTOSUGGESTIONS):
+	@echo "Cloning zsh-autosuggestions, if needed..."
+	@[ -d $(ZSH_AUTOSUGGESTIONS) ] || \
+		git clone https://github.com/zsh-users/zsh-autosuggestions $(ZSH_AUTOSUGGESTIONS)
