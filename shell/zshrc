@@ -38,7 +38,9 @@ compctl -K _pip_completion pip3
 # Thanks http://stackoverflow.com/a/11200998 :-).
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Revert to this when Homebrew package is updated to >=0.5.2
+# source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 
 ################################
