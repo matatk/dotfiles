@@ -1,11 +1,13 @@
 DOTFILES=~/dotfiles
-VUNDLE_OUT=$(DOTFILES)/vim/dot-vim/bundle/Vundle.vim
+VIM_BUNDLE_DIR=$(DOTFILES)/vim/dot-vim/bundle
+VUNDLE_REPO=$(VIM_BUNDLE_DIR)/Vundle.vim
 IMGCAT_OUT=~/bin/imgcat
-ZSH_AUTOSUGGESTIONS=~/.zsh/zsh-autosuggestions
+ZSH_ANTIGEN_REPO=~/.antigen-repo
+ZSH_ANTIGEN_PROG=~/.antigen
 
 .PHONY: clean deepclean home-dot-symlinks imgcat kinesis
 
-all: home-dot-symlinks $(VUNDLE_OUT) $(ZSH_AUTOSUGGESTIONS) imgcat kinesis
+all: home-dot-symlinks $(VUNDLE_REPO) $(ZSH_ANTIGEN_REPO) imgcat kinesis
 	@echo "Reminders:"
 	@echo " * Vim plugins are managed within Vim with Vundle."
 	@echo " * Set iTerm2 to load settings from: ~/dotfiles/term/"
@@ -17,9 +19,9 @@ all: home-dot-symlinks $(VUNDLE_OUT) $(ZSH_AUTOSUGGESTIONS) imgcat kinesis
 	@echo "   to ~/perl5/ -- which these scripts will detect and add to the PATH."
 	@echo
 	@echo "Recommendations:"
-	@echo "   brew install zsh bash-completion coreutils tree rename rpl python node@10 \\"
-	@echo "     zsh-completions zsh-syntax-highlighting zsh-autosuggestions ruby perl vim"
-	@echo "     (the languages come with their respective package managers)"
+	@echo "   brew install zsh bash-completion coreutils tree rename rpl \\"
+	@echo "     python node@10 ruby perl vim"
+	@echo "     (the languages and zsh have their respective package managers)"
 	@echo "   pip install virtualenv flake8"
 	@echo "   gem install bundler"
 	@echo "     (can then use this to install things like the github-pages gem)"
@@ -38,10 +40,17 @@ home-dot-symlinks:
 	@ln -nsfv $(DOTFILES)/bin ~/bin
 	@echo
 
-$(VUNDLE_OUT): home-dot-symlinks
+$(VUNDLE_REPO): home-dot-symlinks
 	@echo "Cloning Vundle, if needed..."
-	@[ -d $(VUNDLE_OUT) ] || \
-		git clone https://github.com/gmarik/Vundle.vim.git $(VUNDLE_OUT)
+	@[ -d $(VUNDLE_REPO) ] || \
+		git clone https://github.com/gmarik/Vundle.vim.git $(VUNDLE_REPO)
+	@echo
+
+$(ZSH_ANTIGEN_REPO):
+	@echo "Cloning zsh-antigen, if needed..."
+	@[ -d $(ZSH_ANTIGEN_REPO) ] || \
+		git clone https://github.com/zsh-users/antigen.git $(ZSH_ANTIGEN_REPO)
+	@echo
 
 imgcat:
 	@echo "Downloading and installing imgcat, if needed..."
@@ -87,10 +96,7 @@ clean:
 deepclean: clean
 	@echo
 	@echo "Removing Vim bundle directory..."
-	rm -rf $(DOTFILES)/vim/dot-vim/bundle
-
-# Remove this when Homebrew package is updated to >=0.5.2
-$(ZSH_AUTOSUGGESTIONS):
-	@echo "Cloning zsh-autosuggestions, if needed..."
-	@[ -d $(ZSH_AUTOSUGGESTIONS) ] || \
-		git clone https://github.com/zsh-users/zsh-autosuggestions $(ZSH_AUTOSUGGESTIONS)
+	rm -rf $(VIM_BUNDLE_DIR)
+	@echo
+	@echo "Removing Zsh Antigen repo and bundle directory..."
+	rm -rf $(ZSH_ANTIGEN_REPO) $(ZSH_ANTIGEN_PROG)
