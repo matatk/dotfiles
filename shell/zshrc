@@ -9,9 +9,6 @@ source ~/dotfiles/shell/environment.sh
 # Completion
 ################################
 
-# ZSH Completions from homebrew
-fpath=(/usr/local/share/zsh-completions $fpath)
-
 autoload -Uz compinit && compinit
 
 # Case-insensitive completion
@@ -38,17 +35,12 @@ compctl -K _pip_completion pip3
 # Thanks http://stackoverflow.com/a/11200998 :-).
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
-# Revert to this when Homebrew package is updated to >=0.5.2
-# source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 
 ################################
 # Colours
 ################################
 
 source ~/dotfiles/shell/colours.sh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Use the above colours when completing file/directory names
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
@@ -68,24 +60,6 @@ source ~/dotfiles/shell/commands.sh
 autoload -U zmv
 alias mmv='noglob zmv -W'  # “mmv *.dat *.dat_old” or “mmv foo.* bar.*”
 alias ccp='noglob zmv -WC'
-
-# Override default cd to remind me to not type cd
-function cd() {
-	# https://www.google.co.uk/search?q=zsh+double+square+brackets
-	# http://zsh.sourceforge.net/Doc/Release/Expansion.html#Filename-Generation
-	# http://docstore.mik.ua/orelly/unix3/upt/ch33_02.htm
-	PREV_DIR='-[[:digit:]]#'   # a '-' followed by optional digit(s)
-	NEXT_DIR='+[[:digit:]]##'  # a '+' followed by mandatory digit(s)
-	if [ "$1" != "" ]; then
-		# Warn that 'cd' is not necessary unless using the stack
-		if [[ "$1" != $~PREV_DIR ]] && [[ "$1" != $~NEXT_DIR ]]; then
-			echo "${bold_color}Just type the directory name :-).${reset_color}"
-		fi
-		builtin cd $1
-	else
-		builtin cd
-	fi
-}
 
 
 ################################
@@ -244,3 +218,16 @@ setopt no_clobber     # don't overwrite existing files
 unalias run-help
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
+
+
+################################
+# Bundles
+################################
+
+source ~/.antigen-repo/antigen.zsh
+
+antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+antigen apply
