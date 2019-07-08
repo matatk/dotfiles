@@ -119,31 +119,6 @@ function _mdpretty() {
 	fi
 }
 
-# Homebrew reverse dependencies
-function rdeps() {
-	first=true
-	without=()
-	for package in `brew list`; do
-		rdeps=`brew uses --recursive --installed $package`
-		if [[ $rdeps != '' ]]; then
-			if $first; then
-				first=false
-			else
-				echo
-			fi
-			echo "Reverse dependencies for: $package..."
-			echo $rdeps
-		else
-			without+=("$package")
-		fi
-	done
-	echo
-	echo Packages without rdeps...
-	for package in ${without[@]}; do
-		echo "    $package"
-	done
-}
-
 # Tidy a snippet of HTML that was placed on the clipboard
 function tidysnippet() {
 	CORE_TIDY='pbpaste | tidy --indent auto --indent-spaces 4 --wrap 0 --show-body-only yes'
