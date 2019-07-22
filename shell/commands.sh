@@ -24,8 +24,12 @@ alias th='tree -psh'
 alias ta='tree -a'
 alias tal='tree -aps'
 alias tah='tree -apsh'
+alias tng='tree -I .git'
+alias tngd='tree -I .git -d'
 alias tnn='tree -I node_modules'
 alias tnnd='tree -I node_modules -d'
+alias tnng='tree -I "node_modules|.git"'
+alias tnngd='tree -I "node_modules|.git" -d'
 
 # Quicker git stuff
 alias gl='git log'
