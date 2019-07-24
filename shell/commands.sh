@@ -75,6 +75,16 @@ alias purgeallbuilds='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
 # Use the same flake8 settings on the command-line as in ViM
 alias f8='flake8 --ignore="W191,E117,W503"'
 
+# Look up an ESLint rule's definition
+function erl() {
+	open "https://eslint.org/docs/rules/$1"
+}
+
+# Look up stylelint rules...
+function srl() {
+	open "https://stylelint.io/user-guide/rules/$1"
+}
+
 function catsay() {
 	cat $1 && say -f $1
 }
