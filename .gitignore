@@ -6,4 +6,5 @@ vim/dot-vim/spell
 vim/dot-vim/rc.d/99-work.vim
 bin/imgcat
 bin/node_modules
+bin/package-lock.json
 bin/project-dotfiles.sh

@@ -159,6 +159,8 @@ let g:syntastic_check_on_wq = 0
 " My customisations
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_json_checkers = ['jsonlint']
+let g:syntastic_css_checkers = ['stylelint']
+let g:syntastic_css_stylelint_args = '--config-basedir /usr/local/lib/node_modules/stylelint/'
 let g:syntastic_loc_list_height = 3
 let g:syntastic_coffee_coffeelint_args = '--reporter csv --file coffeelint.json'
 " The flake8 rules are also specified in shell/commands.sh
