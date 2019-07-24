@@ -20,11 +20,12 @@ all: home-dot-symlinks $(VUNDLE_REPO) $(ZSH_ANTIGEN_REPO) imgcat kinesis
 	@echo
 	@echo "Recommendations:"
 	@echo "   brew install zsh bash-completion coreutils tree rename rpl \\"
-	@echo "     python node@10 ruby perl vim"
+	@echo "     python node@10 ruby perl vim shellcheck"
 	@echo "   pip3 install virtualenv flake8"
 	@echo "   gem install bundler"
-	@echo "   npm install -g eslint jsonlint package-json-validator eclint"
-	@echo "   brew cask install spectacle iterm2 cd-to caffeine spotify \\"
+	@echo "   npm install -g eslint jsonlint package-json-validator eclint \\"
+	@echo "     stylelint stylelint-config-standard"
+	@echo "   brew cask install spectacle iterm2 cd-to-iterm caffeine spotify \\"
 	@echo "     macvim macdown meld google-chrome firefox libreoffice"
 
 home-dot-symlinks:
