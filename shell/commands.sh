@@ -85,6 +85,11 @@ function srl() {
 	open "https://stylelint.io/user-guide/rules/$1"
 }
 
+# Look up ShellCheck rules...
+function scrl() {
+	open "https://github.com/koalaman/shellcheck/wiki/$1"
+}
+
 function catsay() {
 	cat $1 && say -f $1
 }
