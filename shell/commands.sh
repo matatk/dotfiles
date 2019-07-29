@@ -77,35 +77,29 @@ alias purgeallbuilds='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
 # Use the same flake8 settings on the command-line as in ViM
 alias f8='flake8 --ignore="W191,E117,W503"'
 
-# Look up an ESLint rule's definition
-function erl() {
+# Linter rule-lookup commands
+function rle() {
 	open "https://eslint.org/docs/rules/$1"
 }
-
-# Look up stylelint rules...
-function srl() {
+function rls() {
 	open "https://stylelint.io/user-guide/rules/$1"
 }
-
-# Look up ShellCheck rules...
-function scrl() {
+function rlsc() {
 	open "https://github.com/koalaman/shellcheck/wiki/$1"
+}
+
+# Simple searching for text strings
+function search() {
+	grep -ir $@ .
+}
+function searchnn() {
+	grep --exclude-dir=node_modules --exclude-dir=.nyc_output -ir $@ .
 }
 
 function catsay() {
 	cat $1 && say -f $1
 }
 alias cs=catsay
-
-# Recursive and case-insensitive grep of current directory
-function search() {
-	grep -ir $@ .
-}
-
-# As above, but ignoring the node_modules directory
-function searchnn() {
-	grep --exclude-dir=node_modules --exclude-dir=.nyc_output -ir $@ .
-}
 
 # Prettify a markdown file
 function mdpretty() {
