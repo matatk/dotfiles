@@ -36,6 +36,7 @@ alias gl='git log'
 alias glo='git log --oneline'
 alias gla='git log --all --decorate --oneline --graph'  # https://stackoverflow.com/a/35075021
 alias gst='git status'
+alias gft="git grep -Ei 'TODO|FIXME'"
 
 # Where is a command/binary defined/located?
 alias cv='command -v'
