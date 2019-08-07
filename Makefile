@@ -26,7 +26,7 @@ all: home-dot-symlinks $(VUNDLE_REPO) $(ZSH_ANTIGEN_REPO) imgcat kinesis
 	@echo "   npm install -g eslint jsonlint package-json-validator eclint \\"
 	@echo "     stylelint stylelint-config-standard"
 	@echo "   brew cask install spectacle iterm2 cd-to-iterm caffeine spotify \\"
-	@echo "     macvim macdown meld google-chrome firefox libreoffice"
+	@echo "     macvim macdown meld github google-chrome firefox libreoffice"
 
 home-dot-symlinks:
 	@ln -sfv  $(DOTFILES)/shell/bashrc ~/.bashrc
