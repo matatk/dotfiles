@@ -102,15 +102,19 @@ function catsay() {
 }
 alias cs=catsay
 
+function firefox-for-add-on-developers() {
+	if [ "$1" -gt 1 ] && [ "$1" -lt 99 ]; then
+		open "https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/$1#Changes_for_add-on_developers"
+	fi
+}
+
 # Prettify a markdown file
 function mdpretty() {
 	_mdpretty $@
 }
-
 function nmdpretty() {
 	_mdpretty $@ --wrap=none
 }
-
 function _mdpretty() {
 	if [[ ! -x `which pandoc` ]]; then
 		echo Cannot execute Pandoc!

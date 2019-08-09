@@ -5,9 +5,9 @@ IMGCAT_OUT=~/bin/imgcat
 ZSH_ANTIGEN_REPO=~/.antigen-repo
 ZSH_ANTIGEN_PROG=~/.antigen
 
-.PHONY: clean deepclean home-dot-symlinks imgcat kinesis
+.PHONY: clean deepclean home-dot-symlinks imgcat kinesis test
 
-all: home-dot-symlinks $(VUNDLE_REPO) $(ZSH_ANTIGEN_REPO) imgcat kinesis
+all: test home-dot-symlinks $(VUNDLE_REPO) $(ZSH_ANTIGEN_REPO) imgcat kinesis
 	@echo "Reminders:"
 	@echo " * Vim plugins are managed within Vim with Vundle."
 	@echo " * Set iTerm2 to load settings from: ~/dotfiles/term/"
@@ -27,6 +27,9 @@ all: home-dot-symlinks $(VUNDLE_REPO) $(ZSH_ANTIGEN_REPO) imgcat kinesis
 	@echo "     stylelint stylelint-config-standard"
 	@echo "   brew cask install spectacle iterm2 cd-to-iterm caffeine spotify \\"
 	@echo "     macvim macdown meld github google-chrome firefox libreoffice"
+
+test:
+	-shellcheck shell/**.sh --shell=bash
 
 home-dot-symlinks:
 	@ln -sfv  $(DOTFILES)/shell/bashrc ~/.bashrc
