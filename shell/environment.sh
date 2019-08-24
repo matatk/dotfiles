@@ -11,16 +11,19 @@ if [ -d ~/perl5 ]; then
 	PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 fi
 
-export PATH="/usr/local/opt/node@10/bin:$PATH"
-alias npm='/usr/local/bin/npm'  # because it always installs here
-
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/ruby/lib"
 export CPPFLAGS="-I/usr/local/opt/ruby/include"
 export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
 
+# There's an ~/.emscripten file that is a Python script that contains the
+# full path to the EMSDK node version
 if [ -r ~/projects/emsdk/emsdk_env.sh ]; then
-	source ~/projects/emsdk/emsdk_env.sh > /dev/null
+	. ~/projects/emsdk/emsdk_env.sh > /dev/null
 fi
+
+# Emscripten has its own node but we want to ensure ours comes first
+export PATH="/usr/local/opt/node@10/bin:$PATH"
+alias npm='/usr/local/bin/npm'  # because it always installs here
 
 export PATH="$HOME/.cabal/bin:$PATH"
