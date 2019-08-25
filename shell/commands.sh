@@ -43,10 +43,11 @@ alias cv='command -v'
 
 alias slt='stylelint --config-basedir /usr/local/lib/node_modules/stylelint/'
 
-# GZDoom
+# GZDoom & Zandronum
 alias gzd='/Applications/GZDoom.app/Contents/MacOS/gzdoom'
 alias gzds='gzd -iwad doom.wad -file sigil.wad'
-alias gzd1coopuv='gzd -iwad doom.wad -host 2 -skill 4'
+alias zandronum='/Applications/Zandronum.app/Contents/MacOS/zandronum'
+alias zsd1scoopuv='zandronum -private -host 2 -skill 4 -iwad doom -file sigil'
 
 # Redo the 'Open With' menu on OS X
 alias fixowmenu='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
