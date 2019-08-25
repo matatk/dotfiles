@@ -43,10 +43,10 @@ alias cv='command -v'
 
 alias slt='stylelint --config-basedir /usr/local/lib/node_modules/stylelint/'
 
-# GZDoom & Zandronum
-alias gzd='/Applications/GZDoom.app/Contents/MacOS/gzdoom'
-alias gzds='gzd -iwad doom.wad -file sigil.wad'
+# Zandronum
 alias zandronum='/Applications/Zandronum.app/Contents/MacOS/zandronum'
+alias zd1='zandronum -iwad doom'
+alias zd1s='zandronum -iwad doom -file sigil'
 alias zsd1scoopuv='zandronum -private -host 2 -skill 4 -iwad doom -file sigil'
 
 # Redo the 'Open With' menu on OS X
