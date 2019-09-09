@@ -157,6 +157,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " My customisations
+let g:syntastic_c_checkers = ['cppcheck']
+let g:syntastic_cpp_checkers = ['cppcheck']
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_json_checkers = ['jsonlint']
 let g:syntastic_css_checkers = ['stylelint']
@@ -188,6 +190,9 @@ call Py3()
 
 let g:ycm_add_preview_to_completeopt = 1  " default 0
 let g:ycm_autoclose_preview_window_after_insertion = 1  " default 0
+let g:ycm_show_diagnostics_ui = 0  " default 1
+" More info: https://github.com/ycm-core/YouCompleteMe#user-content-the-gycm_show_diagnostics_ui-option
+" TODO: does this negatively affect anything else?
 
 
 "
