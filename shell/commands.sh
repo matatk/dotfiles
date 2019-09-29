@@ -1,14 +1,22 @@
 # Standard UNIX commands
-alias  ls='gls --color=auto'
-alias   l='gls --color=auto -CF'
-alias  la='gls --color=auto -a'
-alias  ll='gls --color=auto -l'
-alias lal='gls --color=auto -la'
-alias  lh='gls --color=auto -lh'
-alias lah='gls --color=auto -lha'
-alias  lo='/bin/ls -lhaO'   # OS X flags
-alias loe='/bin/ls -lhaO@'  # OS X flags and extended attributes
-alias loa='/bin/ls -lhaOe'  # OS X flags and ACLs
+function make_ls_aliases() {
+	alias  ls="$1ls --color=auto"
+	alias   l="$1ls --color=auto -CF"
+	alias  la="$1ls --color=auto -a"
+	alias  ll="$1ls --color=auto -l"
+	alias lal="$1ls --color=auto -la"
+	alias  lh="$1ls --color=auto -lh"
+	alias lah="$1ls --color=auto -lha"
+}
+
+if [ $(uname -s) = 'Darwin' ]; then
+	make_ls_aliases g
+	alias  lo='/bin/ls -lhaO'   # OS X flags
+	alias loe='/bin/ls -lhaO@'  # OS X flags and extended attributes
+	alias loa='/bin/ls -lhaOe'  # OS X flags and ACLs
+else
+	make_ls_aliases
+fi
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
