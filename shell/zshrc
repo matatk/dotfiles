@@ -1,4 +1,4 @@
-################################
+#p3""###############################
 # Environment
 ################################
 
@@ -28,8 +28,9 @@ zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 source ~/dotfiles/shell/completions.sh
 
 # pip(3) completion
-eval "`pip3 completion --zsh`"
-compctl -K _pip_completion pip3
+command -v pip3 > /dev/null && \
+	eval "`pip3 completion --zsh`" && \
+	compctl -K _pip_completion pip3
 
 # Don't consider '/' as part of a word; allows easy 'backwards-kill' on paths
 # Thanks http://stackoverflow.com/a/11200998 :-).

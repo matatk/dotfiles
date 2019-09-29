@@ -26,7 +26,8 @@ all: test home-dot-symlinks $(VUNDLE_REPO) $(ZSH_ANTIGEN_REPO) imgcat kinesis
 	@echo "   npm install -g eslint jsonlint package-json-validator eclint \\"
 	@echo "     stylelint stylelint-config-standard"
 	@echo "   brew cask install spectacle iterm2 cd-to-iterm caffeine spotify \\"
-	@echo "     macvim macdown meld github google-chrome firefox libreoffice"
+	@echo "     macvim macdown meld github google-chrome firefox libreoffice \\"
+	@echo "     virtualbox-extension-pack  # will not error after kext approval"
 
 test:
 	-shellcheck shell/**.sh --shell=bash
@@ -55,7 +56,7 @@ $(ZSH_ANTIGEN_REPO):
 
 imgcat:
 	@echo "Downloading and installing imgcat, if needed..."
-	@[ -x $(IMGCAT_OUT) ] || \
+	@[ $$(uname -s) == 'Darwin' ] && [ -x $(IMGCAT_OUT) ] || \
 		curl -o $(IMGCAT_OUT) "https://raw.githubusercontent.com/gnachman/iTerm2/master/tests/imgcat" && chmod +x $(IMGCAT_OUT)
 	@echo
 
@@ -68,6 +69,7 @@ kinesis:
 	@echo "  =m    (Mac)"
 	@echo "  =n    (Multimedia keys)"
 	@echo "  =F12  (Drop 'stop' key in favour of browser dev tools)"
+	@echo "  =F5   (Drop 'next' key in favour of Vim Gundo plugin)"
 	@echo "  Swap up and down [swapped keycaps] (to match Vim et al)"
 	@echo
 	@echo "Remapping steps:"

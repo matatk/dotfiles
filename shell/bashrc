@@ -10,14 +10,17 @@ if [ -f $PREFIX/etc/bash_completion ]; then
 fi
 
 # pip(3) completion
-eval "`pip3 completion --bash`"
-complete -o default -F _pip_completion pip3
+command -v pip3 > /dev/null && \
+	eval "`pip3 completion --bash`" && \
+	complete -o default -F _pip_completion pip3
 
 # prompt
 PS1="\[\033[0;1;32m\]\u@\h:\[\033[0;1;34m\]\w\[\033[0;1;33m\]\$ \[\033[0m\]"
 
 # Make terminal tab/window title the current directory name
 # https://gist.github.com/phette23/5270658
-export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND";
+if [ $ITERM_SESSION_ID ]; then
+	export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND";
+fi
 
 source ~/dotfiles/shell/startup-sequence.sh
