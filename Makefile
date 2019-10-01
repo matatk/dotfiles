@@ -5,47 +5,30 @@ IMGCAT_OUT=~/bin/imgcat
 ZSH_ANTIGEN_REPO=~/.antigen-repo
 ZSH_ANTIGEN_PROG=~/.antigen
 
-.PHONY: all install-core-software install-extra-software clean deepclean home-dot-symlinks imgcat kinesis test
+.PHONY: \
+	all \
+	test \
+	home-dot-symlinks \
+	imgcat \
+	kinesis \
+	ycm-setup \
+	install-core-software \
+	install-extra-software \
+	clean \
+	deepclean
 
 all: test home-dot-symlinks $(VUNDLE_REPO) $(ZSH_ANTIGEN_REPO) imgcat kinesis
 	@echo "Reminders:"
 	@echo " * Vim plugins are managed within Vim with Vundle."
 	@echo " * Set iTerm2 to load settings from: ~/dotfiles/term/"
 	@echo " * Changing shells: http://unix.stackexchange.com/questions/111365"
-	@echo " * To finish YouCompleteMe setup:"
-	@echo "   + python3 ~/.vim/bundle/YouCompleteMe/install.py --clang-completer --ts-completer"
-	@echo "   + Python crash? https://github.com/Valloric/YouCompleteMe/issues/620"
+	@echo " * To complete YouCompleteMe setup: make ycm-setup"
 	@echo " * Homebrew's Perl has its own CPAN, which can use local::lib and install"
 	@echo "   to ~/perl5/ -- which these scripts will detect and add to the PATH."
 	@echo
 	@echo "Software:"
 	@echo "   make install-core-software"
 	@echo "   make install-extra-software"
-
-install-core-software:
-	-([ $$(uname -s) = 'Darwin' ] && \
-		brew install zsh bash-completion coreutils tree rename rpl \
-			python node@10 ruby perl vim shellcheck)
-	@echo
-	-([ $$(uname -s) = 'Linux' ] && \
-		sudo apt install zsh tree)
-	@echo
-	-([ -x $$(command -v pip3) ] && pip3 install virtualenv flake8)
-	@echo
-	-([ -x $$(command -v gem) ] && gem install bundler)
-	@echo
-	-([ -x $$(command -v npm) ] && \
-		npm install -g npm eslint jsonlint package-json-validator eclint \
-			stylelint stylelint-config-standard)
-	@echo
-	-([ $$(uname -s) = 'Darwin' ] && \
-		brew cask install spectacle iterm2 cd-to-iterm caffeine spotify \
-			macvim macdown meld github google-chrome firefox)
-
-install-extra-software:
-	-[ $$(uname -s) = 'Darwin' ] && \
-		brew cask install ibreoffice virtualbox-extension-pack && \
-		echo && echo VirtualBox install will be successful after kext approval
 
 test:
 	-shellcheck shell/**.sh --shell=bash
@@ -73,11 +56,14 @@ $(ZSH_ANTIGEN_REPO):
 	@echo
 
 imgcat:
-	@[ $$(uname -s) == 'Darwin' ] \
-		&& echo 'Downloading and installing imgcat, if needed...' \
-		&& [ -x $(IMGCAT_OUT) ] || \
-		curl -o $(IMGCAT_OUT) "https://raw.githubusercontent.com/gnachman/iTerm2/master/tests/imgcat" && chmod +x $(IMGCAT_OUT)
-	@echo
+	@if [ $$(uname -s) = 'Darwin' ]; then \
+		echo 'Downloading and installing imgcat, if needed...'; \
+		if [ ! -x $(IMGCAT_OUT) ]; then \
+			curl -o $(IMGCAT_OUT) "https://iterm2.com/utilities/imgcat"; \
+			chmod +x $(IMGCAT_OUT); \
+		fi; \
+		echo; \
+	fi
 
 kinesis:
 	@echo "Kinesis keyboard customisations:"
@@ -96,6 +82,35 @@ kinesis:
 	@echo "  ( press source, press destination ), ..."
 	@echo "  Program + F12 (Remap)"
 	@echo
+
+ycm-setup:
+	python3 ~/.vim/bundle/YouCompleteMe/install.py \
+		--clang-completer --ts-completer
+
+install-core-software:
+	-([ $$(uname -s) = 'Darwin' ] && \
+		brew install zsh bash-completion coreutils tree rename rpl \
+			python node@10 ruby perl vim shellcheck)
+	@echo
+	-([ $$(uname -s) = 'Linux' ] && \
+		sudo apt install zsh tree rename rpl shellcheck) # vim needed on Ubuntu?
+	@echo
+	-([ -x $$(command -v pip3) ] && pip3 install virtualenv flake8)
+	@echo
+	-([ -x $$(command -v gem) ] && gem install bundler)
+	@echo
+	-([ -x $$(command -v npm) ] && \
+		npm install -g npm eslint jsonlint package-json-validator eclint \
+			stylelint stylelint-config-standard)
+	@echo
+	-([ $$(uname -s) = 'Darwin' ] && \
+		brew cask install spectacle iterm2 cd-to-iterm caffeine spotify \
+			macvim macdown meld github google-chrome firefox)
+
+install-extra-software:
+	-[ $$(uname -s) = 'Darwin' ] && \
+		brew cask install ibreoffice virtualbox-extension-pack && \
+		echo && echo VirtualBox install will be successful after kext approval
 
 clean:
 	@echo "Removing imgcat..."
