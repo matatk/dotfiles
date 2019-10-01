@@ -12,8 +12,7 @@ ZSH_ANTIGEN_PROG=~/.antigen
 	imgcat \
 	kinesis \
 	ycm-setup \
-	install-core-software \
-	install-extra-software \
+	install-software \
 	clean \
 	deepclean
 
@@ -27,8 +26,7 @@ all: test home-dot-symlinks $(VUNDLE_REPO) $(ZSH_ANTIGEN_REPO) imgcat kinesis
 	@echo "   to ~/perl5/ -- which these scripts will detect and add to the PATH."
 	@echo
 	@echo "Software:"
-	@echo "   make install-core-software"
-	@echo "   make install-extra-software"
+	@echo "   make install-software"
 
 test:
 	-shellcheck shell/**.sh --shell=bash
@@ -87,30 +85,8 @@ ycm-setup:
 	python3 ~/.vim/bundle/YouCompleteMe/install.py \
 		--clang-completer --ts-completer
 
-install-core-software:
-	-([ $$(uname -s) = 'Darwin' ] && \
-		brew install zsh bash-completion coreutils tree rename rpl \
-			python node@10 ruby perl vim shellcheck)
-	@echo
-	-([ $$(uname -s) = 'Linux' ] && \
-		sudo apt install zsh tree rename rpl shellcheck) # vim needed on Ubuntu?
-	@echo
-	-([ -x $$(command -v pip3) ] && pip3 install virtualenv flake8)
-	@echo
-	-([ -x $$(command -v gem) ] && gem install bundler)
-	@echo
-	-([ -x $$(command -v npm) ] && \
-		npm install -g npm eslint jsonlint package-json-validator eclint \
-			stylelint stylelint-config-standard)
-	@echo
-	-([ $$(uname -s) = 'Darwin' ] && \
-		brew cask install spectacle iterm2 cd-to-iterm caffeine spotify \
-			macvim macdown meld github google-chrome firefox)
-
-install-extra-software:
-	-[ $$(uname -s) = 'Darwin' ] && \
-		brew cask install ibreoffice virtualbox-extension-pack && \
-		echo && echo VirtualBox install will be successful after kext approval
+install-software:
+	@./install-software.sh
 
 clean:
 	@echo "Removing imgcat..."
