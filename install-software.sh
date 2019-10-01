@@ -20,7 +20,7 @@ gp() {
 gt() {
 	TEST_CMD=$1
 	INSTALL_CMD=$2
-	if [ "$TEST_CMD" ]; then
+	if $TEST_CMD > /dev/null; then
 		gr "$INSTALL_CMD"
 		echo
 	fi

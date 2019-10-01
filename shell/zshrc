@@ -216,7 +216,6 @@ setopt auto_cd        # just type directory name
 setopt no_clobber     # don't overwrite existing files
 
 # Enable facility to show help for the current command
-unalias run-help
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
 
