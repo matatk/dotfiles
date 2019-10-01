@@ -5,7 +5,7 @@ IMGCAT_OUT=~/bin/imgcat
 ZSH_ANTIGEN_REPO=~/.antigen-repo
 ZSH_ANTIGEN_PROG=~/.antigen
 
-.PHONY: clean deepclean home-dot-symlinks imgcat kinesis test
+.PHONY: all install-core-software install-extra-software clean deepclean home-dot-symlinks imgcat kinesis test
 
 all: test home-dot-symlinks $(VUNDLE_REPO) $(ZSH_ANTIGEN_REPO) imgcat kinesis
 	@echo "Reminders:"
@@ -18,16 +18,34 @@ all: test home-dot-symlinks $(VUNDLE_REPO) $(ZSH_ANTIGEN_REPO) imgcat kinesis
 	@echo " * Homebrew's Perl has its own CPAN, which can use local::lib and install"
 	@echo "   to ~/perl5/ -- which these scripts will detect and add to the PATH."
 	@echo
-	@echo "Recommendations:"
-	@echo "   brew install zsh bash-completion coreutils tree rename rpl \\"
-	@echo "     python node@10 ruby perl vim shellcheck"
-	@echo "   pip3 install virtualenv flake8"
-	@echo "   gem install bundler"
-	@echo "   npm install -g eslint jsonlint package-json-validator eclint \\"
-	@echo "     stylelint stylelint-config-standard"
-	@echo "   brew cask install spectacle iterm2 cd-to-iterm caffeine spotify \\"
-	@echo "     macvim macdown meld github google-chrome firefox libreoffice \\"
-	@echo "     virtualbox-extension-pack  # will not error after kext approval"
+	@echo "Software:"
+	@echo "   make install-core-software"
+	@echo "   make install-extra-software"
+
+install-core-software:
+	-([ $$(uname -s) = 'Darwin' ] && \
+		brew install zsh bash-completion coreutils tree rename rpl \
+			python node@10 ruby perl vim shellcheck)
+	@echo
+	-([ $$(uname -s) = 'Linux' ] && \
+		sudo apt install zsh tree)
+	@echo
+	-([ -x $$(command -v pip3) ] && pip3 install virtualenv flake8)
+	@echo
+	-([ -x $$(command -v gem) ] && gem install bundler)
+	@echo
+	-([ -x $$(command -v npm) ] && \
+		npm install -g npm eslint jsonlint package-json-validator eclint \
+			stylelint stylelint-config-standard)
+	@echo
+	-([ $$(uname -s) = 'Darwin' ] && \
+		brew cask install spectacle iterm2 cd-to-iterm caffeine spotify \
+			macvim macdown meld github google-chrome firefox)
+
+install-extra-software:
+	-[ $$(uname -s) = 'Darwin' ] && \
+		brew cask install ibreoffice virtualbox-extension-pack && \
+		echo && echo VirtualBox install will be successful after kext approval
 
 test:
 	-shellcheck shell/**.sh --shell=bash
@@ -55,8 +73,9 @@ $(ZSH_ANTIGEN_REPO):
 	@echo
 
 imgcat:
-	@echo "Downloading and installing imgcat, if needed..."
-	@[ $$(uname -s) == 'Darwin' ] && [ -x $(IMGCAT_OUT) ] || \
+	@[ $$(uname -s) == 'Darwin' ] \
+		&& echo 'Downloading and installing imgcat, if needed...' \
+		&& [ -x $(IMGCAT_OUT) ] || \
 		curl -o $(IMGCAT_OUT) "https://raw.githubusercontent.com/gnachman/iTerm2/master/tests/imgcat" && chmod +x $(IMGCAT_OUT)
 	@echo
 
