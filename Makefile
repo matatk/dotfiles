@@ -35,6 +35,8 @@ home-dot-symlinks:
 	@ln -sfv  $(DOTFILES)/shell/zshrc ~/.zshrc
 	@ln -nsfv $(DOTFILES)/vim/dot-vim ~/.vim
 	@ln -sfv  $(DOTFILES)/vim/vimrc ~/.vimrc
+	@ln -sfv  $(DOTFILES)/vim/gvimrc.core ~/.gvimrc.core
+	@ln -sfv  $(DOTFILES)/vim/gvimrc.fullscreen ~/.gvimrc.fullscreen
 	@ln -sfv  $(DOTFILES)/vim/gvimrc ~/.gvimrc
 	@ln -nsfv $(DOTFILES)/bin ~/bin
 	@echo
@@ -96,6 +98,8 @@ clean:
 	@rm -fv ~/.zshrc
 	@rm -fv ~/.vim
 	@rm -fv ~/.vimrc
+	@rm -fv ~/.gvimrc.core
+	@rm -fv ~/.gvimrc.fullscreen
 	@rm -fv ~/.gvimrc
 	@rm -fv ~/bin
 	@echo
