@@ -1,8 +1,3 @@
-set guifont=Monaco:h15.00
 set columns=84  " account for 4-wide line numbers
 set lines=25
-set transparency=15
-set guioptions-=T
-
-" Current MacVim doesn't get this right (normal vim does, hence it's here)
-autocmd BufNewFile,BufRead *.md set filetype=markdown
+execute('source ~/.gvimrc.core')
