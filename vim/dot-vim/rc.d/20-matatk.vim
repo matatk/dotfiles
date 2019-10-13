@@ -35,6 +35,9 @@ map <D-8> 8gt
 map <D-9> 9gt
 map <D-0> :tablast<CR>
 
+" Show tab summary; https://vim.fandom.com/wiki/Using_tab_pages
+map T :tabs<CR>
+
 
 "
 " Whitespace, Indentation and Non-printing characters
@@ -104,6 +107,7 @@ set mouse=a
 set number
 set smartcase  " searches are only case-sensitive if the pattern is
 set wildmenu   " http://derekwyatt.org/2009/08/20/the-absolute-bare-minimum/
+set tabpagemax=42
 
 
 "
