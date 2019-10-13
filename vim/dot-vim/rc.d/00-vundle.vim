@@ -23,8 +23,7 @@ Plugin 'sjl/gundo.vim'                  " Awesome graph-based undo
 Plugin 'jaxbot/semantic-highlight.vim'  " What it says on the tin!
 Plugin 'kchmck/vim-coffee-script'       " CoffeeScript Support
 Plugin 'tomasr/molokai'                 " Colour scheme
-"Plugin 'Rykka/colorv.vim'               " Colour preview and editing tools
-Plugin 'mutewinter/colorv.vim'          " Use branch: fix-32-deprecation-warning
+Plugin 'gu-fan/colorv.vim'              " Colour preview and editing tools
 Plugin 'scrooloose/nerdtree'            " Exploration and manipulation
 Plugin 'tpope/vim-fugitive'             " Git magic
 Plugin 'ntpeters/vim-better-whitespace' " Dealing with trailing whitespace

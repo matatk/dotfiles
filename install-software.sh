@@ -26,9 +26,9 @@ gt() {
 	fi
 }
 
-gp Darwin 'brew install zsh bash-completion coreutils tree rename rpl python node@10 ruby perl vim shellcheck'
+gp Darwin 'brew install zsh bash-completion coreutils tree rename rpl python node@10 ruby perl macvim shellcheck'
 
-gp Darwin 'brew cask install spectacle iterm2 cd-to-iterm caffeine spotify macvim macdown meld github google-chrome firefox'
+gp Darwin 'brew cask install spectacle iterm2 cd-to-iterm caffeine spotify macdown meld github google-chrome firefox'
 
 gp Darwin 'brew cask install libreoffice virtualbox-extension-pack ; echo ; echo VirtualBox install will be successful after kext approval'
 
