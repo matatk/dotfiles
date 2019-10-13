@@ -145,6 +145,15 @@ autocmd BufNewFile,BufRead CHANGES set filetype=text
 " CHANGES files should be auto-wrapped
 autocmd BufNewFile,BufRead CHANGES set textwidth=72
 
+" Format Cish files on save
+" FIXME: This path won't work on !macOS
+function! Formatonsave()
+  let l:formatdiff = 1
+  let l:lines = "all"
+  py3file /usr/local/Cellar/clang-format/2019-05-14/share/clang/clang-format.py
+endfunction
+autocmd BufWritePre *.h,*.c,*.cc,*.cpp call Formatonsave()
+
 
 "
 " Syntastic

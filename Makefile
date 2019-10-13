@@ -24,9 +24,7 @@ all: test home-dot-symlinks $(VUNDLE_REPO) $(ZSH_ANTIGEN_REPO) imgcat kinesis
 	@echo " * To complete YouCompleteMe setup: make ycm-setup"
 	@echo " * Homebrew's Perl has its own CPAN, which can use local::lib and install"
 	@echo "   to ~/perl5/ -- which these scripts will detect and add to the PATH."
-	@echo
-	@echo "Software:"
-	@echo "   make install-software"
+	@echo " * To install software: make install-software"
 
 test:
 	-shellcheck shell/**.sh --shell=bash
