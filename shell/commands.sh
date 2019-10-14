@@ -110,7 +110,7 @@ function rls() {
 	open "https://stylelint.io/user-guide/rules/$1"
 }
 function rlsc() {
-	open "https://github.com/koalaman/shellcheck/wiki/$1"
+	open "https://github.com/koalaman/shellcheck/wiki/SC$1"
 }
 
 # Simple searching for text strings
