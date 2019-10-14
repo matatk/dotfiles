@@ -7,6 +7,8 @@
 noremap <F5> :GundoToggle<CR>
 " Toggling Semantic Highlighting
 noremap <F6> :SemanticHighlightToggle<CR>
+" Formatting C/C++ via clang-format
+noremap <F12> :call FormatWithClang()<CR>
 " Showing indentation and non-printing characters
 nmap <leader>l :set list!<CR>
 " Removing trailing whitespace
@@ -147,12 +149,13 @@ autocmd BufNewFile,BufRead CHANGES set textwidth=72
 
 " Format Cish files on save
 " FIXME: This path won't work on !macOS
-function! Formatonsave()
+function! FormatWithClang()
   let l:formatdiff = 1
   let l:lines = "all"
   py3file /usr/local/Cellar/clang-format/2019-05-14/share/clang/clang-format.py
 endfunction
-autocmd BufWritePre *.h,*.c,*.cc,*.cpp call Formatonsave()
+" TODO: this borks Syntastic:
+"autocmd BufWritePre *.h,*.c,*.cc,*.cpp call FormatWithClang()
 
 
 "
@@ -170,8 +173,10 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " My customisations
-let g:syntastic_c_checkers = ['cppcheck']
-let g:syntastic_cpp_checkers = ['cppcheck']
+let g:syntastic_c_checkers = ['oclint']
+let g:syntastic_cpp_checkers = ['oclint']
+let g:syntastic_c_oclint_post_args = ""
+let g:syntastic_cpp_oclint_post_args = ""
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_json_checkers = ['jsonlint']
 let g:syntastic_css_checkers = ['stylelint']
