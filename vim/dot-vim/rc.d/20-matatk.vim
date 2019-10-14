@@ -183,6 +183,7 @@ let g:syntastic_python_flake8_args='--ignore=E117,W191,W503'
 " E117: over-indented (happens with single tabs, yet where four spaces are OK)
 " W191: indentation contains tabs (naughty :-))
 " W503: https://lintlyci.github.io/Flake8Rules/rules/W503.html (to be removed)
+let g:syntastic_sh_shellcheck_args = '-x'
 
 " Python version
 " https://stackoverflow.com/a/43125342/1485308
