@@ -61,7 +61,7 @@ set noexpandtab
 set listchars=tab:▸\ ,eol:¬
 
 " Automatically strip trailing whitespace on save for certain file types
-autocmd FileType text,markdown,html,javascript,coffee,python
+autocmd FileType text,markdown,html,javascript,coffee,python,sh,c,cpp
 	\ autocmd BufWritePre <buffer> StripWhitespace
 
 " Use an indent of four spaces when editing Python
