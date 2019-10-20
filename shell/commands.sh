@@ -64,8 +64,8 @@ alias renpm='rm -rf package-lock.json node_modules && npm install'
 # For devving
 alias ogd='open . -a Github\ Desktop'
 alias orm='open README.md -a MacDown'
-alias chsbs='mvim -U ~/.gvimrc.fullscreen -p *.c -c "tabdo vsp %<.h"'
-alias hcsbs='mvim -U ~/.gvimrc.fullscreen -p *.h -c "set splitright | tabdo vsp %<.c"'
+alias chsbs='mvim -U ~/.gvimrc.fullscreen -p *.c -c "tabdo vsp %<.h | windo set nowrap"'
+alias hcsbs='mvim -U ~/.gvimrc.fullscreen -p *.h -c "set splitright | tabdo vsp %<.c | windo set nowrap"'
 alias mkcompdb='make clean && intercept-build make && cat compile_commands.json'
 
 # Redo the 'Open With' menu on OS X

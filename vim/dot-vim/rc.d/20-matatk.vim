@@ -122,6 +122,9 @@ autocmd BufNewFile,BufRead *.ws set filetype=javascript
 " Nunjucks templates are HTMLy
 autocmd BufNewFile,BufRead *.nunjucks set filetype=html
 
+" Especially as editing these side-by-side
+autocmd BufNewFile,BufRead *.c,*.h,*.cpp,*.m set colorcolumn=80
+
 " When working with Markdown files, grok the YAML frontmatter...
 let g:vim_markdown_frontmatter = 1
 " ...and don't fold
@@ -138,9 +141,9 @@ function! s:Toc()
 		syntax on
 	endif
 endfunction
-autocmd VimEnter *.m* call s:Toc()
-autocmd BufReadPost *.m* call s:Toc()
-autocmd BufWinEnter *.m* call s:Toc()
+autocmd VimEnter *.md,*.markdown call s:Toc()
+autocmd BufReadPost *.md,*.markdown call s:Toc()
+autocmd BufWinEnter *.md,*.markdown call s:Toc()
 
 " CHANGES files are text files
 autocmd BufNewFile,BufRead CHANGES set filetype=text
