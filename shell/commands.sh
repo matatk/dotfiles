@@ -57,6 +57,7 @@ alias slt='stylelint --config-basedir /usr/local/lib/node_modules/stylelint/'
 alias zandronum='/Applications/Zandronum.app/Contents/MacOS/zandronum'
 alias zd1='zandronum -iwad doom'
 alias zd1s='zandronum -iwad doom -file sigil_v1_21'
+alias zd2e='zandronum -iwad doom2 -file Eviternity'
 alias zsd1scoopuv='zandronum -private -host 2 -skill 4 -iwad doom -file sigil'
 
 alias renpm='rm -rf package-lock.json node_modules && npm install'
