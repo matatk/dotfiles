@@ -47,18 +47,25 @@ alias glo='git log --oneline'
 alias gla='git log --all --decorate --oneline --graph'  # https://stackoverflow.com/a/35075021
 alias gst='git status'
 alias gft="git grep -Ei 'TODO|FIXME'"
+alias gds='git diff --stat'
+alias gdsm='gds master'
 
 # Where is a command/binary defined/located?
 alias cv='command -v'
 
 alias slt='stylelint --config-basedir /usr/local/lib/node_modules/stylelint/'
 
-# Zandronum
-alias zandronum='/Applications/Zandronum.app/Contents/MacOS/zandronum'
+# DooM
+[ $(uname -s) = 'Darwin' ] && alias zandronum='/Applications/Zandronum.app/Contents/MacOS/zandronum'
 alias zd1='zandronum -iwad doom'
 alias zd1s='zandronum -iwad doom -file sigil_v1_21'
 alias zd2e='zandronum -iwad doom2 -file Eviternity'
 alias zsd1scoopuv='zandronum -private -host 2 -skill 4 -iwad doom -file sigil'
+[ $(uname -s) = 'Darwin' ] && alias gzdoom='/Applications/GZDoom.app/Contents/MacOS/gzdoom'
+alias gzd1='gzdoom -iwad doom'
+alias gzd1s='gzdoom -iwad doom -file sigil_v1_21'
+alias gzd2e='gzdoom -iwad doom2 -file Eviternity'
+alias gzsd1scoopuv='gzdoom -private -host 2 -skill 4 -iwad doom -file sigil'
 
 alias renpm='rm -rf package-lock.json node_modules && npm install'
 
