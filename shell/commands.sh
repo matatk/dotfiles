@@ -44,6 +44,7 @@ alias tnngd='tree -I "node_modules|.git" -d'
 # Quicker git stuff
 alias gl='git log'
 alias glo='git log --oneline'
+alias glod='git log --oneline --shortstat'
 alias gla='git log --all --decorate --oneline --graph'  # https://stackoverflow.com/a/35075021
 alias gst='git status'
 alias gft="git grep -Ei 'TODO|FIXME'"
