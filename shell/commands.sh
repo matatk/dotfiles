@@ -85,17 +85,10 @@ alias jt='bundle exec jekyll serve --drafts --incremental'
 alias karabiner="/Applications/Karabiner.app/Contents/Library/bin/karabiner"
 
 # Homebrew update, cleanup and check
-alias brewup='\
-	brew --version && echo && \
-	echo Updating... && brew update && echo && \
-	brew --version && echo  && \
-	echo Outdated: && brew outdated'
-alias brewdo='\
-	echo Upgrading... && brew upgrade && echo && \
-	echo Cleaning up... && brew cleanup -s && echo && \
-	echo Checking... && brew doctor && echo && \
-	echo Note: brew cask app upgrades are manual.'
-alias brewall='brewup && echo && brewdo'
+alias brewupdate="brew --version && echo && echo 'Updating...' && brew update && echo && brew --version && echo && echo 'Outdated:' && brew outdated && echo && echo 'Outdated casks:' && brew cask outdated"
+alias brewupgrade="echo 'Upgrading...' && brew upgrade && echo && echo 'Cleaning up...' && brew cleanup -s && echo && echo 'Checking...' && brew doctor ; echo && echo 'Note: use brewcaskupgrade to upgrade casks.'"
+alias brewup="brewupdate && echo && brewupgrade"
+alias brewcaskupgrade="echo \"run brewupdate first if it's not already been run\" && echo && brew cask outdated | cut -f1 | xargs brew cask upgrade"
 alias brew-leave-developer-mode='git config -f /usr/local/Homebrew/.git/config homebrew.devcmdrun false && brew update --force'
 
 # NPM package listing stuff
