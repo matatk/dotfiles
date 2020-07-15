@@ -57,16 +57,32 @@ alias cv='command -v'
 alias slt='stylelint --config-basedir /usr/local/lib/node_modules/stylelint/'
 
 # DooM
-[ $(uname -s) = 'Darwin' ] && alias zandronum='/Applications/Zandronum.app/Contents/MacOS/zandronum'
-alias zd1='zandronum -iwad doom'
-alias zd1s='zandronum -iwad doom -file sigil_v1_21'
-alias zd2e='zandronum -iwad doom2 -file Eviternity'
-alias zsd1scoopuv='zandronum -private -host 2 -skill 4 -iwad doom -file sigil'
 [ $(uname -s) = 'Darwin' ] && alias gzdoom='/Applications/GZDoom.app/Contents/MacOS/gzdoom'
-alias gzd1='gzdoom -iwad doom'
-alias gzd1s='gzdoom -iwad doom -file sigil_v1_21'
-alias gzd2e='gzdoom -iwad doom2 -file Eviternity'
-alias gzsd1scoopuv='gzdoom -private -host 2 -skill 4 -iwad doom -file sigil'
+alias lswad='ls ~/Library/Application\ Support/gzdoom/'
+alias twad='tah /Volumes/Extension/Extra/Games/DooM/WADs'
+alias doom='gzdoom -iwad doom'
+alias doom2='gzdoom -iwad doom2'
+alias udoom1coop='doom -private -host 2 -skill 4 -iwad doom'
+alias sigil='doom -file sigil_v1_21'
+alias sigilcoop='doom -private -host 2 -skill 4 -iwad doom -file sigil'
+alias eviternity='doom2 -file Eviternity'
+alias verdant-citadel='doom2 -file vercit.pk3'
+alias paradise='doom2 -file t-paradise-v2.pk3'
+alias sunlust='doom2 -file sunlust'
+alias ancient-aliens='doom2 -file aaliens'
+alias tech-gone-bad='doom -file e1m8b'
+alias alien-vendetta='doom2 -file av -deh av'
+alias eternal-doom='doom2 -file eternall'
+alias eternal-doom-cybersweeper='doom2 -file eternall -file csweeper -warp 1'
+alias eternal-doom-credits='doom2 -file eternall -file credits -warp 1'
+alias eternal-doom-4='doom2 -file ed4_rfo1 -warp 8'
+alias tnt-evilution='gzdoom -iwad tnt'
+alias plutonia='gzdoom -iwad plutonia'
+alias plutonia-2='plutonia -file pl2 -deh pl2'
+alias pl2='plutonia-2'
+alias back-to-saturn-x='doom2 -file btsx_e1a -file btsx_e1b'
+alias btsx='back-to-saturn-x'
+alias deus-vult='doom2 -file dv -warp 5'
 
 alias renpm='rm -rf package-lock.json node_modules && npm install'
 
@@ -78,6 +94,7 @@ alias hcsbs='mvim -U ~/.gvimrc.fullscreen -p *.h -c "set splitright | tabdo vsp 
 alias mkcompdb='make clean && intercept-build make && cat compile_commands.json'
 
 # Redo the 'Open With' menu on OS X
+# FIXME no longer needed?
 alias fixowmenu='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
 
 # Shorter versions
@@ -104,6 +121,9 @@ alias purgeallbuilds='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
 
 # Use the same flake8 settings on the command-line as in ViM
 alias f8='flake8 --ignore="W191,E117,W503"'
+
+# Clean Python clart from current dir and below
+alias cpc='find . -name __pycache__ -exec rm -rfv {} \;'
 
 # Linter rule-lookup commands
 function rle() {
