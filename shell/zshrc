@@ -1,4 +1,4 @@
-#p3""###############################
+################################
 # Environment
 ################################
 
@@ -104,6 +104,14 @@ function prompt_right {
 # vi editing mode should also be set in the hook that reacts to mode changes.
 PROMPT="$(prompt_return_status) $(prompt_current_directory) %{$reset_color%}"
 RPROMPT=$(prompt_right)
+
+# https://github.com/direnv/direnv/wiki/Python
+show_virtual_env() {
+  if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
+    echo "($(basename $VIRTUAL_ENV))"
+  fi
+}
+PS1='$(show_virtual_env)'$PS1
 
 function zle-line-init zle-keymap-select {
 	RPROMPT=$(prompt_right)
@@ -237,4 +245,5 @@ antigen apply
 # Startup
 ################################
 
+eval "$(direnv hook zsh)"
 source ~/dotfiles/shell/startup-sequence.sh

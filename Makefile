@@ -9,6 +9,7 @@ ZSH_ANTIGEN_PROG=~/.antigen
 	all \
 	test \
 	home-dot-symlinks \
+	home-dot-config-symlinks \
 	imgcat \
 	kinesis \
 	ycm-setup \
@@ -16,7 +17,7 @@ ZSH_ANTIGEN_PROG=~/.antigen
 	clean \
 	deepclean
 
-all: test home-dot-symlinks $(VUNDLE_REPO) $(ZSH_ANTIGEN_REPO) imgcat kinesis
+all: test home-dot-symlinks home-dot-config-symlinks $(VUNDLE_REPO) $(ZSH_ANTIGEN_REPO) imgcat kinesis
 	@echo "Reminders:"
 	@echo " * Vim plugins are managed within Vim with Vundle."
 	@echo " * Set iTerm2 to load settings from: ~/dotfiles/term/"
@@ -40,6 +41,12 @@ home-dot-symlinks:
 	@ln -sfv  $(DOTFILES)/vim/gvimrc ~/.gvimrc
 	@ln -nsfv $(DOTFILES)/bin ~/bin
 	@echo
+
+~/.config:
+	@mkdir ~/.config
+
+home-dot-config-symlinks: ~/.config
+	@scripts/home-dot-config-symlinks.sh
 
 $(VUNDLE_REPO): home-dot-symlinks
 	@echo "Cloning Vundle, if needed..."
@@ -86,7 +93,7 @@ ycm-setup:
 		--clang-completer --ts-completer
 
 install-software:
-	@./install-software.sh
+	@scripts/install-software.sh
 
 clean:
 	@echo "Removing imgcat..."
@@ -102,6 +109,8 @@ clean:
 	@rm -fv ~/.gvimrc.fullscreen
 	@rm -fv ~/.gvimrc
 	@rm -fv ~/bin
+	@echo
+	@scripts/home-dot-config-symlinks-clean.sh
 	@echo
 	@echo "Note: Installed vim plugins are kept, unless you specify 'deepclean'."
 	@echo
