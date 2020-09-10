@@ -72,6 +72,7 @@ alias sunlust='doom2 -file sunlust'
 alias ancient-aliens='doom2 -file aaliens'
 alias tech-gone-bad='doom -file e1m8b'
 alias alien-vendetta='doom2 -file av -deh av'
+alias alien-vendetta-black-label='alien-vendetta -file avbl_v1'
 alias eternal-doom='doom2 -file eternall'
 alias eternal-doom-cybersweeper='doom2 -file eternall -file csweeper -warp 1'
 alias eternal-doom-credits='doom2 -file eternall -file credits -warp 1'
@@ -83,6 +84,8 @@ alias pl2='plutonia-2'
 alias back-to-saturn-x='doom2 -file btsx_e1a -file btsx_e1b'
 alias btsx='back-to-saturn-x'
 alias deus-vult='doom2 -file dv -warp 5'
+alias requiem='doom2 -file requiem -file reqmus'
+alias valiant='doom2 -file Valiant'
 
 alias renpm='rm -rf package-lock.json node_modules && npm install'
 
@@ -102,10 +105,10 @@ alias jt='bundle exec jekyll serve --drafts --incremental'
 alias karabiner="/Applications/Karabiner.app/Contents/Library/bin/karabiner"
 
 # Homebrew update, cleanup and check
-alias brewupdate="brew --version && echo && echo 'Updating...' && brew update && echo && brew --version && echo && echo 'Outdated:' && brew outdated && echo && echo 'Outdated casks:' && brew cask outdated"
+alias brewupdate="brew --version && echo && echo 'Updating...' && brew update && echo && brew --version && echo && echo 'Outdated:' && brew outdated && echo && echo 'Outdated casks:' && brew outdated --cask"
 alias brewupgrade="echo 'Upgrading...' && brew upgrade && echo && echo 'Cleaning up...' && brew cleanup -s && echo && echo 'Checking...' && brew doctor ; echo && echo 'Note: use brewcaskupgrade to upgrade casks.'"
 alias brewup="brewupdate && echo && brewupgrade"
-alias brewcaskupgrade="echo \"run brewupdate first if it's not already been run\" && echo && brew cask outdated | cut -f1 | xargs brew cask upgrade"
+alias brewcaskupgrade="echo \"run brewupdate first if it's not already been run\" && echo && brew outdated --cask | cut -f1 | xargs brew cask upgrade"
 alias brew-leave-developer-mode='git config -f /usr/local/Homebrew/.git/config homebrew.devcmdrun false && brew update --force'
 
 # NPM package listing stuff
@@ -122,8 +125,8 @@ alias purgeallbuilds='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
 # Use the same flake8 settings on the command-line as in ViM
 alias f8='flake8 --ignore="W191,E117,W503"'
 
-# Clean Python clart from current dir and below
-alias cpc='find . -name __pycache__ -exec rm -rfv {} \;'
+# Clean Python clart from current dir and below (but not potentially .venv)
+alias cpc='find * -name __pycache__ -exec rm -rfv {} \;'
 
 # Linter rule-lookup commands
 function rle() {
