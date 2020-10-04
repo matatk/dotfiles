@@ -86,6 +86,7 @@ alias btsx='back-to-saturn-x'
 alias deus-vult='doom2 -file dv -warp 5'
 alias requiem='doom2 -file requiem -file reqmus'
 alias valiant='doom2 -file Valiant'
+alias struggle='doom2 -file strg'
 
 alias renpm='rm -rf package-lock.json node_modules && npm install'
 
