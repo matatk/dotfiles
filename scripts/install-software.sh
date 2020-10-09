@@ -26,7 +26,7 @@ gt() {
 	fi
 }
 
-gp Darwin 'brew install zsh bash-completion coreutils tree rename rpl python node@10 ruby perl macvim shellcheck direnv'
+gp Darwin 'brew install zsh bash-completion coreutils tree rename rpl python node@12 ruby perl macvim shellcheck direnv'
 
 gp Darwin 'brew cask install rectangle iterm2 cd-to-iterm caffeine spotify macdown meld github google-chrome firefox'
 

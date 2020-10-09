@@ -29,9 +29,9 @@ if [ -r ~/projects/emsdk/emsdk_env.sh ]; then
 fi
 
 # Emscripten has its own node but we want to ensure ours comes first
-BREW_NODE10='/usr/local/opt/node@10/bin'
-if [ -d $BREW_NODE10 ]; then 
-	export PATH="$BREW_NODE10:$PATH"
+BREW_NODE12='/usr/local/opt/node@12/bin'
+if [ -d $BREW_NODE12 ]; then
+	export PATH="$BREW_NODE12:$PATH"
 fi
 
 BREW_NPM='/usr/local/bin/npm'
