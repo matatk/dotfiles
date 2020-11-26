@@ -124,7 +124,8 @@ alias mvt='mvim --remote-tab'
 alias purgeallbuilds='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
 
 # Use the same flake8 settings on the command-line as in ViM
-alias f8='flake8 --ignore="W191,E117,W503"'
+# This also ignores a standardly-named virtualenv directory
+alias f8='flake8 --ignore="W191,E117,W503" --exclude .venv'
 
 # Clean Python clart from current dir and below (but not potentially .venv)
 alias cpc='find * -name __pycache__ -exec rm -rfv {} \;'
