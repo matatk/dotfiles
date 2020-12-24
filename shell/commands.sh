@@ -48,7 +48,7 @@ alias glod='git log --oneline --shortstat'
 alias gla='git log --all --decorate --oneline --graph'  # https://stackoverflow.com/a/35075021
 alias gst='git status'
 alias gft="git grep -Ei 'TODO|FIXME'"
-alias gftn="git grep -Ei 'TODO|FIXME|NOTE'"
+alias gftn="git grep -Ei '\W(TODO|FIXME|NOTE)\W'"
 alias gds='git diff --stat'
 alias gdsm='gds master'
 
