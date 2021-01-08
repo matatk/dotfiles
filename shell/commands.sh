@@ -9,7 +9,7 @@ function make_ls_aliases() {
 	alias lah="$1ls --color=auto -lha"
 }
 
-if [ $(uname -s) = 'Darwin' ]; then
+if [ "$(uname -s)" = 'Darwin' ]; then
 	make_ls_aliases g
 	alias  lo='/bin/ls -lhaO'   # OS X flags
 	alias loe='/bin/ls -lhaO@'  # OS X flags and extended attributes
@@ -55,52 +55,19 @@ alias gdsm='gds master'
 # Where is a command/binary defined/located?
 alias cv='command -v'
 
+# General dev stuff
 alias slt='stylelint --config-basedir /usr/local/lib/node_modules/stylelint/'
-
-# DooM
-[ $(uname -s) = 'Darwin' ] && alias gzdoom='/Applications/GZDoom.app/Contents/MacOS/gzdoom'
-alias lswad='ls ~/Library/Application\ Support/gzdoom/'
-alias twad='tah /Volumes/Extension/Extra/Games/DooM/WADs'
-alias doom='gzdoom -iwad doom'
-alias doom2='gzdoom -iwad doom2'
-alias udoom1coop='doom -private -host 2 -skill 4 -iwad doom'
-alias sigil='doom -file sigil_v1_21'
-alias sigilcoop='doom -private -host 2 -skill 4 -iwad doom -file sigil'
-alias eviternity='doom2 -file Eviternity'
-alias verdant-citadel='doom2 -file vercit.pk3'
-alias paradise='doom2 -file t-paradise-v2.pk3'
-alias sunlust='doom2 -file sunlust'
-alias ancient-aliens='doom2 -file aaliens'
-alias tech-gone-bad='doom -file e1m8b'
-alias alien-vendetta='doom2 -file av -deh av'
-alias alien-vendetta-black-label='alien-vendetta -file avbl_v1'
-alias eternal-doom='doom2 -file eternall'
-alias eternal-doom-cybersweeper='doom2 -file eternall -file csweeper -warp 1'
-alias eternal-doom-credits='doom2 -file eternall -file credits -warp 1'
-alias eternal-doom-4='doom2 -file ed4_rfo1 -warp 8'
-alias tnt-evilution='gzdoom -iwad tnt'
-alias plutonia='gzdoom -iwad plutonia'
-alias plutonia-2='plutonia -file pl2 -deh pl2'
-alias pl2='plutonia-2'
-alias back-to-saturn-x='doom2 -file btsx_e1a -file btsx_e1b'
-alias btsx='back-to-saturn-x'
-alias deus-vult='doom2 -file dv -warp 5'
-alias requiem='doom2 -file requiem -file reqmus'
-alias valiant='doom2 -file Valiant'
-alias struggle='doom2 -file strg'
-alias zpack='doom2 -file zpack.pk3'
-
-alias renpm='rm -rf package-lock.json node_modules && npm install'
-
-# For devving
 alias ogd='open . -a Github\ Desktop'
 alias orm='open README.md -a MacDown'
+alias mvt='mvim --remote-tab'
+
+# C/C++
 alias chsbs='mvim -U ~/.gvimrc.fullscreen -p *.c -c "tabdo vsp %<.h | windo set nowrap"'
 alias hcsbs='mvim -U ~/.gvimrc.fullscreen -p *.h -c "set splitright | tabdo vsp %<.c | windo set nowrap"'
 alias mkcompdb='make clean && intercept-build make && cat compile_commands.json'
 
 # Redo the 'Open With' menu on OS X
-# FIXME no longer needed?
+# TODO: No longer needed?
 alias fixowmenu='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
 
 # Shorter versions
@@ -114,12 +81,10 @@ alias brewup="brewupdate && echo && brewupgrade"
 alias brewcaskupgrade="echo \"run brewupdate first if it's not already been run\" && echo && brew outdated --cask | cut -f1 | xargs brew cask upgrade"
 alias brew-leave-developer-mode='git config -f /usr/local/Homebrew/.git/config homebrew.devcmdrun false && brew update --force'
 
-# NPM package listing stuff
+# NPM stuff
 # https://gist.github.com/yyx990803/6045243
 alias npml="npm list --depth=0 2>/dev/null"
-
-# Add a file to an existing MacVim tab
-alias mvt='mvim --remote-tab'
+alias renpm='rm -rf package-lock.json node_modules && npm install'
 
 # Remove Xcode clart
 # http://stackoverflow.com/a/18933476
@@ -145,14 +110,14 @@ function rlsc() {
 
 # Simple searching for text strings
 function search() {
-	grep -ir $@ .
+	grep -ir "$@" .
 }
 function searchnn() {
-	grep --exclude-dir=node_modules --exclude-dir=.nyc_output -ir $@ .
+	grep --exclude-dir=node_modules --exclude-dir=.nyc_output -ir "$@" .
 }
 
 function catsay() {
-	cat $1 && say -f $1
+	cat "$1" && say -f "$1"
 }
 alias cs=catsay
 
@@ -164,13 +129,13 @@ function firefox-for-add-on-developers() {
 
 # Prettify a markdown file
 function mdpretty() {
-	_mdpretty $@
+	_mdpretty "$@"
 }
 function nmdpretty() {
-	_mdpretty $@ --wrap=none
+	_mdpretty "$@" --wrap=none
 }
 function _mdpretty() {
-	if [[ ! -x `which pandoc` ]]; then
+	if [[ ! -x $(which pandoc) ]]; then
 		echo Cannot execute Pandoc!
 		return
 	fi
@@ -200,11 +165,11 @@ function tidysnippet() {
 	pbpaste | cat
 	echo
 	echo
-	eval $CORE_TIDY
+	eval "$CORE_TIDY"
 	RETVAL=$?
 	echo
 	if [ ! $RETVAL -eq 2 ]; then
-		eval $CORE_TIDY 2>/dev/null | pbcopy
+		eval "$CORE_TIDY" 2>/dev/null | pbcopy
 		echo 'The above result of tidy is now on the clipboard.'
 		if [ $RETVAL -eq 1 ]; then
 			echo
