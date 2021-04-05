@@ -14,8 +14,8 @@ if [ -d ~/perl5 ]; then
 	PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 fi
 
-BREW_RUBY='/usr/local/opt/ruby'
-if [ -d $BREW_RUBY ]; then
+BREW_RUBY="$HOMEBREW_PREFIX/opt/ruby"
+if [ -d "$BREW_RUBY" ]; then
 	export PATH="$BREW_RUBY/bin:$PATH"
 	export LDFLAGS="-L$BREW_RUBY/lib"
 	export CPPFLAGS="-I$BREW_RUBY/include"
@@ -29,10 +29,10 @@ if [ -r ~/projects/emsdk/emsdk_env.sh ]; then
 fi
 
 # Emscripten has its own node but we want to ensure ours comes first
-BREW_NODE='/usr/local/opt/node@14/bin'
-if [ -d $BREW_NODE ]; then
+BREW_NODE="$HOMEBREW_PREFIX/opt/node@14/bin"
+if [ -d "$BREW_NODE" ]; then
 	export PATH="$BREW_NODE:$PATH"
 fi
 
-BREW_NPM='/usr/local/bin/npm'
-[ -x $BREW_NPM ] && alias npm=$BREW_NPM
+BREW_NPM="$BREW_PREFIX/bin/npm"
+[ -x "$BREW_NPM" ] && alias npm="$BREW_NPM"
