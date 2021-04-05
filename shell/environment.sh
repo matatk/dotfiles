@@ -1,10 +1,10 @@
 if [ $(uname -s) = 'Darwin' ]; then
-	PREFIX=`brew --prefix`
-	export PATH=$PREFIX/bin:$PREFIX/sbin:$PATH
+	[ -x /usr/local/bin/brew ] && eval $(/usr/local/bin/brew shellenv)
+	[ -x /opt/Homebrew/bin/brew ] && eval $(/opt/Homebrew/bin/brew shellenv)
 fi
 export PATH=$HOME/bin:$PATH
 export EDITOR=`which vim`                           # used by git commit et al
-export XML_CATALOG_FILES="$PREFIX/etc/xml/catalog"  # for DocBook
+export XML_CATALOG_FILES="$HOMEBREW_PREFIX/etc/xml/catalog"  # for DocBook
 
 if [ -d ~/perl5 ]; then
 	PATH="$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;

@@ -4,9 +4,9 @@ source ~/dotfiles/shell/colours.sh
 source ~/dotfiles/shell/commands.sh
 
 # Homebrew bash completion
-# PREFIX is defined in environment.sh
-if [ -f $PREFIX/etc/bash_completion ]; then
-	source $PREFIX/etc/bash_completion
+# HOMEBREW_PREFIX is defined in environment.sh
+if [ -f $HOMEBREW_PREFIX/etc/bash_completion ]; then
+	source $HOMEBREW_PREFIX/etc/bash_completion
 fi
 
 # pip(3) completion
