@@ -1,6 +1,6 @@
 if [ $(uname -s) = 'Darwin' ]; then
 	[ -x /usr/local/bin/brew ] && eval $(/usr/local/bin/brew shellenv)
-	[ -x /opt/Homebrew/bin/brew ] && eval $(/opt/Homebrew/bin/brew shellenv)
+	[ -x /opt/homebrew/bin/brew ] && eval $(/opt/homebrew/bin/brew shellenv)
 fi
 export PATH=$HOME/bin:$PATH
 export EDITOR=`which vim`                           # used by git commit et al
