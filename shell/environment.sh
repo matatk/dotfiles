@@ -34,5 +34,5 @@ if [ -d "$BREW_NODE" ]; then
 	export PATH="$BREW_NODE:$PATH"
 fi
 
-BREW_NPM="$BREW_PREFIX/bin/npm"
+BREW_NPM="$HOMEBREW_PREFIX/bin/npm"
 [ -x "$BREW_NPM" ] && alias npm="$BREW_NPM"
