@@ -38,6 +38,6 @@ gt 'command -v pip3' 'pip3 install flake8'
 
 gt 'command -v gem' 'gem install bundler'
 
-gt 'command -v npm' 'npm install -g npm eslint jsonlint package-json-validator eclint stylelint stylelint-config-standard'
+gt 'command -v npm' 'npm install -g npm npm-check eslint jsonlint package-json-validator eclint stylelint stylelint-config-standard'
 
 echo Software installations complete.
