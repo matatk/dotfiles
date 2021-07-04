@@ -90,7 +90,7 @@ kinesis:
 
 ycm-setup:
 	python3 ~/.vim/bundle/YouCompleteMe/install.py \
-		--clang-completer --ts-completer
+		--clang-completer --ts-completer --system-libclang
 
 install-software:
 	@scripts/install-software.sh
