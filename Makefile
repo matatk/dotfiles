@@ -28,7 +28,8 @@ all: test home-dot-symlinks home-dot-config-symlinks $(VUNDLE_REPO) $(ZSH_ANTIGE
 	@echo " * To install software: make install-software"
 
 test:
-	-shellcheck shell/**.sh --shell=bash
+	# Global settings are in .shellcheckrc so editor plugins benefit too
+	-shellcheck scripts/*.sh shell/*.sh
 
 home-dot-symlinks:
 	@ln -sfv  $(DOTFILES)/shell/bashrc ~/.bashrc
