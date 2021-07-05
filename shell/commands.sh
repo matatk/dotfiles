@@ -1,4 +1,16 @@
+#
 # Standard UNIX commands
+#
+
+# Where is a command/binary defined/located?
+alias cv='command -v'
+
+function aliases() {
+	alias | sed -e 's/^alias *//' | sort | sed -e 's/=/Ω/' | column -t -sΩ
+}
+
+# shellcheck disable=SC2139
+# (Directive must come after another command, or applies to whole file.)
 function make_ls_aliases() {
 	alias  ls="$1ls --color=auto"
 	alias   l="$1ls --color=auto -CF"
@@ -24,7 +36,11 @@ alias mv='mv -i'
 # Useful du shortcut
 alias ud='du -sch *'
 
+
+#
 # Trees!
+#
+
 alias t='tree'
 alias td='tree -d'
 alias tl='tree -ps'
@@ -41,7 +57,11 @@ alias tnnd='tree -I node_modules -d'
 alias tnng='tree -I "node_modules|.git"'
 alias tnngd='tree -I "node_modules|.git" -d'
 
+
+#
 # Quicker git stuff
+#
+
 alias gl='git log'
 alias glo='git log --oneline'
 alias glod='git log --oneline --shortstat'
@@ -53,61 +73,10 @@ alias gftn="git grep -Ei '\W(FIXME|TODO|NOTE)\W'"
 alias gds='git diff --stat'
 alias gdsm='gds master'
 
-# Where is a command/binary defined/located?
-alias cv='command -v'
 
-# General dev stuff
-alias slt='stylelint --config-basedir /usr/local/lib/node_modules/stylelint/'
-alias ogd='open . -a Github\ Desktop'
-alias orm='open README.md -a MacDown'
-alias mvt='mvim --remote-tab'
-
-# C/C++
-alias chsbs='mvim -U ~/.gvimrc.fullscreen -p *.c -c "tabdo vsp %<.h | windo set nowrap"'
-alias hcsbs='mvim -U ~/.gvimrc.fullscreen -p *.h -c "set splitright | tabdo vsp %<.c | windo set nowrap"'
-alias mkcompdb='make clean && intercept-build make && cat compile_commands.json'
-
-# Redo the 'Open With' menu on OS X
-# TODO: No longer needed?
-alias fixowmenu='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
-
-# Shorter versions
-alias jt='bundle exec jekyll serve --drafts --incremental'
-alias karabiner="/Applications/Karabiner.app/Contents/Library/bin/karabiner"
-
-# Homebrew update, cleanup and check
-alias brewupdate="brew --version && echo && echo 'Updating...' && brew update && echo && brew --version && echo && echo 'Outdated:' && brew outdated && echo && echo 'Outdated casks:' && brew outdated --cask"
-alias brewupgrade="echo 'Upgrading...' && brew upgrade && echo && echo 'Cleaning up...' && brew cleanup -s && echo && echo 'Checking...' && brew doctor ; echo && echo 'Note: use brewcaskupgrade to upgrade casks.'"
-alias brewup="brewupdate && echo && brewupgrade"
-alias brewcaskupgrade="echo \"run brewupdate first if it's not already been run\" && echo && brew outdated --cask | cut -f1 | xargs brew cask upgrade"
-alias brew-leave-developer-mode='git config -f /usr/local/Homebrew/.git/config homebrew.devcmdrun false && brew update --force'
-
-# NPM stuff
-# https://gist.github.com/yyx990803/6045243
-alias npml="npm list --depth=0 2>/dev/null"
-alias renpm='rm -rf package-lock.json node_modules && npm install'
-
-# Remove Xcode clart
-# http://stackoverflow.com/a/18933476
-alias purgeallbuilds='rm -rf ~/Library/Developer/Xcode/DerivedData/*'
-
-# Use the same flake8 settings on the command-line as in ViM
-# This also ignores a standardly-named virtualenv directory
-alias f8='flake8 --ignore="W191,E117,W503" --exclude .venv'
-
-# Clean Python clart from current dir and below (but not potentially .venv)
-alias cpc='find * -name __pycache__ -exec rm -rfv {} \;'
-
-# Linter rule-lookup commands
-function rle() {
-	open "https://eslint.org/docs/rules/$1"
-}
-function rls() {
-	open "https://stylelint.io/user-guide/rules/$1"
-}
-function rlsc() {
-	open "https://github.com/koalaman/shellcheck/wiki/SC$1"
-}
+#
+# Custom commands
+#
 
 # Simple searching for text strings
 function search() {
@@ -122,12 +91,6 @@ function catsay() {
 }
 alias cs=catsay
 
-function firefox-for-add-on-developers() {
-	if [ "$1" -gt 1 ] && [ "$1" -lt 99 ]; then
-		open "https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/$1#Changes_for_add-on_developers"
-	fi
-}
-
 # Prettify a markdown file
 function mdpretty() {
 	_mdpretty "$@"
@@ -136,6 +99,7 @@ function nmdpretty() {
 	_mdpretty "$@" --wrap=none
 }
 function _mdpretty() {
+	# TODO: Don't pass in --wrap=none as there's no point (DRY)
 	if [[ ! -x $(which pandoc) ]]; then
 		echo Cannot execute Pandoc!
 		return
@@ -152,7 +116,9 @@ function _mdpretty() {
 	fi
 
 	if [[ -f $1 ]]; then
-		cat "$1" | pandoc -t markdown -o "$1" $2
+		# FIXME: negate the need for this
+		# shellcheck disable=SC2002
+		cat "$1" | pandoc -t markdown -o "$1" "$2"
 		cat "$1"
 	else
 		echo "$1" is not a file
@@ -181,6 +147,62 @@ function tidysnippet() {
 	fi
 }
 
-function aliases() {
-	alias | sed -e 's/^alias *//' | sort | sed -e 's/=/Ω/' | column -t -sΩ
+# Shorter versions
+alias jt='bundle exec jekyll serve --drafts --incremental'
+alias karabiner="/Applications/Karabiner.app/Contents/Library/bin/karabiner"
+
+
+#
+# Package management
+#
+
+# Homebrew update and upgrade
+# TODO: Only define if using brew?
+alias brewup='brew --version && echo && brew update && echo && brew --version && echo && brew outdated && echo && brew upgrade'
+# can use brew autoremove to uninstall unused packages
+# can use brew doctor to check for problems
+# can use brew cleanup -s to remove all downloads (incl. latest non-installed)
+
+
+#
+# General development
+#
+
+alias slt='stylelint --config-basedir /usr/local/lib/node_modules/stylelint/'
+alias ogd='open . -a Github\ Desktop'
+alias orm='open README.md -a MacDown'
+alias mvt='mvim --remote-tab'
+
+# C/C++
+alias chsbs='mvim -U ~/.gvimrc.fullscreen -p *.c -c "tabdo vsp %<.h | windo set nowrap"'
+alias hcsbs='mvim -U ~/.gvimrc.fullscreen -p *.h -c "set splitright | tabdo vsp %<.c | windo set nowrap"'
+alias mkcompdb='make clean && intercept-build make && cat compile_commands.json'
+
+# NPM
+# https://gist.github.com/yyx990803/6045243
+alias npml="npm list --depth=0 2>/dev/null"
+alias renpm='rm -rf package-lock.json node_modules && npm install'
+
+# Use the same flake8 settings on the command-line as in ViM
+# This also ignores a standardly-named virtualenv directory
+alias f8='flake8 --ignore="W191,E117,W503" --exclude .venv'
+
+# Clean Python clart from current dir and below (but not potentially .venv)
+alias cpc='find * -name __pycache__ -exec rm -rfv {} \;'
+
+# Linter rule-lookup commands
+function rle() {
+	open "https://eslint.org/docs/rules/$1"
+}
+function rls() {
+	open "https://stylelint.io/user-guide/rules/$1"
+}
+function rlsc() {
+	open "https://github.com/koalaman/shellcheck/wiki/SC$1"
+}
+
+function firefox-for-add-on-developers() {
+	if [ "$1" -gt 1 ] && [ "$1" -lt 99 ]; then
+		open "https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/$1#Changes_for_add-on_developers"
+	fi
 }
