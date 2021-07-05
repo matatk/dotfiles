@@ -1,9 +1,9 @@
-if [ $(uname -s) = 'Darwin' ]; then
-	[ -x /usr/local/bin/brew ] && eval $(/usr/local/bin/brew shellenv)
-	[ -x /opt/homebrew/bin/brew ] && eval $(/opt/homebrew/bin/brew shellenv)
+if [ "$(uname -s)" = 'Darwin' ]; then
+	[ -x /usr/local/bin/brew ] && eval "$(/usr/local/bin/brew shellenv)"
+	[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 export PATH=$HOME/bin:$PATH
-export EDITOR=`which vim`                           # used by git commit et al
+export EDITOR="$(which vim)"  # used by git commit et al
 export XML_CATALOG_FILES="$HOMEBREW_PREFIX/etc/xml/catalog"  # for DocBook
 
 if [ -d ~/perl5 ]; then
@@ -33,6 +33,3 @@ BREW_NODE="$HOMEBREW_PREFIX/opt/node@14/bin"
 if [ -d "$BREW_NODE" ]; then
 	export PATH="$BREW_NODE:$PATH"
 fi
-
-BREW_NPM="$HOMEBREW_PREFIX/bin/npm"
-[ -x "$BREW_NPM" ] && alias npm="$BREW_NPM"
