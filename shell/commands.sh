@@ -147,6 +147,11 @@ function tidysnippet() {
 	fi
 }
 
+function pretty_tsv {
+    column -t -s $'\t'
+}
+alias ptsv=pretty_tsv
+
 # Shorter versions
 alias jt='bundle exec jekyll serve --drafts --incremental'
 alias karabiner="/Applications/Karabiner.app/Contents/Library/bin/karabiner"
