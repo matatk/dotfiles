@@ -71,7 +71,7 @@ alias gf="git grep -Ei '\WFIXME\W'"
 alias gft="git grep -Ei '\W(FIXME|TODO)\W'"
 alias gftn="git grep -Ei '\W(FIXME|TODO|NOTE)\W'"
 alias gds='git diff --stat'
-alias gdsm='gds master'
+alias gdsm='gds main'
 
 
 #
