@@ -22,14 +22,9 @@ if [ -d "$BREW_RUBY" ]; then
 	export PKG_CONFIG_PATH="$BREW_RUBY/lib/pkgconfig"
 fi
 
-# There's an ~/.emscripten file that is a Python script that contains the
-# full path to the EMSDK node version
-if [ -r ~/projects/emsdk/emsdk_env.sh ]; then
-	. ~/projects/emsdk/emsdk_env.sh > /dev/null
-fi
-
-# Emscripten has its own node but we want to ensure ours comes first
+# Ensure we can find brew-installed node, but also that it doesn't override the
+# path to a later version of npm that we upgraded ourselves.
 BREW_NODE="$HOMEBREW_PREFIX/opt/node@14/bin"
 if [ -d "$BREW_NODE" ]; then
-	export PATH="$BREW_NODE:$PATH"
+	export PATH="$PATH:$BREW_NODE"
 fi
