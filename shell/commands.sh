@@ -118,7 +118,9 @@ function _mdpretty() {
 	if [[ -f $1 ]]; then
 		# FIXME: negate the need for this
 		# shellcheck disable=SC2002
-		cat "$1" | pandoc -t markdown -o "$1" "$2"
+		# The following is needed becuase --wrap=none must not be in quotes
+		# shellcheck disable=SC2086
+		cat "$1" | pandoc -t markdown -o "$1" $2
 		cat "$1"
 	else
 		echo "$1" is not a file
