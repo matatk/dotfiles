@@ -26,18 +26,18 @@ gt() {
 	fi
 }
 
-gp Darwin 'brew install zsh bash-completion coreutils tree rename rpl python node@14 ruby macvim shellcheck direnv fortune'
+gp Darwin 'brew install bash-completion coreutils direnv fortune macvim mas node@14 python rename rpl ruby shellcheck tree zsh'
 
-gp Darwin 'brew install --cask iterm2 caffeine spotify macdown meld github google-chrome firefox'
+gp Darwin 'brew install --cask caffeine firefox github google-chrome iterm2 macdown meld spotify'
 
 gp Darwin 'brew install --cask libreoffice'
 
-gp Linux 'sudo apt install zsh tree rename rpl shellcheck direnv'
+gp Linux 'sudo apt install direnv rename rpl shellcheck tree zsh'
 
 gt 'command -v pip3' 'pip3 install flake8'
 
 gt 'command -v gem' 'gem install bundler'
 
-gt 'command -v npm' 'npm install -g npm npm-check eslint jsonlint package-json-validator eclint stylelint stylelint-config-standard'
+gt 'command -v npm' 'npm install -g eclint eslint jsonlint npm npm-check package-json-validator stylelint stylelint-config-standard'
 
 echo Software installations complete.
