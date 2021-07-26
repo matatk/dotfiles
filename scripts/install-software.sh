@@ -28,7 +28,7 @@ gt() {
 
 gp Darwin 'brew install zsh bash-completion coreutils tree rename rpl python node@14 ruby macvim shellcheck direnv fortune'
 
-gp Darwin 'brew install --cask cd-to caffeine spotify macdown meld github google-chrome firefox'
+gp Darwin 'brew install --cask iterm2 caffeine spotify macdown meld github google-chrome firefox'
 
 gp Darwin 'brew install --cask libreoffice'
 

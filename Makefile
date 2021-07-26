@@ -20,7 +20,6 @@ ZSH_ANTIGEN_PROG=~/.antigen
 all: test home-dot-symlinks home-dot-config-symlinks $(VUNDLE_REPO) $(ZSH_ANTIGEN_REPO) imgcat kinesis
 	@echo "Reminders:"
 	@echo " * Vim plugins are managed within Vim with Vundle."
-	@echo " * Set iTerm2 to load settings from: ~/dotfiles/term/"
 	@echo " * Changing shells: http://unix.stackexchange.com/questions/111365"
 	@echo " * To complete YouCompleteMe setup: make ycm-setup"
 	@echo " * Homebrew's Perl has its own CPAN, which can use local::lib and install"
@@ -63,7 +62,7 @@ $(ZSH_ANTIGEN_REPO):
 
 imgcat:
 	@if [ $$(uname -s) = 'Darwin' ]; then \
-		echo 'Downloading and installing imgcat, if needed...'; \
+		echo 'Downloading and installing iTerm2 imgcat, if needed...'; \
 		if [ ! -x $(IMGCAT_OUT) ]; then \
 			curl -o $(IMGCAT_OUT) "https://iterm2.com/utilities/imgcat"; \
 			chmod +x $(IMGCAT_OUT); \
