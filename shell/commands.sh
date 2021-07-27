@@ -165,7 +165,7 @@ alias karabiner="/Applications/Karabiner.app/Contents/Library/bin/karabiner"
 
 # Homebrew update and upgrade
 # TODO: Only define if using brew?
-alias brewup='brew --version && echo && brew update && echo && brew --version && echo && brew outdated && echo && brew upgrade'
+alias brewup='brew update && brew upgrade'
 # can use brew autoremove to uninstall unused packages
 # can use brew doctor to check for problems
 # can use brew cleanup -s to remove all downloads (incl. latest non-installed)
