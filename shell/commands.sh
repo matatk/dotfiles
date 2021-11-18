@@ -178,6 +178,7 @@ alias brewup='brew update && brew upgrade'
 alias slt='stylelint --config-basedir /usr/local/lib/node_modules/stylelint/'
 alias ogd='open . -a Github\ Desktop'
 alias orm='open README.md -a MacDown'
+alias om='open -a MacDown'
 alias mvt='mvim --remote-tab'
 
 # C/C++
