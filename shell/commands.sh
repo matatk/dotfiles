@@ -73,6 +73,11 @@ alias gftn="git grep -Ei '\W(FIXME|TODO|NOTE)\W'"
 alias gds='git diff --stat'
 alias gdsm='gds main'
 
+function gftc() {
+	echo "$(git grep -Ei '\WFIXME\W' | wc -l) FIXMEs"
+	echo "$(git grep -Ei '\WTODO\W' | wc -l) TODOs"
+}
+
 
 #
 # Custom commands
