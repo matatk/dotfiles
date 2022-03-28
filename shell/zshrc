@@ -152,7 +152,6 @@ SAVEHIST=$HISTSIZE
 setopt share_history       # add to shared history file as commands are run
 setopt hist_ignore_dups    # ignore commands repeated in a row
                            # note: ignore_all_dups ignore non-adjacent ones
-alias gh='history | grep'  # grep the history!
 
 
 ################################
