@@ -215,7 +215,5 @@ function rlsc() {
 }
 
 function firefox-for-add-on-developers() {
-	if [ "$1" -gt 1 ] && [ "$1" -lt 99 ]; then
-		open "https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/$1#Changes_for_add-on_developers"
-	fi
+	open "https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/$1#Changes_for_add-on_developers"
 }
