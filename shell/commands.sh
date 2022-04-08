@@ -85,9 +85,15 @@ function gftc() {
 
 # Simple searching for text strings
 function search() {
-	grep -ir "$@" .
+	grep -r "$@" .
 }
 function searchnn() {
+	grep --exclude-dir=node_modules --exclude-dir=.nyc_output -r "$@" .
+}
+function searchi() {
+	grep -ir "$@" .
+}
+function searchinn() {
 	grep --exclude-dir=node_modules --exclude-dir=.nyc_output -ir "$@" .
 }
 
