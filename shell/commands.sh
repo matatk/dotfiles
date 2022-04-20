@@ -83,18 +83,30 @@ function gftc() {
 # Custom commands
 #
 
-# Simple searching for text strings
-function search() {
-	grep -r "$@" .
+# Simple searching for text strings, then listing and editing the found files
+_CORE_GREP_OPTS=(
+	--exclude-dir=node_modules
+	--exclude-dir=.nyc_output
+	--exclude='*.swp'
+	-r
+)
+function s() {
+	grep "${_CORE_GREP_OPTS[@]}" "$@" .
 }
-function searchnn() {
-	grep --exclude-dir=node_modules --exclude-dir=.nyc_output -r "$@" .
+function sf() {
+	grep "${_CORE_GREP_OPTS[@]}" -l "$@" .
 }
-function searchi() {
-	grep -ir "$@" .
+function se() {
+	grep "${_CORE_GREP_OPTS[@]}" -l "$@" . | xargs mvim --remote-tab
 }
-function searchinn() {
-	grep --exclude-dir=node_modules --exclude-dir=.nyc_output -ir "$@" .
+function si() {
+	grep "${_CORE_GREP_OPTS[@]}" -i "$@" .
+}
+function sif() {
+	grep "${_CORE_GREP_OPTS[@]}" -il "$@" .
+}
+function sie() {
+	grep "${_CORE_GREP_OPTS[@]}" -il "$@" . | xargs mvim --remote-tab
 }
 
 function catsay() {
