@@ -87,6 +87,7 @@ function gftc() {
 _CORE_GREP_OPTS=(
 	--exclude-dir=node_modules
 	--exclude-dir=.nyc_output
+	--exclude-dir=coverage
 	--exclude='*.swp'
 	-r
 )
