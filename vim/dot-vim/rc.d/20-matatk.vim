@@ -181,6 +181,7 @@ let g:syntastic_cpp_checkers = ['oclint']
 let g:syntastic_c_oclint_post_args = ""
 let g:syntastic_cpp_oclint_post_args = ""
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_typescript_checkers = ['eslint']
 let g:syntastic_json_checkers = ['jsonlint']
 let g:syntastic_css_checkers = ['stylelint']
 let g:syntastic_css_stylelint_args = '--config-basedir /usr/local/lib/node_modules/stylelint/'
