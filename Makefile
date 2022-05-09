@@ -1,6 +1,5 @@
 DOTFILES=~/dotfiles
-VIM_BUNDLE_DIR=$(DOTFILES)/vim/dot-vim/bundle
-VUNDLE_REPO=$(VIM_BUNDLE_DIR)/Vundle.vim
+VIM_BUNDLE_DIR=$(DOTFILES)/vim/dot-vim/plugged
 IMGCAT_OUT=~/bin/imgcat
 ZSH_ANTIGEN_REPO=~/.antigen-repo
 ZSH_ANTIGEN_PROG=~/.antigen
@@ -12,19 +11,17 @@ ZSH_ANTIGEN_PROG=~/.antigen
 	home-dot-config-symlinks \
 	imgcat \
 	kinesis \
-	ycm-setup \
 	install-software \
 	clean \
 	deepclean
 
-all: test home-dot-symlinks home-dot-config-symlinks $(VUNDLE_REPO) $(ZSH_ANTIGEN_REPO) imgcat kinesis
+all: test home-dot-symlinks home-dot-config-symlinks $(ZSH_ANTIGEN_REPO) imgcat kinesis
 	@echo "Reminders:"
-	@echo " * Vim plugins are managed within Vim with Vundle."
 	@echo " * Changing shells: http://unix.stackexchange.com/questions/111365"
-	@echo " * To complete YouCompleteMe setup: make ycm-setup"
+	@echo " * Vim plugins are handled by vim-plug; run :PlugInstall in vim"
+	@echo " * To install software: make install-software"
 	@echo " * Homebrew's Perl has its own CPAN, which can use local::lib and install"
 	@echo "   to ~/perl5/ -- which these scripts will detect and add to the PATH."
-	@echo " * To install software: make install-software"
 
 test:
 	# Global settings are in .shellcheckrc so editor plugins benefit too
@@ -47,12 +44,6 @@ home-dot-symlinks:
 
 home-dot-config-symlinks: ~/.config
 	@scripts/home-dot-config-symlinks.sh
-
-$(VUNDLE_REPO): home-dot-symlinks
-	@echo "Cloning Vundle, if needed..."
-	@[ -d $(VUNDLE_REPO) ] || \
-		git clone https://github.com/gmarik/Vundle.vim.git $(VUNDLE_REPO)
-	@echo
 
 $(ZSH_ANTIGEN_REPO):
 	@echo "Cloning zsh-antigen, if needed..."
@@ -87,10 +78,6 @@ kinesis:
 	@echo "  ( press source, press destination ), ..."
 	@echo "  Program + F12 (Remap)"
 	@echo
-
-ycm-setup:
-	python3 ~/.vim/bundle/YouCompleteMe/install.py \
-		--clang-completer --ts-completer --system-libclang
 
 install-software:
 	@scripts/install-software.sh
