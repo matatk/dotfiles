@@ -3,6 +3,7 @@
 " http://stackoverflow.com/questions/3776117/what-is-the-difference-between-the-remap-noremap-nnoremap-and-vnoremap-mapping
 "
 
+" TODO: Make the GUI window wider when activating Gundo
 " Toggling Gundo
 noremap <F5> :GundoToggle<CR>
 " Toggling Semantic Highlighting
@@ -86,6 +87,7 @@ colorscheme molokai
 " http://stackoverflow.com/questions/4325682/
 highlight Normal ctermbg=NONE guibg=Black
 
+" TODO: Is this being used?
 " Enable syntax highlighting of JSDoc strings in JavaScript files
 let g:javascript_plugin_jsdoc = 1
 
@@ -159,63 +161,6 @@ function! FormatWithClang()
 endfunction
 " TODO: this borks Syntastic:
 "autocmd BufWritePre *.h,*.c,*.cc,*.cpp call FormatWithClang()
-
-
-"
-" Syntastic
-"
-
-" Recommended defaults
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-" My customisations
-let g:syntastic_c_checkers = ['oclint']
-let g:syntastic_cpp_checkers = ['oclint']
-let g:syntastic_c_oclint_post_args = ""
-let g:syntastic_cpp_oclint_post_args = ""
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_typescript_checkers = ['eslint']
-let g:syntastic_json_checkers = ['jsonlint']
-let g:syntastic_css_checkers = ['stylelint']
-let g:syntastic_css_stylelint_args = '--config-basedir /usr/local/lib/node_modules/stylelint/'
-let g:syntastic_loc_list_height = 3
-let g:syntastic_coffee_coffeelint_args = '--reporter csv --file coffeelint.json'
-" The flake8 rules are also specified in shell/commands.sh
-let g:syntastic_python_flake8_args='--ignore=E117,W191,W503'
-" E117: over-indented (happens with single tabs, yet where four spaces are OK)
-" W191: indentation contains tabs (naughty :-))
-" W503: https://lintlyci.github.io/Flake8Rules/rules/W503.html (to be removed)
-let g:syntastic_sh_shellcheck_args = '-x'
-
-" Python version
-" https://stackoverflow.com/a/43125342/1485308
-function Py2()
-  let g:syntastic_python_python_exec = '/usr/bin/python'
-endfunction
-
-function Py3()
-  let g:syntastic_python_python_exec = '/usr/local/bin/python3'
-endfunction
-
-call Py3()
-
-
-"
-" YouCompleteMe
-"
-
-let g:ycm_add_preview_to_completeopt = 1  " default 0
-let g:ycm_autoclose_preview_window_after_insertion = 1  " default 0
-let g:ycm_show_diagnostics_ui = 0  " default 1
-" More info: https://github.com/ycm-core/YouCompleteMe#user-content-the-gycm_show_diagnostics_ui-option
-" TODO: does this negatively affect anything else?
 
 
 "
