@@ -28,7 +28,7 @@ gt() {
 
 gp Darwin 'brew install bash-completion coreutils direnv fortune mas node@16 python rename rpl ruby shellcheck tree zsh'
 
-gp Darwin 'brew install --cask caffeine firefox github google-chrome iterm2 macdown macvim meld microsoft-edge rectangle spotify'
+gp Darwin 'brew install --cask caffeine colour-contrast-analyser firefox github google-chrome iterm2 macdown macvim meld microsoft-edge rectangle spotify'
 
 gp Darwin 'brew install --cask libreoffice'
 
@@ -38,6 +38,6 @@ gt 'command -v pip3' 'pip3 install flake8'
 
 gt 'command -v gem' 'gem install bundler'
 
-gt 'command -v npm' 'npm install -g eclint eslint jsonlint npm npm-check package-json-validator stylelint stylelint-config-standard'
+gt 'command -v npm' 'npm install -g colour-contrast-cli eclint eslint http-server json-diff jsonlint npm npm-check package-json-validator stylelint stylelint-config-standard typescript'
 
 echo Software installations complete.
