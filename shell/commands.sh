@@ -2,6 +2,8 @@
 # Standard UNIX commands
 #
 
+alias icat='kitty +kitten icat'
+
 # Where is a command/binary defined/located?
 alias cv='command -v'
 
