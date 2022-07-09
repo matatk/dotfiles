@@ -1,6 +1,5 @@
 DOTFILES=~/dotfiles
 VIM_BUNDLE_DIR=$(DOTFILES)/vim/dot-vim/plugged
-IMGCAT_OUT=~/bin/imgcat
 ZSH_ANTIGEN_REPO=~/.antigen-repo
 ZSH_ANTIGEN_PROG=~/.antigen
 
@@ -9,13 +8,12 @@ ZSH_ANTIGEN_PROG=~/.antigen
 	test \
 	home-dot-symlinks \
 	home-dot-config-symlinks \
-	imgcat \
 	kinesis \
 	install-software \
 	clean \
 	deepclean
 
-all: test home-dot-symlinks home-dot-config-symlinks $(ZSH_ANTIGEN_REPO) imgcat kinesis
+all: test home-dot-symlinks home-dot-config-symlinks $(ZSH_ANTIGEN_REPO) kinesis
 	@echo "Reminders:"
 	@echo " * Changing shells: http://unix.stackexchange.com/questions/111365"
 	@echo " * Vim plugins are handled by vim-plug; run :PlugInstall in vim"
@@ -51,16 +49,6 @@ $(ZSH_ANTIGEN_REPO):
 		git clone https://github.com/zsh-users/antigen.git $(ZSH_ANTIGEN_REPO)
 	@echo
 
-imgcat:
-	@if [ $$(uname -s) = 'Darwin' ]; then \
-		echo 'Downloading and installing iTerm2 imgcat, if needed...'; \
-		if [ ! -x $(IMGCAT_OUT) ]; then \
-			curl -o $(IMGCAT_OUT) "https://iterm2.com/utilities/imgcat"; \
-			chmod +x $(IMGCAT_OUT); \
-		fi; \
-		echo; \
-	fi
-
 kinesis:
 	@echo "Kinesis keyboard customisations:"
 	@echo "  Soft reset: Program + Shift + F10"
@@ -83,9 +71,6 @@ install-software:
 	@scripts/install-software.sh
 
 clean:
-	@echo "Removing imgcat..."
-	@rm -fv $(IMGCAT_OUT)
-	@echo
 	@echo "Removing symlinks..."
 	@rm -fv ~/.bashrc
 	@rm -fv ~/.profile
