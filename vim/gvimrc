@@ -1,3 +1,3 @@
 set columns=84  " account for 4-wide line numbers
-set lines=25
+set lines=999
 execute('source ~/.gvimrc.core')
