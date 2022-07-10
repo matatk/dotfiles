@@ -26,6 +26,9 @@ gt() {
 	fi
 }
 
+gp Darwin 'brew tap homebrew/cask-fonts'
+gp Darwin 'brew install --cask font-fira-code'
+
 gp Darwin 'brew install bash-completion coreutils direnv fortune mas node@16 python rename rpl ruby shellcheck tree zsh'
 
 gp Darwin 'brew install --cask caffeine colour-contrast-analyser firefox github google-chrome kitty macdown macvim meld microsoft-edge rectangle spotify'
