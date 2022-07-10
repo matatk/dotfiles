@@ -40,8 +40,8 @@ home-dot-symlinks:
 ~/.config:
 	@mkdir ~/.config
 
-home-dot-config-symlinks: ~/.config
-	@scripts/home-dot-config-symlinks.sh
+home-dot-config-symlinks:
+	@scripts/home-dot-config-symlinks.sh create
 
 $(ZSH_ANTIGEN_REPO):
 	@echo "Cloning zsh-antigen, if needed..."
@@ -82,7 +82,7 @@ clean:
 	@rm -fv ~/.gvimrc
 	@rm -fv ~/bin
 	@echo
-	@scripts/home-dot-config-symlinks-clean.sh
+	@scripts/home-dot-config-symlinks.sh clean
 	@echo
 	@echo "Note: Installed vim plugins are kept, unless you specify 'deepclean'."
 	@echo
