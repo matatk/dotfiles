@@ -39,7 +39,13 @@ home-dot-symlinks:
 	@ln -sfv  $(DOTFILES)/vim/gvimrc ~/.gvimrc
 	@echo
 
-create-managed-symlinks:
+~/.config:
+	mkdir -pv ~/.config
+
+~/bin:
+	mkdir -pv ~/bin
+
+create-managed-symlinks: | ~/.config ~/bin
 	@scripts/symlinks.sh dot-config ~/.config create
 	@scripts/symlinks.sh bin ~/bin create
 
