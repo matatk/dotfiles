@@ -5,5 +5,3 @@ vim/dot-vim/plugged
 vim/dot-vim/.netrwhist
 vim/dot-vim/spell
 vim/dot-vim/rc.d/99-work.vim
-bin/node_modules
-bin/package-lock.json

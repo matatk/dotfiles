@@ -7,13 +7,14 @@ ZSH_ANTIGEN_PROG=~/.antigen
 	all \
 	test \
 	home-dot-symlinks \
-	home-dot-config-symlinks \
+	create-managed-symlinks \
+	clean-managed-symlinks \
 	kinesis \
 	install-software \
 	clean \
 	deepclean
 
-all: test home-dot-symlinks home-dot-config-symlinks $(ZSH_ANTIGEN_REPO) kinesis
+all: home-dot-symlinks create-managed-symlinks $(ZSH_ANTIGEN_REPO) kinesis
 	@echo "Reminders:"
 	@echo " * Changing shells: http://unix.stackexchange.com/questions/111365"
 	@echo " * Vim plugins are handled by vim-plug; run :PlugInstall in vim"
@@ -24,7 +25,9 @@ all: test home-dot-symlinks home-dot-config-symlinks $(ZSH_ANTIGEN_REPO) kinesis
 test:
 	# Global settings are in .shellcheckrc so editor plugins benefit too
 	-shellcheck scripts/*.sh shell/*.sh
+	@echo
 
+# FIXME: These will be removed even if they weren't links
 home-dot-symlinks:
 	@ln -sfv  $(DOTFILES)/shell/bashrc ~/.bashrc
 	@ln -sfv  ~/.bashrc ~/.profile
@@ -34,14 +37,15 @@ home-dot-symlinks:
 	@ln -sfv  $(DOTFILES)/vim/gvimrc.core ~/.gvimrc.core
 	@ln -sfv  $(DOTFILES)/vim/gvimrc.fullscreen ~/.gvimrc.fullscreen
 	@ln -sfv  $(DOTFILES)/vim/gvimrc ~/.gvimrc
-	@ln -nsfv $(DOTFILES)/bin ~/bin
 	@echo
 
-~/.config:
-	@mkdir ~/.config
+create-managed-symlinks:
+	@scripts/symlinks.sh dot-config ~/.config create
+	@scripts/symlinks.sh bin ~/bin create
 
-home-dot-config-symlinks:
-	@scripts/home-dot-config-symlinks.sh create
+clean-managed-symlinks:
+	@scripts/symlinks.sh dot-config ~/.config clean
+	@scripts/symlinks.sh bin ~/bin clean
 
 $(ZSH_ANTIGEN_REPO):
 	@echo "Cloning zsh-antigen, if needed..."
@@ -70,7 +74,7 @@ kinesis:
 install-software:
 	@scripts/install-software.sh
 
-clean:
+clean: clean-managed-symlinks
 	@echo "Removing symlinks..."
 	@rm -fv ~/.bashrc
 	@rm -fv ~/.profile
@@ -80,9 +84,6 @@ clean:
 	@rm -fv ~/.gvimrc.core
 	@rm -fv ~/.gvimrc.fullscreen
 	@rm -fv ~/.gvimrc
-	@rm -fv ~/bin
-	@echo
-	@scripts/home-dot-config-symlinks.sh clean
 	@echo
 	@echo "Note: Installed vim plugins are kept, unless you specify 'deepclean'."
 	@echo
