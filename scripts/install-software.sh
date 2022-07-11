@@ -26,6 +26,7 @@ gt() {
 	fi
 }
 
+# TODO: Tidy
 gp Darwin 'brew tap homebrew/cask-fonts'
 gp Darwin 'brew install --cask font-fira-code'
 
@@ -41,6 +42,6 @@ gt 'command -v pip3' 'pip3 install flake8'
 
 gt 'command -v gem' 'gem install bundler'
 
-gt 'command -v npm' 'npm install -g colour-contrast-cli eclint eslint http-server json-diff jsonlint npm npm-check package-json-validator stylelint stylelint-config-standard typescript'
+gt 'command -v npm' 'npm install -g bash-language-server colour-contrast-cli eclint eslint http-server json-diff jsonlint npm npm-check package-json-validator stylelint stylelint-config-standard typescript'
 
 echo Software installations complete.
