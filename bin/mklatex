@@ -5,8 +5,8 @@
 # Important Variables
 ##########################################
 
-PROGNAME=$(basename $0)
-DIR=$(basename $(pwd))
+PROGNAME=$(basename "$0")
+DIR=$(basename "$(pwd)")
 # FILE has to be defined slightly later...
 BIB='true'
 KOPT=${2:-'false'}
@@ -27,9 +27,9 @@ function mkl_checkreturn()
 	if [ $? != 0 ]; then
 		echo "ERROR!  There has been an error; exiting..."
 		if [ $WASDTX == 1 ]; then
-			lacheck $FILE.dtx
+			lacheck "$FILE.dtx"
 		else
-			lacheck $FILE
+			lacheck "$FILE"
 		fi
 		exit 42
 	fi
@@ -64,11 +64,11 @@ function mkl_usage()
 function mkl_docompile_pdflatex()
 {
 	if [[ -r $FILE.dtx ]]; then
-		pdflatex $FILE.dtx
+		pdflatex "$FILE.dtx"
 		RETVAL=$?
 		WASDTX=1
 	else
-		pdflatex $FILE
+		pdflatex "$FILE"
 		RETVAL=$?
 	fi
 	return $RETVAL
@@ -77,11 +77,11 @@ function mkl_docompile_pdflatex()
 function mkl_docompile_mp()
 {
 	echo METAPOST
-	ls *.mp > /dev/null 2> /dev/null
+	ls ./*.mp > /dev/null 2> /dev/null
 	RETVAL=$?
 	if [ $RETVAL == 0 ]; then
 		for mpfile in *.mp; do
-			mpost $mpfile || exit 42
+			mpost "$mpfile" || exit 42
 		done
 	else
 		echo It seems there are no .mp files here.
@@ -91,14 +91,14 @@ function mkl_docompile_mp()
 function mkl_docompile_eps()
 {
 	echo EPSTOPDF
-	ls *.eps > /dev/null 2> /dev/null
+	ls ./*.eps > /dev/null 2> /dev/null
 	RETVAL=$?
 	if [ $RETVAL == 0 ]; then
 		for epsfile in *.eps; do
-			if [ ! -f "$(basename -s .eps $epsfile).pdf" ]; then
-				$ECHO -n "$epsfile: " ; epstopdf $epsfile || exit 42 ; echo "done"
+			if [ ! -f "$(basename -s .eps "$epsfile").pdf" ]; then
+				$ECHO -n "$epsfile: " ; epstopdf "$epsfile" || exit 42 ; echo "done"
 			else
-				echo PDF of $epsfile already exists.
+				echo "PDF of $epsfile already exists."
 			fi
 		done
 	else
@@ -123,19 +123,19 @@ function mkl_docompile()
 	echo BibTeX
 	# compatible with multibib...
 	for BIBFILE in *.aux ; do
-		bibtex $(basename $BIBFILE .aux)
+		bibtex "$(basename "$BIBFILE" .aux)"
 	done
 	if [[ $? != 0 ]]; then
 		BIB='false'
 	fi
 	echo
 	# make glossaries?
-	if [ -r $FILE.glo ]; then
+	if [ -r "$FILE.glo" ]; then
 		echo makeglossaries 1
 		if [ $QUIET == 1 ]; then
-			makeglossaries $FILE 2> /dev/null
+			makeglossaries "$FILE" 2> /dev/null
 		else
-			makeglossaries $FILE
+			makeglossaries "$FILE"
 		fi
 		mkl_checkreturn
 		echo
@@ -149,9 +149,9 @@ function mkl_docompile()
 	mkl_checkreturn
 	echo
 	# update glossaries and PDF?
-	if [ -r $FILE.glo ]; then
+	if [ -r "$FILE.glo" ]; then
 		echo makeglossaries 2
-		makeglossaries $FILE > /dev/null 2> /dev/null
+		makeglossaries "$FILE" > /dev/null 2> /dev/null
 		mkl_checkreturn
 		echo
 		echo PDFLaTeX 4
@@ -163,7 +163,7 @@ function mkl_docompile()
 	# Errors and warnings...
 	if [[ -r $FILE.log ]]; then
 		echo ERRORS and WARNINGS:
-		grep -i '\(error\)\|\(warn\)' $FILE.log
+		grep -i '\(error\)\|\(warn\)' "$FILE.log"
 	else
 		echo No log file created???
 	fi
@@ -201,20 +201,20 @@ function mkl_ltcleanup()
 	if [ "$FILE" == "$DIR" ]; then
 		echo ...all tempfiles.
 		for suffix in $FORTHECHOP; do
-			for file in *.$suffix; do
-				[[ -w $file ]] && rm $file
+			for file in *."$suffix"; do
+				[[ -w $file ]] && rm "$file"
 			done
 		done
 	else
-		echo ...just $FILE tempfiles.
+		echo "...just $FILE tempfiles."
 		for suffix in $FORTHECHOP; do
 			for file in $FILE.$suffix; do
-				[[ -w $file ]] && rm $file
+				[[ -w $file ]] && rm "$file"
 			done
 		done
 	fi
 
-	[[ -w $FILE-blx.bib ]] && rm $FILE-blx.bib  # biblatex
+	[[ -w $FILE-blx.bib ]] && rm "$FILE-blx.bib"  # biblatex
 
 	return 0
 }
@@ -236,7 +236,7 @@ function mkl_mainwork {
 		$ECHO -n "(dtx) "
 	fi
 	echo "Compiled; runing LaCheck..."
-	lacheck $FILE
+	lacheck "$FILE"
 }
 
 if [[ $1 == '-h' ]] || [[ $1 == '--help' ]]; then
@@ -257,13 +257,13 @@ else
 	fi
 
 	# Remove .tex, .dtx or just . at end of filename...
-	FILE=$(basename -s .tex $FILE)
-	FILE=$(basename -s .dtx $FILE)
-	FILE=$(basename -s . $FILE)
+	FILE=$(basename -s .tex "$FILE")
+	FILE=$(basename -s .dtx "$FILE")
+	FILE=$(basename -s . "$FILE")
 
 	# Check if we're being called as ltcleanup...
 	if [[ $PROGNAME == 'ltcleanup' ]]; then
-		mkl_ltcleanup $KOPT
+		mkl_ltcleanup "$KOPT"
 		exit $?
 	fi
 

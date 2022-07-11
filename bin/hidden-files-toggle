@@ -1,11 +1,11 @@
 #!/bin/sh
 CURRENT=$(defaults read com.apple.finder AppleShowAllFiles)
-if [ $CURRENT == 'yes' ]; then
+if [ "$CURRENT" == 'yes' ]; then
 	NEW='no'
 else
 	NEW='yes'
 fi
 CMD="defaults write com.apple.finder AppleShowAllFiles $NEW"
-echo $CMD
+echo "$CMD"
 $CMD
 killall Finder
