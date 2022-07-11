@@ -1,13 +1,13 @@
 #!/bin/sh
-USAGE="Usage: $(basename $0) <source-dir> <destination-dir> <create|clean>"
+USAGE="Usage: $(basename "$0") <source-dir> <destination-dir> <create|clean>"
 
 create() {
 	echo "Creating $DEST_DIR_PRETTY symlinks"
 	for thing in "$SRC_DIR"/*; do
-		base=$(basename $thing)
+		base=$(basename "$thing")
 		full_dest="$DEST_DIR/$base"
-		if [ ! -e $full_dest ]; then
-			ln -vs "$thing" $DEST_DIR
+		if [ ! -e "$full_dest" ]; then
+			ln -vs "$thing" "$DEST_DIR"
 		else
 			echo "EXISTS; SKIPPING: $full_dest"
 		fi
@@ -19,10 +19,10 @@ clean() {
 	for thing in "$SRC_DIR"/*; do
 		base=$(basename "$thing")
 		full_dest="$DEST_DIR/$base"
-		if [ -h $full_dest ]; then
-			rm -v $full_dest
+		if [ -h "$full_dest" ]; then
+			rm -v "$full_dest"
 		else
-			if [ -e $full_dest ]; then
+			if [ -e "$full_dest" ]; then
 				echo "NON-LINK; SKIPPING: $full_dest"
 			else
 				echo "Doesn't exist; skipping: $full_dest"
@@ -32,7 +32,7 @@ clean() {
 }
 
 usage() {
-	echo $USAGE
+	echo "$USAGE"
 	if [ "$1" ]; then
 		echo "$1"
 	fi
@@ -44,13 +44,13 @@ if [ "$#" -ne 3 ]; then
 fi
 
 if [ -d "$1" ]; then
-	SRC_DIR=$(realpath $1)
+	SRC_DIR=$(realpath "$1")
 else
 	usage "$1 is not a directory"
 fi
 
 if [ -d "$2" ]; then
-	DEST_DIR=$(realpath $2)
+	DEST_DIR=$(realpath "$2")
 else
 	usage "$2 is not a directory"
 fi
@@ -59,7 +59,7 @@ if [ "$1" == "$2" ]; then
 	usage "Source and destination directories must differ"
 fi
 
-DEST_DIR_PRETTY=$(basename $DEST_DIR)
+DEST_DIR_PRETTY=$(basename "$DEST_DIR")
 
 case "$3" in
 	"create")

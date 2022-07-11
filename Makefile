@@ -46,12 +46,12 @@ home-dot-symlinks:
 	mkdir -pv ~/bin
 
 create-managed-symlinks: | ~/.config ~/bin
-	@bin/symlinks.sh dot-config ~/.config create
-	@bin/symlinks.sh bin ~/bin create
+	@bin/symlinks dot-config ~/.config create
+	@bin/symlinks bin ~/bin create
 
 clean-managed-symlinks:
-	@bin/symlinks.sh dot-config ~/.config clean
-	@bin/symlinks.sh bin ~/bin clean
+	@bin/symlinks dot-config ~/.config clean
+	@bin/symlinks bin ~/bin clean
 
 $(ZSH_ANTIGEN_REPO):
 	@echo "Cloning zsh-antigen, if needed..."
