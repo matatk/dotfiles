@@ -14,7 +14,7 @@ ZSH_ANTIGEN_PROG=~/.antigen
 	clean \
 	deepclean
 
-all: home-dot-symlinks create-managed-symlinks $(ZSH_ANTIGEN_REPO) kinesis
+all: test home-dot-symlinks create-managed-symlinks $(ZSH_ANTIGEN_REPO) kinesis
 	@echo "Reminders:"
 	@echo " * Changing shells: http://unix.stackexchange.com/questions/111365"
 	@echo " * Vim plugins are handled by vim-plug; run :PlugInstall in vim"
@@ -24,7 +24,7 @@ all: home-dot-symlinks create-managed-symlinks $(ZSH_ANTIGEN_REPO) kinesis
 
 test:
 	# Global settings are in .shellcheckrc so editor plugins benefit too
-	-shellcheck scripts/*.sh shell/*.sh
+	-shellcheck scripts/*.sh shell/*.sh bin/*
 	@echo
 
 # FIXME: These will be removed even if they weren't links
