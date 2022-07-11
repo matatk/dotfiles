@@ -1,4 +1,6 @@
 #!/bin/sh
+USAGE="Usage: $(basename $0) <source-dir> <destination-dir> <create|clean>"
+
 create() {
 	echo "Creating $DEST_DIR_PRETTY symlinks"
 	for thing in "$SRC_DIR"/*; do
@@ -29,22 +31,32 @@ clean() {
 	done
 }
 
-USAGE="Usage: $(basename $0) <source-dir> <destination-dir> <create|clean>"
+usage() {
+	echo $USAGE
+	if [ "$1" ]; then
+		echo "$1"
+	fi
+	exit 42
+}
+
+if [ "$#" -ne 3 ]; then
+	usage "Requires 3 arguments"
+fi
 
 if [ -d "$1" ]; then
 	SRC_DIR=$(realpath $1)
 else
-	echo $USAGE
-	echo "$1 is not a directory"
-	exit 42
+	usage "$1 is not a directory"
 fi
 
 if [ -d "$2" ]; then
 	DEST_DIR=$(realpath $2)
 else
-	echo $USAGE
-	echo "$2 is not a directory"
-	exit 42
+	usage "$2 is not a directory"
+fi
+
+if [ "$1" == "$2" ]; then
+	usage "Source and destination directories must differ"
 fi
 
 DEST_DIR_PRETTY=$(basename $DEST_DIR)
@@ -57,11 +69,7 @@ case "$3" in
 		clean
 		;;
 	*)
-		echo $USAGE
-		if [ "$1" ]; then
-			echo "Action \"$1\" is not valid"
-		fi
-		exit 42
+		usage "Action \"$3\" is not valid"
 esac
 
 echo
