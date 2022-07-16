@@ -1,5 +1,5 @@
-if [ -r ~/projects/doom-scripts/doom-starters.sh ]; then
-	source ~/projects/doom-scripts/doom-starters.sh
+if [ -r ~/dotfiles/shell/local-startup-sequence.sh ]; then
+	source ~/dotfiles/shell/local-startup-sequence.sh
 fi
 
 command -v fortune > /dev/null && fortune

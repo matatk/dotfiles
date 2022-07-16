@@ -1,5 +1,7 @@
 *.swp
 .DS_Store
+dot-config/kitty/startup.conf
+shell/local-startup-sequence.sh
 vim/dot-vim/autoload
 vim/dot-vim/plugged
 vim/dot-vim/.netrwhist
