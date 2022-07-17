@@ -1,4 +1,4 @@
-DOTFILES=~/dotfiles
+DOTFILES=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 VIM_BUNDLE_DIR=$(DOTFILES)/vim/dot-vim/plugged
 ZSH_ANTIGEN_REPO=~/.antigen-repo
 ZSH_ANTIGEN_PROG=~/.antigen
@@ -6,15 +6,18 @@ ZSH_ANTIGEN_PROG=~/.antigen
 .PHONY: \
 	all \
 	test \
+	shellrcs \
+	clean-shellrcs \
 	home-dot-symlinks \
-	create-managed-symlinks \
+	clean-home-dot-symlinks \
+	managed-symlinks \
 	clean-managed-symlinks \
 	kinesis \
 	install-software \
 	clean \
 	deepclean
 
-all: test home-dot-symlinks create-managed-symlinks $(ZSH_ANTIGEN_REPO) kinesis
+all: test shellrcs home-dot-symlinks managed-symlinks $(ZSH_ANTIGEN_REPO) kinesis
 	@echo "Reminders:"
 	@echo " * Changing shells: http://unix.stackexchange.com/questions/111365"
 	@echo " * Vim plugins are handled by vim-plug; run :PlugInstall in vim"
@@ -27,16 +30,41 @@ test:
 	-shellcheck scripts/*.sh shell/*.sh bin/*
 	@echo
 
+shellrcs: ~/.bashrc ~/.zshrc
+	@echo Generated shell RC files
+	@echo
+
+DOTFILES_PATH_STRING=$(subst /,\/,$(DOTFILES))
+SHELLRC = @cat $< | sed -e 's/DOTFILES_PATH/$(DOTFILES_PATH_STRING)/g' > $@
+
+~/.bashrc: $(DOTFILES)/shell/template.bashrc.sh
+	$(SHELLRC)
+
+~/.zshrc: $(DOTFILES)/shell/template.zshrc.zsh
+	$(SHELLRC)
+
+clean-shellrcs:
+	@echo Removing shell RC files...
+	@rm -fv ~/.bashrc
+	@rm -fv ~/.zshrc
+	@echo
+
 # FIXME: These will be removed even if they weren't links
 home-dot-symlinks:
-	@ln -sfv  $(DOTFILES)/shell/bashrc ~/.bashrc
-	@ln -sfv  ~/.bashrc ~/.profile
-	@ln -sfv  $(DOTFILES)/shell/zshrc ~/.zshrc
 	@ln -nsfv $(DOTFILES)/vim/dot-vim ~/.vim
 	@ln -sfv  $(DOTFILES)/vim/vimrc ~/.vimrc
 	@ln -sfv  $(DOTFILES)/vim/gvimrc.core ~/.gvimrc.core
 	@ln -sfv  $(DOTFILES)/vim/gvimrc.fullscreen ~/.gvimrc.fullscreen
 	@ln -sfv  $(DOTFILES)/vim/gvimrc ~/.gvimrc
+	@echo
+
+clean-home-dot-symlinks:
+	@echo "Removing direct home symlinks..."
+	@rm -fv ~/.vim
+	@rm -fv ~/.vimrc
+	@rm -fv ~/.gvimrc.core
+	@rm -fv ~/.gvimrc.fullscreen
+	@rm -fv ~/.gvimrc
 	@echo
 
 ~/.config:
@@ -45,7 +73,7 @@ home-dot-symlinks:
 ~/bin:
 	mkdir -pv ~/bin
 
-create-managed-symlinks: | ~/.config ~/bin
+managed-symlinks: | ~/.config ~/bin
 	@bin/symlinks dot-config ~/.config create
 	@bin/symlinks bin ~/bin create
 
@@ -80,17 +108,7 @@ kinesis:
 install-software:
 	@scripts/install-software.sh
 
-clean: clean-managed-symlinks
-	@echo "Removing symlinks..."
-	@rm -fv ~/.bashrc
-	@rm -fv ~/.profile
-	@rm -fv ~/.zshrc
-	@rm -fv ~/.vim
-	@rm -fv ~/.vimrc
-	@rm -fv ~/.gvimrc.core
-	@rm -fv ~/.gvimrc.fullscreen
-	@rm -fv ~/.gvimrc
-	@echo
+clean: clean-shellrcs clean-home-dot-symlinks clean-managed-symlinks
 	@echo "Note: Installed vim plugins are kept, unless you specify 'deepclean'."
 	@echo
 	@echo "Note: The other .gitignored vim files/dirs are always kept, even"
