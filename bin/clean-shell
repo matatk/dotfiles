@@ -17,7 +17,7 @@ else
 	echo "$BLURB"
 	cd || exit 43
 	rm -fv Thumbs.db
-	for file in $(ls -a); do
+	for file in .*; do
 		if [ -d "$file" ] && [ "$file" != "." ] && [ "$file" != ".." ]; then
 			echo "Cleaning $file..."
 			clean_dir "$file"

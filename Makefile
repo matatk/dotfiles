@@ -22,8 +22,6 @@ all: test shellrcs home-dot-symlinks managed-symlinks $(ZSH_ANTIGEN_REPO) kinesi
 	@echo " * Changing shells: http://unix.stackexchange.com/questions/111365"
 	@echo " * Vim plugins are handled by vim-plug; run :PlugInstall in vim"
 	@echo " * To install software: make install-software"
-	@echo " * Homebrew's Perl has its own CPAN, which can use local::lib and install"
-	@echo "   to ~/perl5/ -- which these scripts will detect and add to the PATH."
 
 test:
 	# Global settings are in .shellcheckrc so editor plugins benefit too

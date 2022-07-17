@@ -3,16 +3,9 @@ if [ "$(uname -s)" = 'Darwin' ]; then
 	[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 export PATH=$HOME/bin:$PATH
-export EDITOR="$(which vim)"  # used by git commit et al
+EDITOR="$(which vim)"  # used by git commit et al
+export EDITOR
 export XML_CATALOG_FILES="$HOMEBREW_PREFIX/etc/xml/catalog"  # for DocBook
-
-if [ -d ~/perl5 ]; then
-	PATH="$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;
-	PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-	PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-	PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
-	PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
-fi
 
 BREW_RUBY="$HOMEBREW_PREFIX/opt/ruby"
 if [ -d "$BREW_RUBY" ]; then
