@@ -21,7 +21,6 @@ Plug 'jaxbot/semantic-highlight.vim'  " What it says on the tin!
 Plug 'kchmck/vim-coffee-script'       " CoffeeScript Support
 Plug 'tomasr/molokai'                 " Colour scheme
 Plug 'gu-fan/colorv.vim'              " Colour preview and editing tools
-Plug 'scrooloose/nerdtree'            " Exploration and manipulation
 Plug 'tpope/vim-fugitive'             " Git magic
 Plug 'ntpeters/vim-better-whitespace' " Dealing with trailing whitespace
 Plug 'tpope/vim-unimpaired'           " Nice shortcuts
