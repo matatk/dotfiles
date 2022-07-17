@@ -82,6 +82,27 @@ function gftc() {
 
 
 #
+# Text searching
+#
+
+alias rgi='rg -i'
+
+alias rf="rg '\WFIXME\W'"
+alias rft="rg '\W(FIXME|TODO)\W'"
+alias rftn="rg '\W(FIXME|TODO|NOTE)\W'"
+
+function rftc() {
+	echo "$(rg '\WFIXME\W' | wc -l) FIXMEs"
+	echo "$(rg '\WTODO\W' | wc -l) TODOs"
+}
+function rftnc() {
+	echo "$(rg '\WFIXME\W' | wc -l) FIXMEs"
+	echo "$(rg '\WTODO\W' | wc -l) TODOs"
+	echo "$(rg '\WNOTE\W' | wc -l) NOTEs"
+}
+
+
+#
 # Custom commands
 #
 
