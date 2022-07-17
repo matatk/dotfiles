@@ -1,5 +1,5 @@
 DOTFILES=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
-VIM_BUNDLE_DIR=$(DOTFILES)/vim/dot-vim/plugged
+VIM_PLUGIN_DIR=$(DOTFILES)/vim/dot-vim/plugged
 ZSH_ANTIGEN_REPO=~/.antigen-repo
 ZSH_ANTIGEN_PROG=~/.antigen
 
@@ -15,6 +15,8 @@ ZSH_ANTIGEN_PROG=~/.antigen
 	kinesis \
 	install-software \
 	clean \
+	clean-vim-plugin-dir \
+	clean-zsh-antigen-dirs \
 	deepclean
 
 all: test shellrcs home-dot-symlinks managed-symlinks $(ZSH_ANTIGEN_REPO) kinesis
@@ -112,10 +114,14 @@ clean: clean-shellrcs clean-home-dot-symlinks clean-managed-symlinks
 	@echo "Note: The other .gitignored vim files/dirs are always kept, even"
 	@echo "      if you /do/ specify 'deepclean'."
 
-deepclean: clean
+clean-vim-plugin-dir:
 	@echo
-	@echo "Removing Vim bundle directory..."
-	rm -rf $(VIM_BUNDLE_DIR)
+	@echo "Removing Vim plugin directory..."
+	rm -rf $(VIM_PLUGIN_DIR)
 	@echo
+
+clean-zsh-antigen-dirs:
 	@echo "Removing Zsh Antigen repo and bundle directory..."
 	rm -rf $(ZSH_ANTIGEN_REPO) $(ZSH_ANTIGEN_PROG)
+
+deepclean: clean clean-vim-plugin-dir clean-zsh-antigen-dirs
