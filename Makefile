@@ -31,11 +31,14 @@ test:
 	@echo
 
 shellrcs: ~/.bashrc ~/.zshrc
-	@echo Generated shell RC files
 	@echo
 
 DOTFILES_PATH_STRING=$(subst /,\/,$(DOTFILES))
-SHELLRC = @cat $< | sed -e 's/DOTFILES_PATH/$(DOTFILES_PATH_STRING)/g' > $@
+
+define SHELLRC
+@echo "Generating $@..."
+@cat $< | sed -e 's/DOTFILES_PATH/$(DOTFILES_PATH_STRING)/g' > $@
+endef
 
 ~/.bashrc: $(DOTFILES)/shell/template.bashrc.sh
 	$(SHELLRC)

@@ -29,3 +29,4 @@ PS1='$(show_virtual_env)'$PS1
 
 eval "$(direnv hook bash)"
 source "$DOTFILES/shell/startup-sequence.sh"
+unset DOTFILES

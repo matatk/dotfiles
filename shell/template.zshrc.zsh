@@ -239,3 +239,4 @@ antigen apply
 
 eval "$(direnv hook zsh)"
 source $DOTFILES/shell/startup-sequence.sh
+unset DOTFILES
