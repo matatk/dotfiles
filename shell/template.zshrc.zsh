@@ -82,8 +82,8 @@ function prompt_current_directory {
 	echo "%{$fg[blue]%}%c"
 }
 
+# http://dougblack.io/words/zsh-vi-mode.html / https://web.archive.org/web/20220107060116/http://dougblack.io/words/zsh-vi-mode.html
 function prompt_vi_mode {
-	# http://dougblack.io/words/zsh-vi-mode.html
 	echo ${${KEYMAP/vicmd/[NORMAL] }/(main|viins)/}
 }
 
@@ -151,6 +151,8 @@ setopt hist_ignore_dups    # ignore commands repeated in a row
 # Keybindings
 ################################
 
+# NOTE: Press CTRL-V and then a key for the binding code for that key.
+
 bindkey -v  # vi-style keybindings; yay :-)
 
 # Histroy search using any already-typed stuff as beginning
@@ -171,26 +173,14 @@ bindkey "^[[B" down-line-or-beginning-search
 #  * http://unix.stackexchange.com/questions/97843/how-can-i-search-history-with-what-is-already-entered-at-the-prompt-in-zsh
 
 # Keys to fix the weird default behaviours
-bindkey '^[[3~' delete-char  # still doesn't work in vi-normal mode
-bindkey '^[h' run-help       # restores the default behaviour
+bindkey '^[[3~' delete-char  # FIXME: doesn't work in vi-normal mode (DEL)
+bindkey '^[h' run-help       # restores the default behaviour (ESC-h)
 
-# Suggested keybindings from: http://dougblack.io/words/zsh-vi-mode.html
-
-# Use vim cli mode
-bindkey '^P' up-history
-bindkey '^N' down-history
-
-# backspace and ^h working even after
-# returning from command mode
+# Suggested keybindings from: http://dougblack.io/words/zsh-vi-mode.html / https://web.archive.org/web/20220107060116/http://dougblack.io/words/zsh-vi-mode.html
+bindkey '^r' history-incremental-search-backward
+# backspace and ^h working even after returning from command mode
 bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
-# FIXME delete doesn't work
-
-# ctrl-w removed word backwards
-bindkey '^w' backward-kill-word
-
-# ctrl-r starts searching history backward
-bindkey '^r' history-incremental-search-backward
 
 
 ################################
