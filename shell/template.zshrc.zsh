@@ -224,9 +224,11 @@ antigen apply
 
 
 ################################
-# Startup
+# Shell-specific hooks
 ################################
 
 eval "$(direnv hook zsh)"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 source $DOTFILES/shell/startup-sequence.sh
 unset DOTFILES

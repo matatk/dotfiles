@@ -2,9 +2,11 @@ if [ "$(uname -s)" = 'Darwin' ]; then
 	[ -x /usr/local/bin/brew ] && eval "$(/usr/local/bin/brew shellenv)"
 	[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
+
 export PATH=$HOME/bin:$PATH
 EDITOR="$(which vim)"  # used by git commit et al
 export EDITOR
+
 export XML_CATALOG_FILES="$HOMEBREW_PREFIX/etc/xml/catalog"  # for DocBook
 
 BREW_RUBY="$HOMEBREW_PREFIX/opt/ruby"
@@ -21,3 +23,8 @@ BREW_NODE="$HOMEBREW_PREFIX/opt/node@16/bin"
 if [ -d "$BREW_NODE" ]; then
 	export PATH="$PATH:$BREW_NODE"
 fi
+
+# TODO: Only if fzf is installed
+export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND='fd --type d'

@@ -32,13 +32,13 @@ install_fira_code_font() {
 
 gp Darwin install_fira_code_font
 
-gp Darwin 'brew install bash-completion coreutils direnv fd fortune mas node@16 python rename ripgrep rpl ruby shellcheck tree zsh'
+gp Darwin 'brew install bash-completion bat coreutils direnv fd fortune fzf mas node@16 python rename ripgrep rpl ruby shellcheck tree zsh'
 
 gp Darwin 'brew install --cask caffeine colour-contrast-analyser firefox github google-chrome kitty macdown macvim meld microsoft-edge rectangle spotify'
 
 gp Darwin 'brew install --cask libreoffice'
 
-gp Linux 'sudo apt install direnv fd rename ripgrep rpl shellcheck tree zsh'
+gp Linux 'sudo apt install direnv fd fzf rename ripgrep rpl rust-bat shellcheck tree zsh'
 
 gt 'command -v pip3' 'pip3 install flake8'
 

@@ -2,8 +2,6 @@
 # Standard UNIX commands
 #
 
-alias icat='kitty +kitten icat'
-
 # Where is a command/binary defined/located?
 alias cv='command -v'
 
@@ -106,6 +104,8 @@ function rftnc() {
 # Custom commands
 #
 
+alias icat='kitty +kitten icat'
+
 # Simple searching for text strings, then listing and editing the found files
 _CORE_GREP_OPTS=(
 	--exclude-dir=node_modules
@@ -121,7 +121,7 @@ function sf() {
 	grep "${_CORE_GREP_OPTS[@]}" -l "$@" .
 }
 function se() {
-	grep "${_CORE_GREP_OPTS[@]}" -l "$@" . | xargs mvim --remote-tab
+	grep "${_CORE_GREP_OPTS[@]}" -l "$@" . | xargs 'gvim' --remote-tab-silent
 }
 function si() {
 	grep "${_CORE_GREP_OPTS[@]}" -i "$@" .
@@ -130,8 +130,10 @@ function sif() {
 	grep "${_CORE_GREP_OPTS[@]}" -il "$@" .
 }
 function sie() {
-	grep "${_CORE_GREP_OPTS[@]}" -il "$@" . | xargs mvim --remote-tab
+	grep "${_CORE_GREP_OPTS[@]}" -il "$@" . | xargs 'gvim' --remote-tab-silent
 }
+
+alias ffp="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 
 function catsay() {
 	cat "$1" && say -f "$1"
@@ -222,11 +224,19 @@ alias brewup='brew update && brew upgrade'
 # General development
 #
 
+gvim() {
+	if [ $# -eq 0 ]; then
+		command gvim
+	else
+		command gvim --remote-tab-silent "$@"
+	fi
+}
+alias v=gvim
+
 alias slt='stylelint --config-basedir /usr/local/lib/node_modules/stylelint/'
 alias ogd='open . -a Github\ Desktop'
 alias orm='open README.md -a MacDown'
 alias om='open -a MacDown'
-alias mvt='mvim --remote-tab'
 
 # C/C++
 alias chsbs='mvim -U ~/.gvimrc.fullscreen -p *.c -c "tabdo vsp %<.h | windo set nowrap"'
