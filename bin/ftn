@@ -1,0 +1,117 @@
+#!/usr/bin/env bash
+# based on https://github.com/junegunn/fzf/blob/master/ADVANCED.md#using-fzf-as-the-secondary-filter
+
+usage() {
+	echo "Search for and edit (or count) FIXMEs, TODOs, and NOTEs"
+	echo
+	echo "By default, this uses ripgrep and fzf to find action items and open"
+	echo "them in your \$EDITOR. You can also use it just to count the number"
+	echo "of action items."
+	echo
+	echo "Usage: $(basename "$0") <query-options> [-c] [-h]"
+	echo
+	echo "  Query options must contain one of the following:"
+	echo "    -f FIXMEs"
+	echo "    -t TODOs"
+	echo "    -n NOTEs"
+	echo "    -a all three (overides any other query options)"
+	echo
+	echo "  Other options:"
+	echo "    -c Count the selected items, instead of searching for them"
+	echo "    -h Show this help message."
+	echo
+	echo "Only entirely upper-case forms of the query terms are matched."
+	echo
+	echo "This script requires ripgrep (rg), fzf and bat."
+}
+
+error() {
+	echo "ERROR: $1"
+	echo
+}
+
+exit_error() {
+	usage
+	exit 42
+}
+
+exit_ok() {
+	exit 0
+}
+
+core() {
+	IFS=: read -ra selected < <(
+	rg --color=always --line-number --no-heading "$1" |
+		fzf --ansi \
+		--color "hl:-1:underline,hl+:-1:underline:reverse" \
+		--delimiter : \
+		--preview 'bat --color=always {1} --highlight-line {2}' \
+		--preview-window 'up,60%,border-bottom,+{2}+3/3,~3'
+	)
+	[ -n "${selected[0]}" ] && $EDITOR "+${selected[1]}" "${selected[0]}"
+}
+
+# Thanks https://stackoverflow.com/a/17841619/1485308
+function join_by { local IFS="$1"; shift; echo "$*"; }
+
+
+#
+# Check for required programes
+#
+
+REQUIRED=('rg' 'fzf' 'bat')
+MISSING=()
+for prog in "${REQUIRED[@]}"; do
+	if ! command -v "$prog" &> /dev/null; then
+		MISSING+=("Needed command '$prog' is missing")
+	fi
+done
+if [ ${#MISSING[@]} -gt 0 ]; then
+	for message in "${MISSING[@]}"; do
+		error "$message"
+	done
+	exit_error
+fi
+
+
+#
+# Main
+#
+
+MODE='search'
+SEARCH_FOR=()
+
+while getopts ':ftnach' options; do
+	case "$options" in
+		a) SEARCH_FOR=('FIXME' 'TODO' 'NOTE') ;;
+		f) SEARCH_FOR+=('FIXME') ;;
+		t) SEARCH_FOR+=('TODO') ;;
+		n) SEARCH_FOR+=('NOTE') ;;
+		c) MODE='count' ;;
+		h) usage; exit_ok ;;
+		*) error "Invalid option: $OPTARG"; exit_error
+	esac
+done
+
+if [ ${#SEARCH_FOR[@]} -eq 0 ]; then
+	error 'You must select at least one action item to query.'
+	exit_error
+fi
+
+case "$MODE" in
+	'search')
+		INNER_QUERY=$(join_by '|' "${SEARCH_FOR[@]}")
+		if [ ${#SEARCH_FOR[@]} -eq 1 ]; then
+			OUTER_QUERY="\W$INNER_QUERY\W"
+		else
+			OUTER_QUERY="\W($INNER_QUERY)\W"
+		fi
+		core "$OUTER_QUERY" ;;
+	'count')
+		for thing in "${SEARCH_FOR[@]}"; do
+			echo "$(rg "\W$thing\W" | wc -l) ${thing}s"
+		done ;;
+	*)
+		error "INTERNAL BUG: Invalid mode: $MODE"
+		exit_error
+esac

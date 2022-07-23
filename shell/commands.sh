@@ -73,31 +73,34 @@ alias gftn="git grep -Ei '\W(FIXME|TODO|NOTE)\W'"
 alias gds='git diff --stat'
 alias gdsm='gds main'
 
+# FIXME: These are case-insensitive; should the new ones be?
+# FIXME: What about colons?
 function gftc() {
 	echo "$(git grep -Ei '\WFIXME\W' | wc -l) FIXMEs"
 	echo "$(git grep -Ei '\WTODO\W' | wc -l) TODOs"
 }
 
+# FIXME: These are case-insensitive; should the new ones be?
+# FIXME: What about colons?
+function gftnc() {
+	echo "$(git grep -Ei '\WFIXME\W' | wc -l) FIXMEs"
+	echo "$(git grep -Ei '\WTODO\W' | wc -l) TODOs"
+	echo "$(git grep -Ei '\WNOTE\W' | wc -l) NOTEs"
+}
+
 
 #
-# Text searching
+# Text searching and editing
 #
 
 alias rgi='rg -i'
 
-alias rf="rg '\WFIXME\W'"
-alias rft="rg '\W(FIXME|TODO)\W'"
-alias rftn="rg '\W(FIXME|TODO|NOTE)\W'"
+# search for (or count) fixmes, todos, and notes
+alias ftn="EDITOR='gvim --remote-tab-silent' ftn"
 
-function rftc() {
-	echo "$(rg '\WFIXME\W' | wc -l) FIXMEs"
-	echo "$(rg '\WTODO\W' | wc -l) TODOs"
-}
-function rftnc() {
-	echo "$(rg '\WFIXME\W' | wc -l) FIXMEs"
-	echo "$(rg '\WTODO\W' | wc -l) TODOs"
-	echo "$(rg '\WNOTE\W' | wc -l) NOTEs"
-}
+# ripgrep-fzf-edit commands (base rfe script is in bin/)
+alias rfv=rfe  # my default EDITOR is vim anyway
+alias rfgv="EDITOR='gvim --remote-tab-silent' rfe"
 
 
 #
@@ -105,33 +108,6 @@ function rftnc() {
 #
 
 alias icat='kitty +kitten icat'
-
-# Simple searching for text strings, then listing and editing the found files
-_CORE_GREP_OPTS=(
-	--exclude-dir=node_modules
-	--exclude-dir=.nyc_output
-	--exclude-dir=coverage
-	--exclude='*.swp'
-	-r
-)
-function s() {
-	grep "${_CORE_GREP_OPTS[@]}" "$@" .
-}
-function sf() {
-	grep "${_CORE_GREP_OPTS[@]}" -l "$@" .
-}
-function se() {
-	grep "${_CORE_GREP_OPTS[@]}" -l "$@" . | xargs 'gvim' --remote-tab-silent
-}
-function si() {
-	grep "${_CORE_GREP_OPTS[@]}" -i "$@" .
-}
-function sif() {
-	grep "${_CORE_GREP_OPTS[@]}" -il "$@" .
-}
-function sie() {
-	grep "${_CORE_GREP_OPTS[@]}" -il "$@" . | xargs 'gvim' --remote-tab-silent
-}
 
 alias ffp="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 

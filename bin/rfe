@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 # https://github.com/junegunn/fzf/blob/master/ADVANCED.md#switching-between-ripgrep-mode-and-fzf-mode
-# text or graphical vim variations added by matatk
-[ "$(basename "$0")" == "rfgv" ] && RUN='gvim --remote-tab-silent'
-[ "$(basename "$0")" == "rfv" ] && RUN=vim
-[ -z "$RUN" ] && echo "Not prepared to be called as $(basename "$0")" && exit 42
+# EDITOR added, and EDITOR command-line order changed by matatk
+
 # Switch between Ripgrep launcher mode (CTRL-R) and fzf filtering mode (CTRL-F)
 RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
 INITIAL_QUERY="${*:-}"
@@ -21,4 +19,4 @@ IFS=: read -ra selected < <(
       --preview 'bat --color=always {1} --highlight-line {2}' \
       --preview-window 'up,60%,border-bottom,+{2}+3/3,~3'
 )
-[ -n "${selected[0]}" ] && $RUN "+${selected[1]}" "${selected[0]}"
+[ -n "${selected[0]}" ] && $EDITOR "+${selected[1]}" "${selected[0]}"
