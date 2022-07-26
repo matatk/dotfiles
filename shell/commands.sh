@@ -157,17 +157,12 @@ function pretty_tsv {
 }
 alias ptsv=pretty_tsv
 
-# Shorter versions
-alias jt='bundle exec jekyll serve --drafts --incremental'
-alias karabiner="/Applications/Karabiner.app/Contents/Library/bin/karabiner"
-
 
 #
 # Package management
 #
 
-# Homebrew update and upgrade
-# TODO: Only define if using brew?
+# FIXME: Only define if using brew?
 alias brewup='brew update && brew upgrade'
 # can use brew autoremove to uninstall unused packages
 # can use brew doctor to check for problems
@@ -175,8 +170,13 @@ alias brewup='brew update && brew upgrade'
 
 
 #
-# General development
+# Development
 #
+
+alias jt='bundle exec jekyll serve --drafts --incremental'
+alias ogd='open . -a Github\ Desktop'
+alias orm='open README.md -a MacDown'
+alias om='open -a MacDown'
 
 gvim() {
 	if [ $# -eq 0 ]; then
@@ -187,22 +187,16 @@ gvim() {
 }
 alias v=gvim
 
-alias slt='stylelint --config-basedir /usr/local/lib/node_modules/stylelint/'
-alias ogd='open . -a Github\ Desktop'
-alias orm='open README.md -a MacDown'
-alias om='open -a MacDown'
-
 # C/C++
 alias chsbs='mvim -U ~/.gvimrc.fullscreen -p *.c -c "tabdo vsp %<.h | windo set nowrap"'
 alias hcsbs='mvim -U ~/.gvimrc.fullscreen -p *.h -c "set splitright | tabdo vsp %<.c | windo set nowrap"'
 alias mkcompdb='make clean && intercept-build make && cat compile_commands.json'
 
-# NPM
 # https://gist.github.com/yyx990803/6045243
 alias npml="npm list --depth=0 2>/dev/null"
 alias renpm='rm -rf package-lock.json node_modules && npm install'
 
-# Use the same flake8 settings on the command-line as in ViM
+# Use the same flake8 settings on the command-line as in Vim
 # This also ignores a standardly-named virtualenv directory
 alias f8='flake8 --ignore="W191,E117,W503" --exclude .venv'
 
