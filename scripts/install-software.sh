@@ -1,49 +1,58 @@
 #!/bin/sh
-gr() {
-	COMMAND=$1
-	read -rp "Would you like to run: $COMMAND (y/n)? " -n 1
+core() {
+	pretty=$1
+	shift
+	echo "$pretty:"
+	for cmd in "$@"; do
+		echo "> $cmd"
+	done
+	if [ $# -gt 1 ]; then
+		these_commands=' these commands'
+	fi
+	read -rp "Run$these_commands (y/n)? " -n 1
 	echo
 	if [ "$REPLY" = 'y' ]; then
-		$COMMAND
-	fi
-}
-
-gp() {
-	PLATFORM=$1
-	INSTALL_CMD=$2
-	if [ "$(uname -s)" = "$PLATFORM" ]; then
-		gr "$INSTALL_CMD"
+		echo
+		for cmd in "$@"; do
+			$cmd
+		done
 		echo
 	fi
+	echo
 }
 
-gt() {
-	TEST_CMD=$1
-	INSTALL_CMD=$2
-	if $TEST_CMD > /dev/null; then
-		gr "$INSTALL_CMD"
-		echo
+on_platform() {
+	platform=$1
+	shift
+	if [ "$(uname -s)" = "$platform" ]; then
+		core "$@"
 	fi
 }
 
-install_fira_code_font() {
-	brew tap homebrew/cask-fonts && brew install --cask font-fira-code
+if_test() {
+	test_cmd=$1
+	shift
+	if $test_cmd > /dev/null; then
+		core "$@"
+	fi
 }
 
-gp Darwin install_fira_code_font
+on_platform Darwin 'Utilities' \
+	'brew install bash-completion bat coreutils direnv fd fortune fzf mas node@16 python rename ripgrep rpl shellcheck tree zsh' \
+	'brew install --cask caffeine colour-contrast-analyser firefox github google-chrome kitty macdown macvim meld microsoft-edge rectangle spotify' \
+	'brew tap homebrew/cask-fonts' \
+	'brew install --cask font-fira-code'
 
-gp Darwin 'brew install bash-completion bat coreutils direnv fd fortune fzf mas node@16 python rename ripgrep rpl ruby shellcheck tree zsh'
+on_platform Linux 'Utilities' \
+	'sudo apt install direnv fd fzf rename ripgrep rpl rust-bat shellcheck tree zsh'
 
-gp Darwin 'brew install --cask caffeine colour-contrast-analyser firefox github google-chrome kitty macdown macvim meld microsoft-edge rectangle spotify'
+if_test 'command -v pip3' 'Python linter' \
+	'pip3 install flake8'
 
-gp Darwin 'brew install --cask libreoffice'
+if_test 'command -v gem' 'Ruby package manager' \
+	'gem install bundler'
 
-gp Linux 'sudo apt install direnv fd fzf rename ripgrep rpl rust-bat shellcheck tree zsh'
+if_test 'command -v npm' 'Important JavaScript utilities' \
+	'npm install -g bash-language-server colour-contrast-cli eclint eslint http-server json-diff jsonlint npm npm-check package-json-validator stylelint stylelint-config-standard typescript'
 
-gt 'command -v pip3' 'pip3 install flake8'
-
-gt 'command -v gem' 'gem install bundler'
-
-gt 'command -v npm' 'npm install -g bash-language-server colour-contrast-cli eclint eslint http-server json-diff jsonlint npm npm-check package-json-validator stylelint stylelint-config-standard typescript'
-
-echo Software installations complete.
+echo 'Software installations complete.'
