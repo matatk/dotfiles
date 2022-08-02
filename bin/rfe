@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # https://github.com/junegunn/fzf/blob/master/ADVANCED.md#switching-between-ripgrep-mode-and-fzf-mode
 # EDITOR added, and EDITOR command-line order changed by matatk
 

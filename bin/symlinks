@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 USAGE="Usage: $(basename "$0") <source-dir> <destination-dir> <create|clean>"
 
 create() {

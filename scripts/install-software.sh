@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 core() {
 	pretty=$1
 	shift
