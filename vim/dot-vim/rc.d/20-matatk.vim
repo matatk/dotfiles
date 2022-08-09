@@ -24,7 +24,9 @@ nmap <leader>t :Toc<CR>
 nmap <leader>w :call ToggleTabWidth()<CR>
 " Note: ColorV uses <leader>c* mappings.
 
-" Tab navigation; http://vimcasts.org/episodes/working-with-tabs/
+" Tab navigation
+" http://vimcasts.org/episodes/working-with-tabs/
+" https://vim.fandom.com/wiki/Using_tab_pages
 map <D-S-]> gt
 map <D-S-[> gT
 map <D-1> 1gt
@@ -37,9 +39,6 @@ map <D-7> 7gt
 map <D-8> 8gt
 map <D-9> 9gt
 map <D-0> :tablast<CR>
-
-" Show tab summary; https://vim.fandom.com/wiki/Using_tab_pages
-map T :tabs<CR>
 
 
 "
@@ -79,7 +78,6 @@ autocmd BufNewFile,BufRead *.applescript set filetype=applescript
 " Colours
 "
 
-"let g:molokai_original = 1
 let g:rehash256 = 1
 colorscheme molokai
 
@@ -112,6 +110,7 @@ set number
 set smartcase  " searches are only case-sensitive if the pattern is
 set wildmenu   " http://derekwyatt.org/2009/08/20/the-absolute-bare-minimum/
 set tabpagemax=42
+set relativenumber  " Thanks, ThePrimeagen
 
 
 "
