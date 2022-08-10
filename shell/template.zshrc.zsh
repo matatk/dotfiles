@@ -98,13 +98,13 @@ function prompt_git_branch {
 function prompt_right {
 	# Wrapped in a function because it needs to be called in two places
 	# (one to set it to start off with and the other to reflect mode changes).
-	echo "%{$fg[yellow]%}$(prompt_vi_mode)$(prompt_git_branch)%{$reset_color%}"
+	echo "%{$fg[yellow]%}$(prompt_vi_mode)$(prompt_git_branch)%{$reset_color%} %T"
 }
 
 # Set the actual prompts.  Whichever prompt (left or right) that includes the
 # vi editing mode should also be set in the hook that reacts to mode changes.
 PROMPT="$(prompt_return_status) $(prompt_current_directory) %{$reset_color%}"
-RPROMPT=$(prompt_right)
+RPROMPT="$(prompt_right)"
 
 # https://github.com/direnv/direnv/wiki/Python
 show_virtual_env() {
