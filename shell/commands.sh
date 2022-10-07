@@ -41,21 +41,14 @@ alias ud='du -sch *'
 # Trees!
 #
 
-alias t='tree'
-alias td='tree -d'
-alias tl='tree -ps'
-alias th='tree -psh'
-alias ta='tree -a'
-alias tal='tree -aps'
-alias tah='tree -apsh'
-alias tahng='tree -apsh -I .git'
-alias tahnng='tree -apsh -I "node_modules|.git"'
-alias tng='tree -I .git'
-alias tngd='tree -I .git -d'
-alias tnn='tree -I node_modules'
-alias tnnd='tree -I node_modules -d'
-alias tnng='tree -I "node_modules|.git"'
-alias tnngd='tree -I "node_modules|.git" -d'
+alias t='tree -I node_modules'
+alias ta='tree -aI "node_modules|.git"'
+alias th='t -h'
+alias tah='ta -h'
+alias tl='t -ph'
+alias tal='ta -ph'
+alias td='t -d'
+alias tad='ta -d'
 
 
 #
