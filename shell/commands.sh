@@ -33,8 +33,11 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
-# Useful du shortcut
-alias ud='du -sch *'
+alias bat='bat --tabs 4 --theme Dracula'
+alias  b='bat --tabs 4 -pp --theme Dracula'
+alias bn='bat --tabs 4 -nP --theme Dracula'
+alias  c='clear && bat --tabs 4 -pp --theme Dracula'
+alias cn='clear && bat --tabs 4 -nP --theme Dracula'
 
 
 #
