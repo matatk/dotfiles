@@ -53,6 +53,15 @@ alias tal='ta -ph'
 alias td='t -d'
 alias tad='ta -d'
 
+alias T='tree --gitignore -I .git'
+alias Ta='tree -a --gitignore -I .git'
+alias Th='T -h'
+alias Tah='Ta -h'
+alias Tl='T -ph'
+alias Tal='Ta -ph'
+alias Td='T -d'
+alias Tad='Ta -d'
+
 
 #
 # Quicker git stuff
