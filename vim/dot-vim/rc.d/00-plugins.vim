@@ -14,7 +14,8 @@ let g:coc_global_extensions = [
 			\ 'coc-json',
 			\ 'coc-pyright',
 			\ 'coc-stylelintplus',
-			\ 'coc-tsserver'
+			\ 'coc-tsserver',
+			\ 'coc-deno',
 			\ ]
 Plug 'sjl/gundo.vim'                  " Awesome graph-based undo
 Plug 'jaxbot/semantic-highlight.vim'  " What it says on the tin!
