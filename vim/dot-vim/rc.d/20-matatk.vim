@@ -65,8 +65,13 @@ autocmd FileType text,markdown,html,javascript,coffee,python,sh,c,cpp
 	\ autocmd BufWritePre <buffer> StripWhitespace
 
 " Use tabs for indenting Python code
+" NOTE: Must be done explicitly to override the default filetype handling.
 autocmd FileType python
-	\ setlocal noexpandtab
+       \ setlocal noexpandtab
+
+" Use two spaces for indenting JSON files
+autocmd FileType json
+	\ setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
 " Recognise AppleScript files
 autocmd BufNewFile,BufRead *.applescript set filetype=applescript
