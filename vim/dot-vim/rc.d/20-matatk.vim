@@ -64,11 +64,9 @@ set listchars=tab:▸\ ,eol:¬
 autocmd FileType text,markdown,html,javascript,coffee,python,sh,c,cpp
 	\ autocmd BufWritePre <buffer> StripWhitespace
 
-" Use an indent of four spaces when editing Python
-" However I like to ignore this with .editorconfig files and also am about to
-" ignore flake8 warnings about tabs in indentation...
+" Use tabs for indenting Python code
 autocmd FileType python
-	\ setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+	\ setlocal noexpandtab
 
 " Recognise AppleScript files
 autocmd BufNewFile,BufRead *.applescript set filetype=applescript
