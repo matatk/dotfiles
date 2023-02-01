@@ -12,13 +12,10 @@ function aliases() {
 # shellcheck disable=SC2139
 # (Directive must come after another command, or applies to whole file.)
 function make_ls_aliases() {
-	alias  ls="$1ls --color=auto"
-	alias   l="$1ls --color=auto -CF"
-	alias  la="$1ls --color=auto -a"
-	alias  ll="$1ls --color=auto -l"
-	alias lal="$1ls --color=auto -la"
-	alias  lh="$1ls --color=auto -lh"
-	alias lah="$1ls --color=auto -lha"
+	alias  h="$1ls --color=auto -lh"
+	alias  a="$1ls --color=auto -lha"
+	alias  l="$1ls --color=auto -l"
+	alias al="$1ls --color=auto -la"
 }
 
 if [ "$(uname -s)" = 'Darwin' ]; then
