@@ -113,6 +113,7 @@ alias rfgv="EDITOR='gvim --remote-tab-silent' rfe"
 #
 
 alias icat='kitty +kitten icat'
+alias fs='kitty --start-as fullscreen --session fsplit.conf &'
 
 alias ffp="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 
