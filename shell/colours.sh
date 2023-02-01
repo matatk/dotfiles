@@ -7,3 +7,5 @@ fi
 
 # Ask grep to use colours
 alias grep='grep --color=auto'
+
+export BAT_THEME='Dracula'
