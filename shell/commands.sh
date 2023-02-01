@@ -41,21 +41,13 @@ alias cn='clear && bat --tabs 4 -nP --theme Dracula'
 # Trees!
 #
 
-alias t='tree -I node_modules'
-alias ta='tree -aI "node_modules|.git"'
-alias th='t -h'
-alias tah='ta -h'
-alias tl='t -ph'
-alias tal='ta -ph'
+alias t='tree -hI node_modules'
+alias ta='tree -ahI "node_modules|.git"'
 alias td='t -d'
 alias tad='ta -d'
 
-alias T='tree --gitignore -I .git'
-alias Ta='tree -a --gitignore -I .git'
-alias Th='T -h'
-alias Tah='Ta -h'
-alias Tl='T -ph'
-alias Tal='Ta -ph'
+alias T='tree -h --gitignore -I .git'
+alias Ta='tree -ah --gitignore -I .git'
 alias Td='T -d'
 alias Tad='Ta -d'
 
