@@ -102,9 +102,13 @@ alias rfgv="EDITOR='gvim --remote-tab-silent' rfe"
 #
 
 alias icat='kitty +kitten icat'
-alias fs='kitty --single-instance --start-as fullscreen --session fsplit.conf &'
+alias f='kitty --single-instance --start-as fullscreen'
 
-alias ffp="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+function ffp() {
+	fzf \
+		--preview 'bat --style=numbers --color=always --line-range :500 {}' \
+		--preview-window "$(($COLUMNS - 35))"
+}
 
 function catsay() {
 	cat "$1" && say -f "$1"
