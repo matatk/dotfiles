@@ -1,4 +1,4 @@
-DOTFILES=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+DOTFILES=~/.dotfiles
 VIM_PLUGIN_DIR=$(DOTFILES)/vim/dot-vim/plugged
 ZSH_ANTIGEN_REPO=~/.antigen-repo
 ZSH_ANTIGEN_PROG=~/.antigen
@@ -6,8 +6,6 @@ ZSH_ANTIGEN_PROG=~/.antigen
 .PHONY: \
 	all \
 	test \
-	shellrcs \
-	clean-shellrcs \
 	home-dot-symlinks \
 	clean-home-dot-symlinks \
 	managed-symlinks \
@@ -19,7 +17,7 @@ ZSH_ANTIGEN_PROG=~/.antigen
 	clean-zsh-antigen-dirs \
 	deepclean
 
-all: test shellrcs home-dot-symlinks managed-symlinks $(ZSH_ANTIGEN_REPO) kinesis
+all: test home-dot-symlinks managed-symlinks $(ZSH_ANTIGEN_REPO) kinesis
 	@echo "Reminders:"
 	@echo " * Changing shells: http://unix.stackexchange.com/questions/111365"
 	@echo " * Vim plugins are handled by vim-plug; run :PlugInstall in vim"
@@ -30,30 +28,10 @@ test:
 	-shellcheck scripts/*.sh shell/*.sh bin/*
 	@echo
 
-shellrcs: ~/.bashrc ~/.zshrc
-	@echo
-
-DOTFILES_PATH_STRING=$(subst /,\/,$(DOTFILES))
-
-define SHELLRC
-@echo "Generating $@..."
-@cat $< | sed -e 's/DOTFILES_PATH/$(DOTFILES_PATH_STRING)/g' > $@
-endef
-
-~/.bashrc: $(DOTFILES)/shell/template.bashrc.sh
-	$(SHELLRC)
-
-~/.zshrc: $(DOTFILES)/shell/template.zshrc.zsh
-	$(SHELLRC)
-
-clean-shellrcs:
-	@echo Removing shell RC files...
-	@rm -fv ~/.bashrc
-	@rm -fv ~/.zshrc
-	@echo
-
 # FIXME: These will be removed even if they weren't links
 home-dot-symlinks:
+	@ln -sfv  $(DOTFILES)/shell/bashrc.sh ~/.bashrc
+	@ln -sfv  $(DOTFILES)/shell/zshrc.zsh ~/.zshrc
 	@ln -nsfv $(DOTFILES)/vim/dot-vim ~/.vim
 	@ln -sfv  $(DOTFILES)/vim/vimrc ~/.vimrc
 	@ln -sfv  $(DOTFILES)/vim/gvimrc.core ~/.gvimrc.core
@@ -63,6 +41,8 @@ home-dot-symlinks:
 
 clean-home-dot-symlinks:
 	@echo "Removing direct home symlinks..."
+	@rm -fv ~/.bashrc
+	@rm -fv ~/.zshrc
 	@rm -fv ~/.vim
 	@rm -fv ~/.vimrc
 	@rm -fv ~/.gvimrc.core
@@ -111,7 +91,7 @@ kinesis:
 install-software:
 	@scripts/install-software.sh
 
-clean: clean-shellrcs clean-home-dot-symlinks clean-managed-symlinks
+clean: clean-home-dot-symlinks clean-managed-symlinks
 	@echo "Note: Installed vim plugins are kept, unless you specify 'deepclean'."
 	@echo
 	@echo "Note: The other .gitignored vim files/dirs are always kept, even"

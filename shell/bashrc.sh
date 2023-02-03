@@ -1,4 +1,4 @@
-DOTFILES="DOTFILES_PATH"  # set by the Makefile
+DOTFILES=~/.dotfiles  # Doing it this way allows shellcheck to work
 source "$DOTFILES/shell/environment.sh"
 source "$DOTFILES/shell/completions.sh"
 source "$DOTFILES/shell/colours.sh"
