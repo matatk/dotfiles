@@ -2,7 +2,7 @@
 # Environment
 ################################
 
-source $HOME/.dotfiles/shell/environment.sh
+source $HOME/.dotfiles/_shell/environment.sh
 
 
 ################################
@@ -25,7 +25,7 @@ zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 
 # Cross-shell completions
-source $HOME/.dotfiles/shell/completions.sh
+source $HOME/.dotfiles/_shell/completions.sh
 
 # pip(3) completion
 command -v pip3 > /dev/null && \
@@ -41,7 +41,7 @@ WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 # Colours
 ################################
 
-source $HOME/.dotfiles/shell/colours.sh
+source $HOME/.dotfiles/_shell/colours.sh
 
 # Use the above colours when completing file/directory names
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
@@ -52,7 +52,7 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 ################################
 
 # Put non-ZSH-specific ones here
-source $HOME/.dotfiles/shell/commands.sh
+source $HOME/.dotfiles/_shell/commands.sh
 
 # Use lovely move (and copy!) command
 # http://www.mfasold.net/blog/2008/11/moving-or-renaming-multiple-files/
@@ -229,4 +229,4 @@ antigen apply
 eval "$(direnv hook zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-source $HOME/.dotfiles/shell/startup-sequence.sh
+source $HOME/.dotfiles/_shell/startup-sequence.sh

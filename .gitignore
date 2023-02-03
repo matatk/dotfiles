@@ -1,9 +1,9 @@
 *.swp
 .DS_Store
-dot-config/kitty/startup.conf
-shell/local-startup-sequence.sh
-vim/dot-vim/autoload
-vim/dot-vim/plugged
-vim/dot-vim/.netrwhist
-vim/dot-vim/spell
-vim/dot-vim/rc.d/99-work.vim
+/kitty/.config/kitty/startup.conf
+/shell/local-startup-sequence.sh
+vim/.vim/autoload
+vim/.vim/plugged
+vim/.vim/.netrwhist
+vim/.vim/spell
+vim/.vim/rc.d/99-work.vim

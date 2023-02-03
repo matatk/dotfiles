@@ -1,8 +1,8 @@
 DOTFILES=~/.dotfiles  # Doing it this way allows shellcheck to work
-source "$DOTFILES/shell/environment.sh"
-source "$DOTFILES/shell/completions.sh"
-source "$DOTFILES/shell/colours.sh"
-source "$DOTFILES/shell/commands.sh"
+source "$DOTFILES/_shell/environment.sh"
+source "$DOTFILES/_shell/completions.sh"
+source "$DOTFILES/_shell/colours.sh"
+source "$DOTFILES/_shell/commands.sh"
 
 PS1="\[\033[0;1;32m\]\u@\h:\[\033[0;1;34m\]\w\[\033[0;1;33m\]\$ \[\033[0m\]"
 
@@ -28,5 +28,5 @@ eval "$(direnv hook bash)"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-source "$DOTFILES/shell/startup-sequence.sh"
+source "$DOTFILES/_shell/startup-sequence.sh"
 unset DOTFILES

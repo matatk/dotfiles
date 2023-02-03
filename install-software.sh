@@ -39,7 +39,7 @@ if_test() {
 
 CROSS_PLAT_UTILS='direnv fd fortune fzf hyperfine mas node@16 python rename ripgrep rpl shellcheck tree zsh'
 
-on_platform Darwin 'Utilities' \
+on_platform Darwin 'Shells & Utilities' \
 	"brew install bash-completion bat coreutils mas z $CROSS_PLAT_UTILS" \
 	'brew install --cask caffeine colour-contrast-analyser firefox github google-chrome kitty macdown macvim meld microsoft-edge rectangle spotify' \
 	'brew tap homebrew/cask-fonts' \
