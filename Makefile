@@ -1,41 +1,54 @@
+SHELL=/bin/sh
 DOTFILES=$(HOME)/.dotfiles
 VIM_PLUGIN_DIR=$(DOTFILES)/vim/.vim/plugged
 ZSH_ANTIGEN_REPO=~/.antigen-repo
 ZSH_ANTIGEN_PROG=~/.antigen
 
+STOW = $(shell test -x /opt/homebrew/bin/stow && echo /opt/homebrew/bin/stow || echo /usr/local/bin/stow)
+
 .PHONY: \
 	all \
+	check-dir \
 	clean \
 	clean-symlinks \
 	clean-vim-plugin-dir \
 	clean-zsh-antigen-dirs \
 	deepclean \
-	dir-check \
 	kinesis \
 	symlinks \
 	test
 
 all: test symlinks $(ZSH_ANTIGEN_REPO) kinesis
 	@echo 'Reminders:'
+	@echo ' * To install software: ./install-software.sh'
+	@echo '   - NOTE: Need this to install fisher (fish plugin manager)'
+	@echo ' * To change shells to fish:'
+	@echo '   - ./add_shells.sh fish'
+	@echo '   - chsh -s <path-to-fish>'
+	@echo '   - On first launch, run:'
+	@echo '       + fisher update (installs plugins)'
+	@echo '       + universal_setup (sets paths, vi mode, etc.)'
+	@echo
+	@echo 'Legacy reminders:'
 	@echo ' * Changing shells: http://unix.stackexchange.com/questions/111365'
 	@echo ' * Vim plugins are handled by vim-plug; run :PlugInstall in vim'
-	@echo ' * To install software: ./install-software.sh'
 
-dir-check:
+check-dir:
 ifneq ($(DOTFILES), $(shell pwd))
 	$(error Must be run from $(DOTFILES))
 endif
 
-test: dir-check
+test: check-dir
 	-shellcheck *.sh _shell/* bins/bin/* bash/.bashrc
 	@echo
 
-symlinks: dir-check
-	stow */
+symlinks: check-dir
+	$(STOW) */
 	@echo
 
-clean-symlinks: dir-check
-	stow --delete */
+# FIXME: This breaks fish if it's running at the time.
+clean-symlinks: check-dir
+	$(STOW) --delete */
 	@echo
 
 $(ZSH_ANTIGEN_REPO):
