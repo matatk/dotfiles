@@ -1,0 +1,2 @@
+require('matatk')
+print('hello!')
