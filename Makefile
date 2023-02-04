@@ -28,6 +28,8 @@ all: test symlinks $(ZSH_ANTIGEN_REPO) kinesis
 	@echo '   - On first launch, run:'
 	@echo '       + fisher update (installs plugins)'
 	@echo '       + universal_setup (sets paths, vi mode, etc.)'
+	@echo ' * To install NeoVim plugins for the first time:'
+	@echo "     nvim --headless -u NONE -c 'lua require(\"bootstrap\").bootstrap_paq()'"
 	@echo
 	@echo 'Legacy reminders:'
 	@echo ' * Changing shells: http://unix.stackexchange.com/questions/111365'
