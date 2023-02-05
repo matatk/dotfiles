@@ -1,3 +1,5 @@
-require('paq')(require('plugins'))
-require('remap')
-require('set')
+require('plugins').bootstrap(function()
+	require('remap')
+	require('set')
+	require('plugin-config.telescope')
+end)
