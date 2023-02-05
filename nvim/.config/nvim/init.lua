@@ -1,2 +1,3 @@
--- Structure based on https://github.com/ThePrimeagen/init.lua
-require('matatk')
+require('paq')(require('plugins'))
+require('remap')
+require('set')
