@@ -1,5 +1,7 @@
+-- Thanks to https://github.com/ThePrimeagen/init.lua for getting this going
 require('plugins').bootstrap(function()
-	require('remap')
+	require('map')
 	require('set')
-	require('plugin-config.telescope')
+	require('netrw')
+	require('prefs.telescope')
 end)

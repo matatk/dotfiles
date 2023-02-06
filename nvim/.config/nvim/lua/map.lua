@@ -12,7 +12,3 @@ vim.keymap.set('n', '<C-h>', vim.cmd.nohlsearch)
 vim.keymap.set('n', '<leader>l', ':buffers<cr>:b<space>')
 vim.keymap.set('n', '<leader>n', vim.cmd.bnext)
 vim.keymap.set('n', '<leader>p', vim.cmd.bprev)
-
--- https://vonheikemen.github.io/devlog/tools/using-netrw-vim-builtin-file-explorer/
-vim.keymap.set('n', '<leader>ef', function() vim.cmd.Lexplore('%:p:h') end)
-vim.keymap.set('n', '<leader>ew', vim.cmd.Lexplore)
