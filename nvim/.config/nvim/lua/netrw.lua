@@ -2,8 +2,8 @@
 -- https://shapeshed.com/vim-netrw/
 
 vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
-vim.g.netrw_liststyle = 3
+vim.g.netrw_winsize = 25   -- %
+vim.g.netrw_liststyle = 3  -- tree
 
 vim.keymap.set('n', '<leader>ef', function() vim.cmd.Lexplore('%:p:h') end)
-vim.keymap.set('n', '<leader>ew', vim.cmd.Lexplore)
+vim.keymap.set('n', '<leader>ew', vim.cmd.Lexplore)  -- cwd
