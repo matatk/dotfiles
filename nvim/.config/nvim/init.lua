@@ -1,5 +1,5 @@
 -- Thanks to https://githugtb.com/ThePrimeagen/init.lua for getting this going
-require('plugins').bootstrap(function()
+require('paq-man').bootstrap(function()
 	require('colours')
 	require('map')
 	require('set')

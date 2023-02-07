@@ -3,7 +3,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = 'yes'
 
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 4
 vim.opt.wrap = false
 
 vim.opt.incsearch = true

@@ -1,51 +1,26 @@
--- Based on https://github.com/savq/paq-nvim/issues/129 and subsequent PR
-
-local packages = {
+return {
 	'savq/paq-nvim',
 
+	-- Colours: Not TreeSitter-supporting?
 	'tomasr/molokai',
-	'folke/tokyonight.nvim',
+
+	-- Colours: TreeSitter-supporting
+	-- https://github.com/rockerBOO/awesome-neovim#colorscheme
 	'morhetz/gruvbox',
+	'folke/tokyonight.nvim',
 	'navarasu/onedark.nvim',
 	'rose-pine/neovim',
+	'dracula/vim',
+	--{ 'kaicataldo/material.vim', branch='main' },  -- Removed in favour of...
+	'marko-cerovac/material.nvim',
 
+	-- Classic bangin' ViM plugins
 	'tpope/vim-surround',
 
+	-- so
 	{ 'nvim-lua/plenary.nvim', tag='0.1.2' },
 
+	-- NeoVim plugins
 	{ 'nvim-telescope/telescope-fzf-native.nvim', run='make' },
 	{ 'nvim-telescope/telescope.nvim', branch='0.1.x' },
 }
-
-local function ensure_paq()
-	path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
-	if vim.fn.glob(path) == "" then
-		vim.fn.system({ 'git', 'clone', 'https://github.com/savq/paq-nvim', path })
-		vim.cmd.packadd('paq-nvim')
-		return true
-	end
-	return false
-end
-
-local function bootstrap(cb)
-	first_install = ensure_paq()
-	paq = require('paq')
-	paq(packages)
-	if first_install then
-		print('Paq: first install; if prompted, hit Enter to continue.')
-		vim.api.nvim_create_autocmd('User PaqDoneInstall', {
-			callback = cb
-		})
-		paq.install()
-	else
-		cb()
-	end
-end
-
-vim.api.nvim_create_autocmd('BufWritePost', {
-	command = 'silent PaqClean | silent PaqInstall',
-	group = vim.api.nvim_create_augroup('Paq', { clear = true }),
-	pattern = '*/plugins.lua'  -- FIXME non-absolute path
-})
-
-return { bootstrap = bootstrap }

@@ -2,7 +2,7 @@
 
 -- Molokai
 -- https://github.com/tomasr/molokai
-vim.g.rehash256 = 1
+vim.g.rehash256 = true
 --vim.cmd.colorscheme('molokai')
 
 -- One dark
@@ -10,7 +10,7 @@ vim.g.rehash256 = 1
 require('onedark').setup {
 	style = 'warmer',
 	toggle_style_key = '<leader>ts',
-	toggle_style_list = { 'darker', 'deep', 'warmer' }
+	toggle_style_list = { 'warmer', 'darker', 'deep' }
 }
 --require('onedark').load()
 
@@ -20,4 +20,19 @@ require('onedark').setup {
 --vim.cmd.colorscheme('rose-pine')
 
 -- Tokyo Night
-vim.cmd.colorscheme('tokyonight-night')
+--vim.cmd.colorscheme('tokyonight-night')
+
+-- Material
+-- https://github.com/kaicataldo/material.vim
+-- NOTE: THIS WAS REMOVED
+--vim.g.material_terminal_italics = true
+--vim.g.material_theme_style = 'darker'
+--vim.cmd.colorscheme('material')
+
+-- Material
+-- https://github.com/marko-cerovac/material.nvim
+vim.g.material_style = 'deep ocean'
+vim.cmd.colorscheme('material')
+vim.keymap.set('n', '<leader>fs', 
+	function() require("material.functions").find_style() 
+end)
