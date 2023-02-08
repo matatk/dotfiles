@@ -2,9 +2,9 @@
 " that fits the terminal size.
 " NOTE: I would like this to be gO but it's a custom mapping already.
 if &columns < 91
-  noremap <buffer> gL gO<C-w>L<C-w>30<Bar>
+  nmap <buffer> gL gO<C-w>L<C-w>30<Bar>
 else
-  noremap <buffer> gL gO<C-w>L<C-w>50<Bar>:set nu<CR>
+  nmap <buffer> gL gO<C-w>L<C-w>50<Bar>:set nu<CR>
 endif
 
 " Follow links with <Return>

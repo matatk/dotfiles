@@ -27,11 +27,11 @@ require('onedark').setup {
 vim.g.material_terminal_italics = true
 vim.g.material_theme_style = 'darker'
 vim.g.material_theme_style = 'ocean'
---vim.cmd.colorscheme('material')
+vim.cmd.colorscheme('material')
 
 -- vim-material
 -- https://github.com/hzchirs/vim-material
 vim.g.material_style = nil
 --vim.g.material_style = 'palenight'
 --vim.g.material_style = 'oceanic'
-vim.cmd.colorscheme('vim-material')
+--vim.cmd.colorscheme('vim-material')
