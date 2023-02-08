@@ -1,21 +1,34 @@
 return {
 	'savq/paq-nvim',
 
-	-- Colours: Not TreeSitter-supporting?
+	--
+	-- Colours
+	--
+
+	-- Not TreeSitter-supporting?
 	'tomasr/molokai',
 
-	-- Colours: TreeSitter-supporting
+	-- TreeSitter-supporting
 	-- https://github.com/rockerBOO/awesome-neovim#colorscheme
 	'morhetz/gruvbox',
 	'folke/tokyonight.nvim',
 	'navarasu/onedark.nvim',
 	'rose-pine/neovim',
 	'dracula/vim',
-	--{ 'kaicataldo/material.vim', branch='main' },  -- Removed in favour of...
-	'marko-cerovac/material.nvim',
+	-- Official ports of https://github.com/material-theme/vsc-material-theme#official-portings
+	{ 'kaicataldo/material.vim', branch='main' },
+	'hzchirs/vim-material',
 
-	-- Classic bangin' ViM plugins
+	--
+	-- Classic bangin' Vim plugins
+	--
+
 	'tpope/vim-surround',
+	'mbbill/undotree',
+
+	--
+	-- NeoVim plugins
+	--
 
 	-- so
 	{ 'nvim-lua/plenary.nvim', tag='0.1.2' },

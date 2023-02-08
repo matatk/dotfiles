@@ -22,17 +22,16 @@ require('onedark').setup {
 -- Tokyo Night
 --vim.cmd.colorscheme('tokyonight-night')
 
--- Material
+-- material.vim
 -- https://github.com/kaicataldo/material.vim
--- NOTE: THIS WAS REMOVED
---vim.g.material_terminal_italics = true
---vim.g.material_theme_style = 'darker'
+vim.g.material_terminal_italics = true
+vim.g.material_theme_style = 'darker'
+vim.g.material_theme_style = 'ocean'
 --vim.cmd.colorscheme('material')
 
--- Material
--- https://github.com/marko-cerovac/material.nvim
-vim.g.material_style = 'deep ocean'
-vim.cmd.colorscheme('material')
-vim.keymap.set('n', '<leader>fs', 
-	function() require("material.functions").find_style() 
-end)
+-- vim-material
+-- https://github.com/hzchirs/vim-material
+vim.g.material_style = nil
+--vim.g.material_style = 'palenight'
+--vim.g.material_style = 'oceanic'
+vim.cmd.colorscheme('vim-material')

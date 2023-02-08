@@ -1,10 +1,10 @@
 " Bring up the ToC as a vertical window on the right-hand side, with a width
 " that fits the terminal size.
-" FIXME: I would like this to be gO but it's a custom mapping already.
+" NOTE: I would like this to be gO but it's a custom mapping already.
 if &columns < 91
-  nmap <buffer> gL gO<C-w>L<C-w>30<Bar>
+  noremap <buffer> gL gO<C-w>L<C-w>30<Bar>
 else
-  nmap <buffer> gL gO<C-w>L<C-w>50<Bar>:set nu<CR>
+  noremap <buffer> gL gO<C-w>L<C-w>50<Bar>:set nu<CR>
 endif
 
 " Follow links with <Return>
