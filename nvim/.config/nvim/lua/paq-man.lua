@@ -5,7 +5,7 @@
 local plugins = require('plugins')
 
 local function ensure_paq()
-	path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
+	local path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
 	if vim.fn.glob(path) == "" then
 		vim.fn.system({ 'git', 'clone', 'https://github.com/savq/paq-nvim', path })
 		vim.cmd.packadd('paq-nvim')
@@ -15,8 +15,8 @@ local function ensure_paq()
 end
 
 local function bootstrap(cb)
-	first_install = ensure_paq()
-	paq = require('paq')
+	local first_install = ensure_paq()
+	local paq = require('paq')
 	paq(plugins)
 	if first_install then
 		print('Paq: first install; if prompted, hit Enter to continue.')

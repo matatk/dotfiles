@@ -6,16 +6,19 @@ return {
 	--
 
 	-- Not TreeSitter-supporting?
+
 	'tomasr/molokai',
 
 	-- TreeSitter-supporting
 	-- https://github.com/rockerBOO/awesome-neovim#colorscheme
+
 	'morhetz/gruvbox',
 	'folke/tokyonight.nvim',
 	'navarasu/onedark.nvim',
 	'rose-pine/neovim',
 	'dracula/vim',
-	-- Official ports of https://github.com/material-theme/vsc-material-theme#official-portings
+
+	-- https://github.com/material-theme/vsc-material-theme#official-portings
 	{ 'kaicataldo/material.vim', branch = 'main' },
 	'hzchirs/vim-material',
 
