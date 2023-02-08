@@ -8,4 +8,5 @@ require('paq-man').bootstrap(function()
 	require 'prefs.telescope'
 	require 'prefs.undotree'
 	require 'prefs.lsp-zero'
+	require 'prefs.treesitter'
 end)

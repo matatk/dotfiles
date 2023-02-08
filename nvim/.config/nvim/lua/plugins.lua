@@ -16,7 +16,7 @@ return {
 	'rose-pine/neovim',
 	'dracula/vim',
 	-- Official ports of https://github.com/material-theme/vsc-material-theme#official-portings
-	{ 'kaicataldo/material.vim', branch='main' },
+	{ 'kaicataldo/material.vim', branch = 'main' },
 	'hzchirs/vim-material',
 
 	--
@@ -30,12 +30,13 @@ return {
 	-- NeoVim plugins
 	--
 
-	-- so
-	{ 'nvim-lua/plenary.nvim', tag='0.1.2' },
+	{ 'nvim-treesitter/nvim-treesitter', run = function() vim.cmd 'TSUpdate' end },
+	{ 'nvim-treesitter/playground' },
 
-	-- NeoVim plugins
-	{ 'nvim-telescope/telescope-fzf-native.nvim', run='make' },
-	{ 'nvim-telescope/telescope.nvim', branch='0.1.x' },
+	{ 'nvim-lua/plenary.nvim', tag = '0.1.2' },
+
+	{ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+	{ 'nvim-telescope/telescope.nvim', branch = '0.1.x' },
 
 	--
 	-- LSP Zero
