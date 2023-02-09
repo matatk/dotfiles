@@ -38,7 +38,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 		vim.cmd [[ silent PaqClean | silent PaqInstall ]]
 	end,
 	group = vim.api.nvim_create_augroup('Paq', { clear = true }),
-	pattern = '*/plugins.lua'  -- FIXME non-absolute path
+	pattern = '*/plugins.lua' -- TODO: non-absolute path; will match too much
 })
 
 return { bootstrap = bootstrap }

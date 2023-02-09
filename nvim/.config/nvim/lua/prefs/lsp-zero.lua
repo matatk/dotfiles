@@ -15,13 +15,12 @@ lsp.on_attach(function(client, bufnr)
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 	local bind = vim.keymap.set
 
-	bind('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-	bind('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-
-	vim.keymap.set('n', '<leader>f', function()
+	bind('n', '<leader>r', function() vim.lsp.buf.rename() end, opts)
+	bind('n', '<leader>a', function() vim.lsp.buf.code_action() end, opts)
+	bind('n', '<leader>f', function()
 		print(vim.inspect(vim.lsp.buf.format { async = true }))
 	end, opts)
-	vim.keymap.set('n', '<leader>wl', function()
+	bind('n', '<leader>wl', function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, opts)
 end)
