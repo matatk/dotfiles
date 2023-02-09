@@ -7,6 +7,6 @@ require('paq-man').bootstrap(function()
 	-- The following would go in after/ but, erm, aren't
 	require 'prefs.telescope'
 	require 'prefs.undotree'
-	require 'prefs.lsp-zero'
 	require 'prefs.treesitter'
+	require 'prefs.lsp-zero'
 end)

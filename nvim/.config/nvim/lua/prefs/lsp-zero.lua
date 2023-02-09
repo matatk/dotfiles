@@ -27,4 +27,4 @@ end)
 
 -- (Optional) Configure lua language server for neovim
 lsp.nvim_workspace()
-lsp.setup()
+lsp.setup()  -- FIXME: causes error on first install
