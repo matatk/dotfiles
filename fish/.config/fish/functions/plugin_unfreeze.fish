@@ -1,0 +1,30 @@
+function plugin_unfreeze --description 'Check out the previous branch'
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/cmp-buffer/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/cmp-nvim-lsp/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/cmp-nvim-lua/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/cmp-path/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/cmp_luasnip/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/friendly-snippets/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/gruvbox/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/lsp-zero.nvim/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/LuaSnip/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/mason-lspconfig.nvim/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/mason.nvim/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/material.vim/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/molokai/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/neovim/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/nvim-cmp/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/nvim-lspconfig/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/nvim-treesitter/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/onedark.nvim/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/paq-nvim/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/playground/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/plenary.nvim/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/telescope-fzf-native.nvim/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/telescope.nvim/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/tokyonight.nvim/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/undotree/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/vim/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/vim-material/.git checkout -
+    git --git-dir /Users/mtatpg/.local/share/nvim/site/pack/paqs/start/vim-surround/.git checkout -
+end
