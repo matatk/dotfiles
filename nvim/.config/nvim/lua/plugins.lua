@@ -35,12 +35,12 @@ return {
 
 	-- https://github.com/nvim-treesitter/nvim-treesitter/wiki/Installation#packernvim
 	{
-        'nvim-treesitter/nvim-treesitter',
-        run = function()
-            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-            ts_update()
-        end,
-    },
+		'nvim-treesitter/nvim-treesitter',
+		run = function()
+			local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+			ts_update()
+		end,
+	},
 	{ 'nvim-treesitter/playground' },
 
 	{ 'nvim-lua/plenary.nvim', tag = '0.1.2' },
