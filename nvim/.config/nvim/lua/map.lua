@@ -45,5 +45,6 @@ vim.keymap.set('n', '<C-c>', ':bp|bd#<cr>')
 -- Open new terminal in a vertical split
 vim.keymap.set('n', '<Leader>t', ':vsp | term<CR>')
 
+-- FIXME: remove in favour of C-w [hjkl] commands?
 -- Escape to previous buffer
 vim.keymap.set('t', '<esc>', '<C-\\><C-n><C-w><C-p>')
