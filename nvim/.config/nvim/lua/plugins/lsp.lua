@@ -40,7 +40,7 @@ return {
 
 				bind('n', '<leader>r', function() vim.lsp.buf.rename() end, opts)
 				bind('n', '<leader>a', function() vim.lsp.buf.code_action() end, opts)
-				bind('n', '<leader>f', function()
+				bind('n', '<leader>F', function()
 					print(vim.inspect(vim.lsp.buf.format { async = true }))
 				end, opts)
 				bind('n', '<leader>wl', function()
