@@ -6,16 +6,21 @@ vim.keymap.set('n', '<C-h>', vim.cmd.nohlsearch)
 -- Make it easier to type commands
 vim.keymap.set('n', ';', ':')
 
+
 --
 -- Terminal stuff
 --
 
--- Based on https://gist.github.com/mahemoff/8967b5de067cffc67cec174cb3a9f49d#key-bindings
-vim.keymap.set('n', '<Leader>t', ':vsp | term<CR>i')
+-- Go to previous window
+vim.keymap.set('n', '<C-p>', '<C-w><C-p>')
 
--- TODO: Move?
--- https://alpha2phi.medium.com/neovim-for-beginners-lua-autocmd-and-keymap-functions-3bdfe0bebe42
-vim.api.nvim_create_autocmd('TermClose', {
-	pattern = '*',
-	command = 'bdelete! ' .. vim.fn.expand('<abuf>')
-})
+
+--
+-- Terminal stuff
+--
+
+-- Open new terminal in a vertical split
+vim.keymap.set('n', '<Leader>t', ':vsp | term<CR>')
+
+-- Escape to previous buffer
+vim.keymap.set('t', '<esc>', '<C-\\><C-n><C-w><C-p>')
