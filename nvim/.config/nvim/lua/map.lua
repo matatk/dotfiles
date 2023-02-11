@@ -1,3 +1,5 @@
+-- FIXME: make a bind() that does silent and noremap
+
 --vim.g.mapleader = ' '  -- Can't decide!
 
 -- Inherited from Debian
