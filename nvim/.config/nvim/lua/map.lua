@@ -28,6 +28,8 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set('n', '<C-p>', '<C-w><C-p>')
 
 -- Make window n chars wide
+vim.keymap.set('n', '<C-2>', '<C-w>20|')
+vim.keymap.set('n', '<C-3>', '<C-w>30|')
 vim.keymap.set('n', '<C-7>', '<C-w>70|')
 vim.keymap.set('n', '<C-8>', '<C-w>80|')
 
