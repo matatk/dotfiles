@@ -16,7 +16,6 @@ vim.opt.rtp:prepend(lazypath)
 -- TODO: Split/package as https://github.com/folke/lazy.nvim#-structuring-your-plugins
 require'lazy'.setup('plugins')
 
-require 'colours'  -- TODO: redo lazily
 require 'map'
 require 'set'
 require 'netrw'
