@@ -1,7 +1,7 @@
 function universal_setup --description 'Set things up after a reinstall'
 	fish_vi_key_bindings
 
-	set -Ux EDITOR vim
+	set -Ux EDITOR nvim
 	set -Ux BAT_THEME Dracula
 
 	if command --query /opt/homebrew/bin/brew
