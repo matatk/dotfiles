@@ -37,16 +37,16 @@ if_test() {
 	fi
 }
 
-CROSS_PLAT_UTILS='direnv fd fish fortune fzf hyperfine node@16 python rename ripgrep rpl shellcheck tree zsh'
+CROSS_PLAT_UTILS='direnv fd fish fortune fzf hyperfine rename ripgrep rpl shellcheck tree zsh'
 
 on_platform Darwin 'Shells & Utilities' \
-	"brew install bash-completion bat coreutils fisher mas z $CROSS_PLAT_UTILS" \
+	"brew install bash-completion bat coreutils fisher node@18 python@3.11 mas z $CROSS_PLAT_UTILS" \
 	'brew install --cask caffeine colour-contrast-analyser firefox github google-chrome kitty macdown macvim meld microsoft-edge rectangle spotify' \
 	'brew tap homebrew/cask-fonts' \
 	'brew install --cask font-fira-code font-symbols-only-nerd-font'
 
 on_platform Linux 'Utilities' \
-	"sudo apt install rust-bat $CROSS_PLAT_UTILS"
+	"sudo apt install nodejs python3 rust-bat $CROSS_PLAT_UTILS"
 
 if_test 'command -v pip3' 'Python linter' \
 	'pip3 install flake8'

@@ -19,7 +19,7 @@ fi
 
 # Ensure we can find brew-installed node, but also that it doesn't override the
 # path to a later version of npm that we upgraded ourselves.
-BREW_NODE="$HOMEBREW_PREFIX/opt/node@16/bin"
+BREW_NODE="$HOMEBREW_PREFIX/opt/node@18/bin"
 if [ -d "$BREW_NODE" ]; then
 	export PATH="$PATH:$BREW_NODE"
 fi
