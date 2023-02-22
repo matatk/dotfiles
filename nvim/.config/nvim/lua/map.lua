@@ -6,7 +6,10 @@
 vim.keymap.set('n', '<C-h>', vim.cmd.nohlsearch)
 
 -- Make it easier to type commands
-vim.keymap.set('n', ';', ':')
+-- TODO: Decide if going for this. Could use 
+-- https://vim.fandom.com/wiki/Map_semicolon_to_colon 
+-- to make it easier via ;; for "find next"
+--vim.keymap.set('n', ';', ':')
 
 
 --
