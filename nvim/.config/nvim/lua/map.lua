@@ -16,11 +16,16 @@ vim.keymap.set('n', '<C-h>', vim.cmd.nohlsearch)
 -- Movement
 --
 
-vim.keymap.set('n', '<C-d>', '<C-w><C-p>')
-
 -- https://github.com/ThePrimeagen/init.lua/blob/master/lua/theprimeagen/remap.lua
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
+-- Similarly, keep the cursor vertically centred with these movements
+vim.keymap.set('n', 'G', 'Gzz')
+vim.keymap.set('n', '}', '}zz')
+vim.keymap.set('n', '{', '{zz')
+vim.keymap.set('n', 'n', 'nzz')
+vim.keymap.set('n', 'N', 'Nzz')
 
 
 --
@@ -31,11 +36,11 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set('n', '<C-p>', '<C-w><C-p>')
 vim.keymap.set('t', '<C-p>', '<C-\\><C-n><C-w><C-p>')
 
--- Make window n chars wide
+-- Window width shortcuts (the wider ones include a margin allowance)
 vim.keymap.set('n', '<C-2>', '<C-w>20|')
 vim.keymap.set('n', '<C-3>', '<C-w>30|')
-vim.keymap.set('n', '<C-7>', '<C-w>70|')
-vim.keymap.set('n', '<C-8>', '<C-w>80|')
+vim.keymap.set('n', '<C-7>', '<C-w>75|')
+vim.keymap.set('n', '<C-8>', '<C-w>85|')
 
 -- Close buffer without closing window
 -- https://stackoverflow.com/a/4468491/1485308
