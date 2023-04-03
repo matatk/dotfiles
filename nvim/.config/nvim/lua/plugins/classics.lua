@@ -1,4 +1,6 @@
 return {
+	'gpanders/editorconfig.nvim',  -- FIXME: Remove after nvim 0.9 is stable
+
 	'tpope/vim-surround',
 
 	{
