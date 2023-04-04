@@ -1,15 +1,5 @@
--- FIXME: make a bind() that does silent and noremap
-
---vim.g.mapleader = ' '  -- Can't decide!
-
 -- Inherited from Debian
 vim.keymap.set('n', '<C-h>', vim.cmd.nohlsearch)
-
--- Make it easier to type commands
--- TODO: Decide if going for this. Could use 
--- https://vim.fandom.com/wiki/Map_semicolon_to_colon 
--- to make it easier via ;; for "find next"
---vim.keymap.set('n', ';', ':')
 
 
 --
@@ -41,10 +31,6 @@ vim.keymap.set('n', '<C-2>', '<C-w>20|')
 vim.keymap.set('n', '<C-3>', '<C-w>30|')
 vim.keymap.set('n', '<C-7>', '<C-w>75|')
 vim.keymap.set('n', '<C-8>', '<C-w>85|')
-
--- Close buffer without closing window
--- https://stackoverflow.com/a/4468491/1485308
-vim.keymap.set('n', '<C-c>', ':bp|bd#<cr>')
 
 
 --
