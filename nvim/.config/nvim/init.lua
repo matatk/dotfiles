@@ -19,3 +19,5 @@ require'lazy'.setup('plugins')
 require 'map'
 require 'set'
 require 'netrw'
+
+vim.cmd.colorscheme 'material'  -- FIXME: Shouldn't be needed; https://github.com/folke/lazy.nvim/issues/40
