@@ -29,6 +29,8 @@ vim.keymap.set('t', '<C-p>', '<C-\\><C-n><C-w><C-p>')
 -- Window width shortcuts (the wider ones include a margin allowance)
 vim.keymap.set('n', '<C-2>', '<C-w>20|')
 vim.keymap.set('n', '<C-3>', '<C-w>30|')
+vim.keymap.set('n', '<C-4>', '<C-w>40|')
+vim.keymap.set('n', '<C-5>', '<C-w>50|')
 vim.keymap.set('n', '<C-7>', '<C-w>75|')
 vim.keymap.set('n', '<C-8>', '<C-w>85|')
 
