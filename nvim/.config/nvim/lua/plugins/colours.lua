@@ -10,6 +10,7 @@ return {
 	},
 
 	-- https://github.com/material-theme/vsc-material-theme#official-portings
+	-- https://github.com/kaicataldo/material.vim
 	{
 		'kaicataldo/material.vim',
 		branch = 'main',
