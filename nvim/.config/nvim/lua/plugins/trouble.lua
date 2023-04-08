@@ -3,14 +3,7 @@ return {
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
-			require("trouble").setup { position = "left" }
-
-			vim.keymap.set("n", "<leader>xL", function() require("trouble").setup { position = "left" } end,
-				{ silent = true, noremap = true }
-			)
-			vim.keymap.set("n", "<leader>xB", function() require("trouble").setup { position = "bottom" } end,
-				{ silent = true, noremap = true }
-			)
+			require("trouble").setup()
 
 			-- https://github.com/folke/trouble.nvim#commands
 			vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
