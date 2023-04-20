@@ -13,3 +13,4 @@
 /fish/.config/fish/functions/_*
 /fish/.config/fish/functions/fish*
 /fish/.config/fish/functions/tide*
+/nvim/.config/nvim/spell
