@@ -1,6 +1,6 @@
 " TODO: override LSP formatting key
 function CleanUp()
-	silent %!isort - -q
+	silent %!isort - -q --profile black
 	silent %!black - -q
 endfunction
 
