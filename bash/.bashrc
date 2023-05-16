@@ -30,3 +30,4 @@ eval "$(direnv hook bash)"
 
 source "$DOTFILES/_shell/startup-sequence.sh"
 unset DOTFILES
+. "$HOME/.cargo/env"

@@ -14,5 +14,6 @@ function universal_setup --description 'Set things up after a reinstall'
 	fish_add_path $prefix/opt/node@18/bin
 	fish_add_path $prefix/opt/python@3.11/libexec/bin
 
+	fish_add_path ~/.cargo/bin
 	fish_add_path ~/bin
 end
