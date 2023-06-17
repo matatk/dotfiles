@@ -37,7 +37,7 @@ if_test() {
 	fi
 }
 
-CROSS_PLAT_UTILS='direnv fd fish fortune fzf hyperfine rename ripgrep rpl shellcheck tree zsh'
+CROSS_PLAT_UTILS='direnv fd fish fortune fzf hyperfine rename ripgrep rpl shellcheck tree'
 
 on_platform Darwin 'Shells & Utilities' \
 	"brew install bash-completion bat coreutils fisher node@18 python@3.11 mas z $CROSS_PLAT_UTILS" \

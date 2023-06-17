@@ -1,7 +1,5 @@
 SHELL=/bin/sh
 DOTFILES=$(HOME)/.dotfiles
-ZSH_ANTIGEN_REPO=~/.antigen-repo
-ZSH_ANTIGEN_PROG=~/.antigen
 
 STOW = $(shell test -x /opt/homebrew/bin/stow && echo /opt/homebrew/bin/stow || echo /usr/local/bin/stow)
 
@@ -10,13 +8,12 @@ STOW = $(shell test -x /opt/homebrew/bin/stow && echo /opt/homebrew/bin/stow || 
 	check-dir \
 	clean \
 	clean-symlinks \
-	clean-zsh-antigen-dirs \
 	deepclean \
 	kinesis \
 	symlinks \
 	test
 
-all: test symlinks $(ZSH_ANTIGEN_REPO) kinesis
+all: test symlinks kinesis
 	@echo 'Reminders:'
 	@echo ' * To install software: ./install-software.sh'
 	@echo '   - NOTE: Need this to install fish and fisher (plugin manager)'
@@ -49,12 +46,6 @@ clean-symlinks: check-dir
 	$(STOW) --delete */
 	@echo
 
-$(ZSH_ANTIGEN_REPO):
-	@echo 'Cloning zsh-antigen, if needed...'
-	@[ -d $(ZSH_ANTIGEN_REPO) ] || \
-		git clone https://github.com/zsh-users/antigen.git $(ZSH_ANTIGEN_REPO)
-	@echo
-
 kinesis:
 	@echo 'Kinesis keyboard customisations:'
 	@echo '  Soft reset: Program + Shift + F10'
@@ -74,12 +65,3 @@ kinesis:
 	@echo
 
 clean: clean-symlinks
-	@echo 'Note: Installed zsh plugins are kept, unless you specify 'deepclean'.'
-
-clean-zsh-antigen-dirs:
-	@echo 'Removing Zsh Antigen repo and bundle directory...'
-	rm -rf $(ZSH_ANTIGEN_REPO) $(ZSH_ANTIGEN_PROG)
-
-deepclean: \
-	clean \
-	clean-zsh-antigen-dirs
