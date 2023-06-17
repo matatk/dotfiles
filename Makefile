@@ -21,7 +21,7 @@ STOW = $(shell test -x /opt/homebrew/bin/stow && echo /opt/homebrew/bin/stow || 
 all: test symlinks $(ZSH_ANTIGEN_REPO) kinesis
 	@echo 'Reminders:'
 	@echo ' * To install software: ./install-software.sh'
-	@echo '   - NOTE: Need this to install fisher (fish plugin manager)'
+	@echo '   - NOTE: Need this to install fish and fisher (plugin manager)'
 	@echo ' * To change shells to fish:'
 	@echo '   - ./add_shells.sh fish'
 	@echo '   - chsh -s <path-to-fish>'
