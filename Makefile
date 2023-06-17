@@ -41,7 +41,7 @@ symlinks: check-dir
 	$(STOW) */
 	@echo
 
-# FIXME: This breaks fish if it's running at the time.
+# NOTE: This breaks fish if it's running at the time; work around it by calling the Makefile from another shell.
 clean-symlinks: check-dir
 	$(STOW) --delete */
 	@echo
