@@ -37,7 +37,7 @@ if_test() {
 	fi
 }
 
-CROSS_PLAT_UTILS='direnv fd fish fortune fzf hyperfine rename ripgrep rpl shellcheck tree'
+CROSS_PLAT_UTILS='direnv fd fish fortune fzf hyperfine jq rename ripgrep rpl shellcheck tree'
 
 on_platform Darwin 'Shells & Utilities' \
 	"brew install bat coreutils fisher node@18 python@3.11 mas z $CROSS_PLAT_UTILS" \
@@ -47,13 +47,7 @@ on_platform Darwin 'Shells & Utilities' \
 on_platform Linux 'Utilities' \
 	"sudo apt install nodejs python3 rust-bat $CROSS_PLAT_UTILS"
 
-if_test 'command -v pip3' 'Python linter' \
-	'pip3 install flake8'
-
-if_test 'command -v gem' 'Ruby package manager' \
-	'gem install bundler'
-
-if_test 'command -v npm' 'Important JavaScript utilities' \
-	'npm install -g colour-contrast-cli eclint eslint http-server json-diff jsonlint npm npm-check package-json-validator stylelint stylelint-config-standard typescript'
+if_test 'command -v npm' 'JavaScript utilities' \
+	'npm install -g colour-contrast-cli http-server json-diff jsonlint npm npm-check npm-check-updates package-json-validator'
 
 echo 'Software installations complete.'
