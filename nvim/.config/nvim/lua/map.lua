@@ -1,3 +1,13 @@
+-- https://gist.github.com/swarn/fb37d9eefe1bc616c2a7e476c0bc0316
+-- FIXME: this doesn't seem to do anything
+vim.keymap.set('n', '<C-i>', function()
+	print('Doing something to highlights...')
+    for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+      vim.api.nvim_set_hl(0, group, {})
+    end
+end)
+
+
 -- Inherited from Debian
 vim.keymap.set('n', '<C-h>', vim.cmd.nohlsearch)
 
