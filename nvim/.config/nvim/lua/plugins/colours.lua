@@ -34,10 +34,10 @@ return {
 		end
 	},
 
-	-- Other Material plugin (can chnage variant via Telescope)
-	-- THIS IS THE ONE THAT SUPPORTS TELESCOPE SWITCHING:
+	-- Other Material plugin
+	-- This one can chnage variant via Telescope, but doesn't use any red in Rust
 	-- https://github.com/marko-cerovac/material.nvim
-	--'marko-cerovac/material.nvim',
+	'marko-cerovac/material.nvim',
 
 	--
 	-- Others
@@ -54,7 +54,7 @@ return {
 		config = function()
 			require('onedark').setup {
 				style = 'warmer',
-				toggle_style_key = '<leader>os'
+				toggle_style_key = '<C-o>'
 			}
 			require('onedark').load()
 		end
@@ -70,5 +70,5 @@ return {
 	},
 
 	-- https://github.com/catppuccin/nvim
-	'catppuccin/nvim'
+	'catppuccin/nvim',
 }
