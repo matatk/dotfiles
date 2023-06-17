@@ -1,3 +1,0 @@
-set fullscreen
-set columns=110
-execute('source ~/.gvimrc.core')

@@ -4,7 +4,7 @@ if [ "$(uname -s)" = 'Darwin' ]; then
 fi
 
 export PATH=$HOME/bin:$PATH
-EDITOR="$(which vim)"  # used by git commit et al
+EDITOR="$(which nvim)"  # used by git commit et al
 export EDITOR
 
 export XML_CATALOG_FILES="$HOMEBREW_PREFIX/etc/xml/catalog"  # for DocBook

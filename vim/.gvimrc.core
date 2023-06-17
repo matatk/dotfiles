@@ -1,7 +1,0 @@
-set macligatures
-set guifont=FiraCodeNerdFontComplete-Light:h18
-set transparency=15
-set guioptions-=T
-
-" Current MacVim doesn't get this right (normal vim does, hence it's here)
-autocmd BufNewFile,BufRead *.md set filetype=markdown

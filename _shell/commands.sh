@@ -90,13 +90,6 @@ function gftnc() {
 
 alias rgi='rg -i'
 
-# search for (or count) fixmes, todos, and notes
-alias ftn="EDITOR='gvim --remote-tab-silent' ftn"
-
-# ripgrep-fzf-edit commands (base rfe script is in bin/)
-alias rfv=rfe  # my default EDITOR is vim anyway
-alias rfgv="EDITOR='gvim --remote-tab-silent' rfe"
-
 
 #
 # Custom commands
@@ -178,27 +171,9 @@ alias ogd='open . -a Github\ Desktop'
 alias orm='open README.md -a MacDown'
 alias om='open -a MacDown'
 
-gvim() {
-	if [ $# -eq 0 ]; then
-		command gvim
-	else
-		command gvim --remote-tab-silent "$@"
-	fi
-}
-alias v=gvim
-
-# C/C++
-alias chsbs='mvim -U ~/.gvimrc.fullscreen -p *.c -c "tabdo vsp %<.h | windo set nowrap"'
-alias hcsbs='mvim -U ~/.gvimrc.fullscreen -p *.h -c "set splitright | tabdo vsp %<.c | windo set nowrap"'
-alias mkcompdb='make clean && intercept-build make && cat compile_commands.json'
-
 # https://gist.github.com/yyx990803/6045243
 alias npml="npm list --depth=0 2>/dev/null"
 alias renpm='rm -rf package-lock.json node_modules && npm install'
-
-# Use the same flake8 settings on the command-line as in Vim
-# This also ignores a standardly-named virtualenv directory
-alias f8='flake8 --ignore="W191,E117,W503" --exclude .venv'
 
 # Clean Python clart from current dir and below (but not potentially .venv)
 alias cpc='find * -name __pycache__ -exec rm -rfv {} \;'

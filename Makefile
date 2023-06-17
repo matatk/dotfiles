@@ -1,6 +1,5 @@
 SHELL=/bin/sh
 DOTFILES=$(HOME)/.dotfiles
-VIM_PLUGIN_DIR=$(DOTFILES)/vim/.vim/plugged
 ZSH_ANTIGEN_REPO=~/.antigen-repo
 ZSH_ANTIGEN_PROG=~/.antigen
 
@@ -11,7 +10,6 @@ STOW = $(shell test -x /opt/homebrew/bin/stow && echo /opt/homebrew/bin/stow || 
 	check-dir \
 	clean \
 	clean-symlinks \
-	clean-vim-plugin-dir \
 	clean-zsh-antigen-dirs \
 	deepclean \
 	kinesis \
@@ -31,7 +29,7 @@ all: test symlinks $(ZSH_ANTIGEN_REPO) kinesis
 	@echo
 	@echo 'Legacy reminders:'
 	@echo ' * Changing shells: http://unix.stackexchange.com/questions/111365'
-	@echo ' * Vim plugins are handled by vim-plug; run :PlugInstall in vim'
+	@echo ' * Start nvim to install NeoVim plugins'
 
 check-dir:
 ifneq ($(DOTFILES), $(shell pwd))
@@ -76,16 +74,7 @@ kinesis:
 	@echo
 
 clean: clean-symlinks
-	@echo 'Note: Installed vim plugins are kept, unless you specify 'deepclean'.'
-	@echo
-	@echo 'Note: The other .gitignored vim files/dirs are always kept, even'
-	@echo '      if you /do/ specify 'deepclean'.'
-
-clean-vim-plugin-dir:
-	@echo
-	@echo 'Removing Vim plugin directory...'
-	rm -rf $(VIM_PLUGIN_DIR)
-	@echo
+	@echo 'Note: Installed zsh plugins are kept, unless you specify 'deepclean'.'
 
 clean-zsh-antigen-dirs:
 	@echo 'Removing Zsh Antigen repo and bundle directory...'
@@ -93,5 +82,4 @@ clean-zsh-antigen-dirs:
 
 deepclean: \
 	clean \
-	clean-vim-plugin-dir \
 	clean-zsh-antigen-dirs

@@ -1,4 +1,0 @@
-" http://superuser.com/questions/438232/include-all-vim-files-in-a-folder
-for rcfile in split(globpath("~/.vim/rc.d", "*.vim"), '\n')
-	execute('source '.rcfile)
-endfor

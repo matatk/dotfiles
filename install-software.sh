@@ -41,8 +41,7 @@ CROSS_PLAT_UTILS='direnv fd fish fortune fzf hyperfine rename ripgrep rpl shellc
 
 on_platform Darwin 'Shells & Utilities' \
 	"brew install bash-completion bat coreutils fisher node@18 python@3.11 mas z $CROSS_PLAT_UTILS" \
-	'brew install --cask caffeine colour-contrast-analyser firefox github google-chrome kitty macdown macvim meld microsoft-edge rectangle spotify' \
-	'brew tap homebrew/cask-fonts' \
+	'brew install --cask caffeine colour-contrast-analyser firefox github google-chrome kitty macdown homebrew/cask-fonts' \
 	'brew install --cask font-fira-code-nerd-font'
 
 on_platform Linux 'Utilities' \
