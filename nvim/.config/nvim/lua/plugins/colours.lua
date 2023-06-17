@@ -24,6 +24,7 @@ return {
 		end
 	},
 
+	-- I think I prefer this one (red args)
 	-- NOTE: Doesn't support semantic highlighting
 	-- https://github.com/hzchirs/vim-material
 	{
@@ -54,7 +55,7 @@ return {
 		config = function()
 			require('onedark').setup {
 				style = 'warmer',
-				toggle_style_key = '<C-o>'
+				toggle_style_key = '<leader>os'
 			}
 			require('onedark').load()
 		end
