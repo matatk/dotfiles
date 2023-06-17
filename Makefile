@@ -65,3 +65,8 @@ kinesis:
 	@echo
 
 clean: clean-symlinks
+	@echo "Use the 'deepclean' target to clean the following additional files..."
+	@git clean --dry-run -d -x
+
+deepclean: clean
+	git clean -fdx
