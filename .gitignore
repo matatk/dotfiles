@@ -1,12 +1,6 @@
 *.swp
 .DS_Store
 /kitty/.config/kitty/startup.conf
-/_shell/local-startup-sequence.sh
-/vim/.vim/autoload
-/vim/.vim/plugged
-/vim/.vim/.netrwhist
-/vim/.vim/spell
-/vim/.vim/rc.d/99-work.vim
 /fish/.config/fish/conf.d
 /fish/.config/fish/completions
 /fish/.config/fish/fish_variables
