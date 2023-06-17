@@ -34,7 +34,7 @@ ifneq ($(DOTFILES), $(shell pwd))
 endif
 
 test: check-dir
-	-shellcheck *.sh _shell/* bins/bin/* bash/.bashrc
+	-shellcheck *.sh bins/bin/*
 	@echo
 
 symlinks: check-dir

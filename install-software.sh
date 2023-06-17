@@ -40,7 +40,7 @@ if_test() {
 CROSS_PLAT_UTILS='direnv fd fish fortune fzf hyperfine rename ripgrep rpl shellcheck tree'
 
 on_platform Darwin 'Shells & Utilities' \
-	"brew install bash-completion bat coreutils fisher node@18 python@3.11 mas z $CROSS_PLAT_UTILS" \
+	"brew install bat coreutils fisher node@18 python@3.11 mas z $CROSS_PLAT_UTILS" \
 	'brew install --cask caffeine colour-contrast-analyser firefox github google-chrome kitty macdown homebrew/cask-fonts' \
 	'brew install --cask font-fira-code-nerd-font'
 
@@ -54,6 +54,6 @@ if_test 'command -v gem' 'Ruby package manager' \
 	'gem install bundler'
 
 if_test 'command -v npm' 'Important JavaScript utilities' \
-	'npm install -g bash-language-server colour-contrast-cli eclint eslint http-server json-diff jsonlint npm npm-check package-json-validator stylelint stylelint-config-standard typescript'
+	'npm install -g colour-contrast-cli eclint eslint http-server json-diff jsonlint npm npm-check package-json-validator stylelint stylelint-config-standard typescript'
 
 echo 'Software installations complete.'
