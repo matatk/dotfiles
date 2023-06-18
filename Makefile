@@ -1,11 +1,11 @@
-SHELL=/bin/sh
-DOTFILES=$(HOME)/.dotfiles
-
+DOTFILES = $(HOME)/.dotfiles
 STOW = $(shell test -x /opt/homebrew/bin/stow && echo /opt/homebrew/bin/stow || echo /usr/local/bin/stow)
+THE_SHELL = $(shell ps -o command -p $$$$)
 
 .PHONY: \
 	all \
 	check-dir \
+	check-not-fish \
 	clean \
 	clean-symlinks \
 	deepclean \
@@ -23,10 +23,6 @@ all: test symlinks kinesis
 	@echo '   - On first launch, run:'
 	@echo '       + fisher update (installs plugins)'
 	@echo '       + universal_setup (sets paths, vi mode, etc.)'
-	@echo
-	@echo 'Legacy reminders:'
-	@echo ' * Changing shells: http://unix.stackexchange.com/questions/111365'
-	@echo ' * Start nvim to install NeoVim plugins'
 
 check-dir:
 ifneq ($(DOTFILES), $(shell pwd))
@@ -41,7 +37,6 @@ symlinks: check-dir
 	$(STOW) */
 	@echo
 
-# NOTE: This breaks fish if it's running at the time; work around it by calling the Makefile from another shell.
 clean-symlinks: check-dir
 	$(STOW) --delete */
 	@echo
@@ -64,7 +59,17 @@ kinesis:
 	@echo '  Program + F12 (Remap)'
 	@echo
 
-clean: clean-symlinks
+check-not-fish:
+	@echo "WARNING: Don't run this from within fish (start another shell instead)."
+	@echo
+	@echo "         If you're directly in fish when the symlinks are removed, fish"
+	@echo "         will re-create a stock config, which will need to be deleted"
+	@echo "         before running make again."
+	@echo
+	@echo "         Press ENTER to continue, or interrupt to exit."
+	@read
+
+clean: check-not-fish clean-symlinks
 	@echo "Use the 'deepclean' target to clean the following additional files..."
 	@git clean --dry-run -d -x
 
