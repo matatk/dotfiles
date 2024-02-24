@@ -40,7 +40,7 @@ if_test() {
 CROSS_PLAT_UTILS='direnv fd fish fortune fzf hyperfine jq rename ripgrep sd shellcheck tree'
 
 on_platform Darwin 'Shells & Utilities' \
-	"brew install bat coreutils fisher node@18 mas $CROSS_PLAT_UTILS" \
+	"brew install bat coreutils fisher node@20 mas $CROSS_PLAT_UTILS" \
 	'brew install --cask caffeine colour-contrast-analyser firefox github google-chrome kitty macdown homebrew/cask-fonts' \
 	'brew install --cask font-fira-code-nerd-font'
 

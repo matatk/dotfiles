@@ -11,9 +11,10 @@ function universal_setup --description 'Set things up after a reinstall'
 		set -f prefix /usr/local
 	end
 	fish_add_path $prefix/sbin
-	fish_add_path $prefix/opt/node@18/bin
-	fish_add_path $prefix/opt/python@3.11/libexec/bin
+	fish_add_path $prefix/opt/node@20/bin
 
 	fish_add_path ~/.cargo/bin
 	fish_add_path ~/bin
+
+	echo -e "If running this after updating any paths, clear out the existing paths first:\nset -e fish_user_paths"
 end
