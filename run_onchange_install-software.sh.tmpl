@@ -1,0 +1,16 @@
+#!/bin/sh
+{{ if eq .chezmoi.os "linux" -}}
+
+apt install bat direnv fd fortune fzf hyperfine jq node nushell pandoc rename ripgrep sd shellcheck tree
+
+{{ template "command-install-npm-packages" -}}
+
+{{- else if eq .chezmoi.os "darwin" -}}
+
+brew install bat coreutils direnv fd fortune fzf hyperfine jq node@22 nushell pandoc rename ripgrep sd shellcheck tree
+
+brew install caffeine colour-contrast-analyser firefox github google-chrome kitty macdown font-fira-code-nerd-font
+
+PATH=/opt/homebrew/opt/node@22/bin:$PATH {{ template "command-install-npm-packages" -}}
+
+{{- end -}}

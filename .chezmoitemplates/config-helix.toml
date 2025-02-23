@@ -1,0 +1,19 @@
+theme = "catppuccin_mocha"
+
+[editor]
+line-number = "relative"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[keys.normal]
+"{" = ["goto_prev_function", "collapse_selection", "align_view_top"]
+"}" = ["goto_next_function", "flip_selections", "collapse_selection", "align_view_top"]
+"Z" = ":set gutters.line-numbers.min-width 25"
+"A-z" = ":set gutters.line-numbers.min-width 3"
+"A-g" = ":toggle indent-guides.render"
+"A-r" = ":toggle soft-wrap.enable"
+"A-t" = ":set soft-wrap.wrap-at-text-width true"
+"A-w" = ":set soft-wrap.wrap-at-text-width false"

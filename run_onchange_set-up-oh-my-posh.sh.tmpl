@@ -1,0 +1,7 @@
+#!/bin/sh
+# config file hash: {{ include "powerlevel10k_rainbow_matatk.omp.json" | sha256sum }}
+{{ if eq .chezmoi.os "linux" -}}
+oh-my-posh init nu --config {{ joinPath .chezmoi.sourceDir "powerlevel10k_rainbow_matatk.omp.json" | quote }} --print > ~/.config/nushell/oh-my-posh.nu
+{{ else if eq .chezmoi.os "darwin" -}}
+/opt/homebrew/bin/oh-my-posh init nu --config {{ joinPath .chezmoi.sourceDir "powerlevel10k_rainbow_matatk.omp.json" | quote }} --print > ~/Library/Application\ Support/nushell/oh-my-posh.nu
+{{ end -}}
