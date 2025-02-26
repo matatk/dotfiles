@@ -1,12 +1,10 @@
-powerlevel10k_rainbow_matatk.omp.json
+oh-my.matatk.nu
 
 {{ if eq .chezmoi.os "windows" }}
 install-software.sh
-set-up-oh-my-posh.sh
 .config
 {{ else }}
 install-software.bat
-set-up-oh-my-posh.bat
 {{ end }}
 
 {{ if ne .chezmoi.os "darwin" }}

@@ -7,7 +7,10 @@ $env.EDITOR = 'hx'
 $env.DOOMWADPATH = $'($env.HOME)/wads'
 {{- end }}
 
-source oh-my-posh.nu
+use {{ joinPath .chezmoi.sourceDir "oh-my.matatk.nu" | quote }} git_prompt
+$env.PROMPT_COMMAND = { (git_prompt).left_prompt }
+$env.PROMPT_COMMAND_RIGHT = { (git_prompt).right_prompt }
+$env.PROMPT_INDICATOR = " "
 
 {{ if ne .chezmoi.os "windows" -}}
 path add "~/bin"

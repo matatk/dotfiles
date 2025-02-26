@@ -1,3 +1,0 @@
-@echo off
-REM config file hash: {{ include "powerlevel10k_rainbow_matatk.omp.json" | sha256sum }}
-oh-my-posh init nu --config {{ joinPath .chezmoi.sourceDir "powerlevel10k_rainbow_matatk.omp.json" | quote }} --print > {{ joinPath .chezmoi.homeDir "AppData/Roaming/nushell/oh-my-posh.nu" | quote }}
