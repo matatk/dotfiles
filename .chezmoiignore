@@ -1,3 +1,4 @@
+README.md
 oh-my.matatk.nu
 
 {{ if eq .chezmoi.os "windows" }}
