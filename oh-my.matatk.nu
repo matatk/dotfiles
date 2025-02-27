@@ -419,17 +419,17 @@ def git_right_prompt [gs os] {
   let TERM_FG_DEFAULT = "\e[39m"
   let TERM_BG_DEFAULT = "\e[49m"
 
-  let datetime_segment = (
-    [
-      (ansi { fg: $TIME_BG bg: $TERM_FG })
-      (char -u e0b2) # 
-      (ansi { fg: $TERM_FG bg: $TIME_BG })
-      (char space)
-      (date now | format date '%m/%d/%Y %I:%M:%S%.3f')
-      (char space)
-      ($R)
-    ] | str join
-  )
+  # let datetime_segment = (
+  #   [
+  #     (ansi { fg: $TIME_BG bg: $TERM_FG })
+  #     (char -u e0b2) # 
+  #     (ansi { fg: $TERM_FG bg: $TIME_BG })
+  #     (char space)
+  #     (date now | format date '%m/%d/%Y %I:%M:%S%.3f')
+  #     (char space)
+  #     ($R)
+  #   ] | str join
+  # )
 
   let time_segment = (
     [
@@ -437,7 +437,7 @@ def git_right_prompt [gs os] {
       (char -u e0b2) # 
       (ansi { fg: $TERM_FG bg: $TIME_BG })
       (char space)
-      (date now | format date '%I:%M:%S %p')
+      (date now | format date '%H:%M:%S')
       (char space)
       ($R)
     ] | str join
