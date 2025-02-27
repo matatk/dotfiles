@@ -1,4 +1,6 @@
 @echo off
-echo FIXME: TODO!
+echo Downloading Nerd Font to Desktop for you to install...
+curl --location "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip" --output-dir {{ joinPath .chezmoi.homeDir "Desktop" | quote }} --remote-name --silent
 
+echo Installing NPM packages...
 {{ template "command-install-npm-packages" -}}
