@@ -7,9 +7,9 @@ $env.EDITOR = 'hx'
 $env.DOOMWADPATH = $'($env.HOME)/wads'
 {{- end }}
 
-use {{ joinPath .chezmoi.sourceDir "prompt.nu" | quote }} git_prompt
-$env.PROMPT_COMMAND = { (git_prompt).left_prompt }
-$env.PROMPT_COMMAND_RIGHT = { (git_prompt).right_prompt }
+use {{ joinPath .chezmoi.sourceDir "prompt.nu" | quote }} [matatk_left_prompt, matatk_right_prompt]
+$env.PROMPT_COMMAND = { matatk_left_prompt }
+$env.PROMPT_COMMAND_RIGHT = { matatk_right_prompt }
 $env.PROMPT_INDICATOR = " "
 
 {{ if ne .chezmoi.os "windows" -}}
