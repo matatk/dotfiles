@@ -3,7 +3,7 @@ use std/util "path add"
 $env.config.show_banner = false
 
 $env.EDITOR = 'hx'
-{{ if ne .chezmoi.os "windows" -}}
+{{- if ne .chezmoi.os "windows" }}
 $env.DOOMWADPATH = $'($env.HOME)/wads'
 {{- end }}
 
@@ -12,11 +12,11 @@ $env.PROMPT_COMMAND = { matatk_left_prompt }
 $env.PROMPT_COMMAND_RIGHT = { matatk_right_prompt }
 $env.PROMPT_INDICATOR = " "
 
-{{ if ne .chezmoi.os "windows" -}}
+{{- if ne .chezmoi.os "windows" }}
 path add "~/bin"
 path add "~/.cargo/bin"
 {{- end }}
-{{ if eq .chezmoi.os "darwin" -}}
+{{- if eq .chezmoi.os "darwin" }}
 path add "/opt/homebrew/bin"
 {{- end }}
 
@@ -67,3 +67,9 @@ alias t = tree -hI node_modules
 alias ta = tree -ahI "node_modules|.git"
 alias tad = ta -d
 alias td = t -d
+
+{{- if eq .chezmoi.os "windows" }}
+
+alias wu = winget update
+alias wU = winget update --all --disable-interactivity --silent
+{{- end }}
