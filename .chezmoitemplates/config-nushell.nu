@@ -12,11 +12,11 @@ $env.PROMPT_COMMAND = { matatk_left_prompt }
 $env.PROMPT_COMMAND_RIGHT = { matatk_right_prompt }
 $env.PROMPT_INDICATOR = " "
 
-{{- if ne .chezmoi.os "windows" }}
+{{ if ne .chezmoi.os "windows" -}}
 path add "~/bin"
 path add "~/.cargo/bin"
 {{- end }}
-{{- if eq .chezmoi.os "darwin" }}
+{{ if eq .chezmoi.os "darwin" -}}
 path add "/opt/homebrew/bin"
 {{- end }}
 
