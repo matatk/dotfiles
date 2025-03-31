@@ -1,0 +1,10 @@
+print "Activating gstat plugin..."
+{{ if eq .chezmoi.os "linux" -}}
+print "FIXME!"
+{{- else if eq .chezmoi.os "darwin" -}}
+plugin add /opt/homebrew/bin/nu_plugin_gstat
+plugin use /opt/homebrew/bin/nu_plugin_gstat
+{{- else -}}
+plugin add {{ joinPath .chezmoi.homeDir "AppData" "Local" "Programs" "nu" "bin" "nu_plugin_gstat.exe" | quote }}
+plugin use {{ joinPath .chezmoi.homeDir "AppData" "Local" "Programs" "nu" "bin" "nu_plugin_gstat.exe" | quote }}
+{{- end }}
