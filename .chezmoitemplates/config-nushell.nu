@@ -15,10 +15,10 @@ $env.PROMPT_INDICATOR = " "
 {{ if ne .chezmoi.os "windows" -}}
 path add "~/bin"
 path add "~/.cargo/bin"
-{{- end }}
+{{- end -}}
 {{ if eq .chezmoi.os "darwin" -}}
 path add "/opt/homebrew/bin"
-{{- end }}
+{{- end -}}
 
 alias T = tree -h --gitignore -I .git
 alias Ta = tree -ah --gitignore -I .git
