@@ -11,8 +11,8 @@ select = "underline"
 [keys.normal]
 "{" = ["goto_prev_function", "collapse_selection", "align_view_top"]
 "}" = ["goto_next_function", "flip_selections", "collapse_selection", "align_view_top"]
-"Z" = ":set gutters.line-numbers.min-width 25"
-"A-z" = ":set gutters.line-numbers.min-width 3"
+"Z" = [":set soft-wrap.wrap-at-text-width true", ":set soft-wrap.enable true", ":set gutters.line-numbers.min-width 13"]
+"A-z" = [":set soft-wrap.wrap-at-text-width false", ":set soft-wrap.enable false", ":set gutters.line-numbers.min-width 3"]
 "A-g" = ":toggle indent-guides.render"
 "A-r" = ":toggle soft-wrap.enable"
 "A-t" = ":set soft-wrap.wrap-at-text-width true"
