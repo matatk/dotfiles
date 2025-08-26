@@ -1,1 +1,1 @@
-npm --global install json-diff jsonlint npm npm-check-updates package-json-validator
+npm --global install json-diff jsonlint npm npm-check-updates package-json-validator-cli
