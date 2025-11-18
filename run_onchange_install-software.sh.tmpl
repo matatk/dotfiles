@@ -10,12 +10,12 @@ echo Installing NPM packages...
 {{- else if eq .chezmoi.os "darwin" -}}
 
 echo Installing brew formulae...
-brew install bat coreutils direnv dua-cli fd fortune fzf hyperfine jq node@22 nushell pandoc rename ripgrep sd shellcheck tree
+brew install bat coreutils direnv dua-cli fd fortune fzf hyperfine jq node@24 nushell pandoc rename ripgrep sd shellcheck tree
 
 echo Installing brew casks...
 brew install caffeine firefox github google-chrome kitty font-fira-code-nerd-font
 
 echo Installing NPM packages...
-PATH=/opt/homebrew/opt/node@22/bin:$PATH {{ template "command-install-npm-packages" -}}
+PATH=/opt/homebrew/opt/node@24/bin:$PATH {{ template "command-install-npm-packages" -}}
 
 {{- end -}}
