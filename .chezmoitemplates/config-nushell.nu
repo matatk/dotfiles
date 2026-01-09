@@ -18,7 +18,7 @@ path add "~/.cargo/bin"
 {{- end }}
 {{ if eq .chezmoi.os "darwin" -}}
 path add "/opt/homebrew/bin"
-path add "/opt/homebrew/opt/node@22/bin"
+path add "/opt/homebrew/opt/node@24/bin"
 {{- end }}
 
 alias T = tree -h --gitignore -I .git
