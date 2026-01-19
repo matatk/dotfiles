@@ -14,9 +14,9 @@
 # inspired by https://github.com/JanDeDobbeleer/oh-my-posh
 
 def home_abbrev [os_name] {
-  let is_home_in_path = ($env.PWD | str starts-with $nu.home-path)
+  let is_home_in_path = ($env.PWD | str starts-with $nu.home-dir)
   if $is_home_in_path {
-    let $abbreviated = $env.PWD | str replace $nu.home-path '~'
+    let $abbreviated = $env.PWD | str replace $nu.home-dir '~'
     if ($os_name =~ "windows") {
       $abbreviated | str replace -ar '\\' '/'
     } else {
