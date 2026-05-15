@@ -1,0 +1,42 @@
+if status is-interactive
+    abbr -a T tree -h --gitignore -I .git
+    abbr -a Ta tree -ah --gitignore -I .git
+    abbr -a Tad Ta -d
+    abbr -a Td T -d
+    abbr -a a ls -lha
+    abbr -a b bat -p --tabs 4
+    abbr -a ci cargo install --path .
+    abbr -a cl cargo clippy
+    abbr -a cls clear
+    abbr -a coi cargo --offline install --path .
+    abbr -a col cargo --offline clippy
+    abbr -a cot cargo --offline test
+    abbr -a cp cp -i
+    abbr -a ct cargo test
+    abbr -a f kitty --single-instance --start-as fullscreen --session none &
+    abbr -a gP git push
+    abbr -a gc git commit -nm
+    abbr -a gca git commit -nam
+    abbr -a gcam git commit --amend
+    abbr -a gcama git commit --amend -a
+    abbr -a gd git diff
+    abbr -a gds git diff --stat
+    abbr -a gl git log
+    abbr -a gla git log --all --decorate --oneline --graph
+    abbr -a glo git log --oneline
+    abbr -a glod git log --oneline --shortstat
+    abbr -a gp git pull
+    abbr -a gst git status
+    abbr -a l ls -lh
+    abbr -a mv mv -i
+    abbr -a nt nu-tracker
+    abbr -a ogd 'open . -a "/Applications/GitHub Desktop.app"'
+    abbr -a rgi rg -i
+    abbr -a rgih rg -i --hidden
+    abbr -a rm rm -i
+    abbr -a t tree -hI node_modules
+    abbr -a ta 'tree -ahI node_modules | .git'
+    abbr -a tad ta -d
+    abbr -a td t -d
+    abbr -a tsh tpac-scheduling-helper
+end

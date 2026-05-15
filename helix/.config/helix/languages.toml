@@ -1,0 +1,20 @@
+[language-server.eslint]
+args = ["--stdio"]
+command = "vscode-eslint-language-server"
+
+# Ref https://github.com/helix-editor/helix/discussions/8452
+# IMPORTANT: Must install vscode-langservers-extracted@4.8.0
+[language-server.eslint.config]
+useFlatConfig = true 
+experimental = {}
+codeAction = { disableRuleComment = { enable = true, location = "separateLine" }, showDocumentation = { enable = true } }
+nodePath = ""
+problems = { shortenToSingleLine = false }
+quiet = false
+rulesCustomizations = []
+run = "onType"
+validate = "on"
+
+[[language]]
+name = "typescript"
+language-servers = [ "typescript-language-server", "eslint" ]
