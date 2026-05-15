@@ -1,0 +1,2 @@
+#!/bin/bash
+fd --hidden '(.DS_Store|Thumbs.db)' ~ --exec-batch rm -v {}
